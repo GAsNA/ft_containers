@@ -6,7 +6,7 @@ SRCS_PATH		=	./srcs/
 OBJS_PATH		=	./objs/
 HEAD_PATH		=	./headers/
 
-FILES			=	main.cpp
+FILES			=
 HEAD_FILES		=	
 
 SRCS			=	${addprefix ${SRCS_PATH}, ${FILES}}
