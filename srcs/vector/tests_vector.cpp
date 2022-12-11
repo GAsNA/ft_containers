@@ -160,4 +160,37 @@ int main()
 			std::cout << " " << v[i];
 		std::cout << std::endl;
 	}
+
+	/*********************************************************/
+	/*						MODIFIERS						 */
+	/*********************************************************/
+	{
+		std::cout << "/*********************************************************/" << std::endl;
+		std::cout << "/*                       MODIFIERS                       */" << std::endl;
+		std::cout << "/*********************************************************/" << std::endl;
+
+		ft::vector<int> v(3, 7);
+		ft::vector<std::string> vs(1, "abc");
+
+		/* clear */
+		std::cout << "Size v before clear: " << v.size() << std::endl;
+		v.clear();
+		std::cout << "Size v after clear: " << v.size() << std::endl;
+
+		/* push_back */
+		std::cout << "Content of vs: ";
+		for (int i = 0; i < vs.size(); i++)
+			std::cout << " " << vs[i];
+		std::cout << std::endl;
+		std::cout << "// push_back def" << std::endl;
+		vs.push_back("def");
+		std::string s{"ghi"};
+		std::cout << "// push_back ghi" << std::endl;
+		vs.push_back(std::move(s));
+		std::cout << "Content of vs: ";
+		for (int i = 0; i < vs.size(); i++)
+			std::cout << " " << vs[i];
+		std::cout << std::endl;
+		std::cout << "S: " << s << std::endl;
+	}
 }

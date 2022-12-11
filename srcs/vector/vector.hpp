@@ -6,7 +6,7 @@
 /*   By: rleseur <rleseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:42:02 by rleseur           #+#    #+#             */
-/*   Updated: 2022/12/11 19:31:49 by rleseur          ###   ########.fr       */
+/*   Updated: 2022/12/11 23:56:45 by rleseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,17 @@ namespace ft
 			void		reserve(size_type new_cap);
 			size_type	capacity() const;
 
+			/* MODIFIERS */
+			void	clear();
+			void	push_back(const T& value);
+
 		private:
 			pointer			_datas;
 			size_type		_size;
 			size_type		_capacity;
 			allocator_type	_alloc;
 
+			void			modify_capacity(size_type new_cap);
 	};
 	
 /*	template <class T, class Alloc>
