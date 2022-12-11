@@ -6,7 +6,7 @@
 /*   By: rleseur <rleseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:42:02 by rleseur           #+#    #+#             */
-/*   Updated: 2022/12/11 00:49:49 by rleseur          ###   ########.fr       */
+/*   Updated: 2022/12/11 17:49:16 by rleseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <iostream>
 # include <string>
 # include <memory>
+# include <stdexcept>
 
 namespace ft
 {
@@ -23,10 +24,14 @@ namespace ft
 	class vector
 	{
 		public:
-			typedef Allocator								allocator_type;
-			typedef typename allocator_type::value_type		value_type;
-			typedef typename allocator_type::size_type		size_type;
-			typedef typename allocator_type::pointer		pointer;
+			typedef Allocator									allocator_type;
+			typedef typename allocator_type::value_type			value_type;
+			typedef typename allocator_type::size_type			size_type;
+			typedef typename allocator_type::pointer			pointer;
+			typedef typename allocator_type::reference			reference;
+			typedef typename allocator_type::const_reference	const_reference;
+			typedef typename allocator_type::iterator			iterator;
+			typedef typename allocator_type::const_iterator		const_iterator;
 			
 			class InvalidIndexException : public std::exception
 			{
@@ -34,6 +39,7 @@ namespace ft
 					virtual const char* what() const throw() {return "Invalid index!";}
 			};
 
+			/* CONSTRUCTORS */
 			explicit vector (const allocator_type& alloc = allocator_type());
 			explicit vector (size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type());
 			template <class InputIterator>
@@ -42,8 +48,21 @@ namespace ft
 
 			~vector();
 
+			/* OPERATORS */
 			vector	&operator=(const vector &rhs);
 			T		&operator[](const int i) const;
+
+			/* ACCESS */
+			reference		at(size_type pos);
+			const_reference	at(size_type pos) const;
+			reference		front();
+			const_reference	front() const;
+			reference		back();
+			const_reference	back() const;
+			T*				data();
+			const T*		data() const;
+
+			/* ITERATORS */
 
 			size_type	size(void) const {return this->_size;}
 
