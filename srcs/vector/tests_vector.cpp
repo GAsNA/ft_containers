@@ -117,4 +117,47 @@ int main()
 			std::cout << " " << d[i];
 		std::cout << std::endl;
 	}
+	
+	/*********************************************************/
+	/*						CAPACITY						 */
+	/*********************************************************/
+	{
+		std::cout << "/*********************************************************/" << std::endl;
+		std::cout << "/*                       CAPACITY                        */" << std::endl;
+		std::cout << "/*********************************************************/" << std::endl;
+
+		ft::vector<int> empty;
+		ft::vector<int> test(7);
+		ft::vector<int> v(7, 9);
+		
+		/* empty */
+		std::cout << "empty is empty: " << empty.empty() << std::endl;
+		std::cout << "test is empty: " << test.empty() << std::endl;
+		std::cout << "v is empty: " << v.empty() << std::endl;
+
+		/* size */
+		std::cout << "Size of empty: " << empty.size() << std::endl;
+		std::cout << "Size of test: " << test.size() << std::endl;
+		std::cout << "Size of v: " << v.size() << std::endl;
+
+		/* max_size */
+		std::cout << "Max size of v: " << v.max_size() << std::endl;
+
+		/* reserve and capacity */
+		std::cout << "Capacity of v: " << v.capacity() << std::endl;
+		std::cout << "Content of v: ";
+		for (int i = 0; i < v.size(); i++)
+			std::cout << " " << v[i];
+		std::cout << std::endl;
+		std::cout << "// Reserve on 4" << std::endl;
+		v.reserve(4);
+		std::cout << "Capacity of v: " << v.capacity() << std::endl;
+		std::cout << "// Reserve on 150" << std::endl;
+		v.reserve(150);
+		std::cout << "Capacity of v: " << v.capacity() << std::endl;
+		std::cout << "Content of v: ";
+		for (int i = 0; i < v.size(); i++)
+			std::cout << " " << v[i];
+		std::cout << std::endl;
+	}
 }
