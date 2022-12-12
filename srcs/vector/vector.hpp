@@ -6,7 +6,7 @@
 /*   By: rleseur <rleseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:42:02 by rleseur           #+#    #+#             */
-/*   Updated: 2022/12/11 23:56:45 by rleseur          ###   ########.fr       */
+/*   Updated: 2022/12/12 13:17:00 by rleseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,15 +69,19 @@ namespace ft
 			/* MODIFIERS */
 			void	clear();
 			void	push_back(const T& value);
+			void	pop_back();
+			void	resize(size_type count, T value = T());
+			void	swap(vector &other);
 
 		private:
 			pointer			_datas;
 			size_type		_size;
 			size_type		_capacity;
 			allocator_type	_alloc;
-
-			void			modify_capacity(size_type new_cap);
 	};
+
+	template <class T, class Alloc>
+	void swap(vector<T,Alloc>& lhs, vector<T,Alloc>& rhs);
 	
 /*	template <class T, class Alloc>
 	bool	operator==(const ft::vector<T, Alloc> &lhs, const ft::vector<T, Alloc> &rhs);

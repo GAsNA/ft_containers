@@ -170,6 +170,14 @@ int main()
 		std::cout << "/*********************************************************/" << std::endl;
 
 		ft::vector<int> v(3, 7);
+		ft::vector<int> v1(3);
+		v1[0] = 1;
+		v1[1] = 2;
+		v1[2] = 3;
+		ft::vector<int> v2(3);
+		v2[0] = 1;
+		v2[1] = 2;
+		v2[2] = 3;
 		ft::vector<std::string> vs(1, "abc");
 
 		/* clear */
@@ -184,13 +192,79 @@ int main()
 		std::cout << std::endl;
 		std::cout << "// push_back def" << std::endl;
 		vs.push_back("def");
-		std::string s{"ghi"};
-		std::cout << "// push_back ghi" << std::endl;
-		vs.push_back(std::move(s));
-		std::cout << "Content of vs: ";
+		std::cout << "Content of vs:";
 		for (int i = 0; i < vs.size(); i++)
 			std::cout << " " << vs[i];
 		std::cout << std::endl;
-		std::cout << "S: " << s << std::endl;
+
+		/* pop_back */
+		std::cout << "// pop_back" << std::endl;
+		vs.pop_back();
+		std::cout << "Content of vs:";
+		for (int i = 0; i < vs.size(); i++)
+			std::cout << " " << vs[i];
+		std::cout << std::endl;
+
+		/* resize */
+		std::cout << "Content of v1:";
+		for (int i = 0; i < v1.size(); i++)
+			std::cout << " " << v1[i];
+		std::cout << std::endl;
+		std::cout << "// resize 5" << std::endl;
+		v1.resize(5);
+		std::cout << "Content of v1:";
+		for (int i = 0; i < v1.size(); i++)
+			std::cout << " " << v1[i];
+		std::cout << std::endl;
+		std::cout << "// resize 2" << std::endl;
+		v1.resize(2);
+		std::cout << "Content of v1:";
+		for (int i = 0; i < v1.size(); i++)
+			std::cout << " " << v1[i];
+		std::cout << std::endl;
+		std::cout << "// resize 6 (initializer = 4)" << std::endl;
+		v1.resize(6, 4);
+		std::cout << "Content of v1:";
+		for (int i = 0; i < v1.size(); i++)
+			std::cout << " " << v1[i];
+		std::cout << std::endl;
+
+		/* swap */
+		std::cout << "Content of v2:";
+		for (int i = 0; i < v2.size(); i++)
+			std::cout << " " << v2[i];
+		std::cout << std::endl;
+		std::cout << "// swap v1 with v2" << std::endl;
+		v1.swap(v2);
+		std::cout << "Content of v1:";
+		for (int i = 0; i < v1.size(); i++)
+			std::cout << " " << v1[i];
+		std::cout << std::endl;
+		std::cout << "Content of v2:";
+		for (int i = 0; i < v2.size(); i++)
+			std::cout << " " << v2[i];
+		std::cout << std::endl;
+		std::cout << "// swap v2 with v1" << std::endl;
+		v2.swap(v1);
+		std::cout << "Content of v1:";
+		for (int i = 0; i < v1.size(); i++)
+			std::cout << " " << v1[i];
+		std::cout << std::endl;
+		std::cout << "Content of v2:";
+		for (int i = 0; i < v2.size(); i++)
+			std::cout << " " << v2[i];
+		std::cout << std::endl;
+
+		/* swap (ext) */
+		std::cout << "// swap v1/v2" << std::endl;
+		ft::swap(v1, v2);
+		std::cout << "Content of v1:";
+		for (int i = 0; i < v1.size(); i++)
+			std::cout << " " << v1[i];
+		std::cout << std::endl;
+		std::cout << "Content of v2:";
+		for (int i = 0; i < v2.size(); i++)
+			std::cout << " " << v2[i];
+		std::cout << std::endl;
 	}
 }
