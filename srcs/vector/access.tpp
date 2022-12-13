@@ -1,4 +1,10 @@
 template <class T, class Alloc>
+typename ft::vector<T, Alloc>::allocator_type	ft::vector<T, Alloc>::get_allocator() const
+{
+	return this->_alloc;
+}
+
+template <class T, class Alloc>
 typename ft::vector<T, Alloc>::reference	ft::vector<T, Alloc>::at(size_type pos)
 {
 	if (pos >= this->_size || pos < 0) {throw std::out_of_range("Index out of range");}

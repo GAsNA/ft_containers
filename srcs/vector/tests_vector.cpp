@@ -267,4 +267,29 @@ int main()
 			std::cout << " " << v2[i];
 		std::cout << std::endl;
 	}
+
+	/*********************************************************/
+	/*						ITERATORS						 */
+	/*********************************************************/
+	{
+		std::cout << "/*********************************************************/" << std::endl;
+		std::cout << "/*                        ITERATORS                      */" << std::endl;
+		std::cout << "/*********************************************************/" << std::endl;
+
+		ft::vector<int> v(3);
+		v[0] = 1;
+		v[1] = 2;
+		v[2] = 3;
+		ft::vector<int>::iterator it_begin = v.begin();
+		ft::vector<int>::iterator it_end = v.end();
+
+		/* begin and end */
+		std::cout << "Content of v with iterators:";
+		while (it_begin < it_end)
+		{
+			std::cout << " " << *it_begin;
+			it_begin++;
+		}
+		std::cout << std::endl;
+	}
 }

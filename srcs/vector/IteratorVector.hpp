@@ -1,9 +1,11 @@
 #ifndef ITERATOR_VECTOR
 # define ITERATOR_VECTOR
 
+# include <iterator>
+
 namespace ft
 {
-	template <class Category, class T, class Distance = std::ptrdiff_t, class Pointer = T*, class Reference = T&>
+	template <class T, class Category = std::random_access_iterator_tag, class Distance = std::ptrdiff_t, class Pointer = T*, class Reference = T&>
 	class IteratorVector
 	{
 		public:
@@ -17,7 +19,7 @@ namespace ft
 			IteratorVector();
 			IteratorVector(pointer ptr);
 			IteratorVector(const IteratorVector &x);
-			~IteratorVertor();
+			~IteratorVector();
 
 			/* OPERATORS */
 			IteratorVector	&operator=(const IteratorVector &rhs);
@@ -25,15 +27,22 @@ namespace ft
 			IteratorVector	operator++(int);
 			IteratorVector	&operator--();
 			IteratorVector	operator--(int);
+			bool			operator>(IteratorVector const &) const;
+			bool			operator<(IteratorVector const &) const;
+			bool			operator>=(IteratorVector const &) const;
+			bool			operator<=(IteratorVector const &) const;
+			bool			operator==(IteratorVector const &) const;
+			bool			operator!=(IteratorVector const &) const;
+			T				&operator*();
 
 			/* ACCESS */
-			pointer	pointer();
+			pointer	get_pointer() const;
 
 		private:
 			pointer	_pointer;
 	};
 }
 
-# include "iterator.tpp"
+# include "IteratorVector.tpp"
 
 #endif

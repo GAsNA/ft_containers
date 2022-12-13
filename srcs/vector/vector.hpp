@@ -6,7 +6,7 @@
 /*   By: rleseur <rleseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:42:02 by rleseur           #+#    #+#             */
-/*   Updated: 2022/12/12 13:17:00 by rleseur          ###   ########.fr       */
+/*   Updated: 2022/12/13 15:43:27 by rleseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <string>
 # include <memory>
 # include <stdexcept>
+
+# include "IteratorVector.hpp"
 
 namespace ft
 {
@@ -30,6 +32,8 @@ namespace ft
 			typedef typename allocator_type::pointer			pointer;
 			typedef typename allocator_type::reference			reference;
 			typedef typename allocator_type::const_reference	const_reference;
+			typedef typename ft::IteratorVector<T>				iterator;
+			typedef typename ft::IteratorVector<T>				const_iterator;
 			
 			class InvalidIndexException : public std::exception
 			{
@@ -50,6 +54,7 @@ namespace ft
 			T		&operator[](const int i) const;
 
 			/* ACCESS */
+			allocator_type	get_allocator() const;
 			reference		at(size_type pos);
 			const_reference	at(size_type pos) const;
 			reference		front();
@@ -58,6 +63,12 @@ namespace ft
 			const_reference	back() const;
 			T*				data();
 			const T*		data() const;
+
+			/* ITERATORS */
+			iterator		begin();
+			const_iterator	begin() const;
+			iterator		end();
+			const_iterator	end() const;
 
 			/* CAPACITY */
 			bool		empty() const;
