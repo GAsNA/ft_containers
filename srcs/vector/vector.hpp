@@ -6,7 +6,7 @@
 /*   By: rleseur <rleseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:42:02 by rleseur           #+#    #+#             */
-/*   Updated: 2022/12/13 15:43:27 by rleseur          ###   ########.fr       */
+/*   Updated: 2022/12/13 18:01:32 by rleseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdexcept>
 
 # include "IteratorVector.hpp"
+# include "ReverseIteratorVector.hpp"
 
 namespace ft
 {
@@ -34,6 +35,8 @@ namespace ft
 			typedef typename allocator_type::const_reference	const_reference;
 			typedef typename ft::IteratorVector<T>				iterator;
 			typedef typename ft::IteratorVector<T>				const_iterator;
+			typedef typename ft::ReverseIteratorVector<T>				reverse_iterator;
+			typedef typename ft::ReverseIteratorVector<T>				const_reverse_iterator;
 			
 			class InvalidIndexException : public std::exception
 			{
@@ -65,10 +68,14 @@ namespace ft
 			const T*		data() const;
 
 			/* ITERATORS */
-			iterator		begin();
-			const_iterator	begin() const;
-			iterator		end();
-			const_iterator	end() const;
+			iterator				begin();
+			const_iterator			begin() const;
+			iterator				end();
+			const_iterator			end() const;
+			reverse_iterator		rbegin();
+			const_reverse_iterator	rbegin() const;
+			reverse_iterator		rend();
+			const_reverse_iterator	rend() const;
 
 			/* CAPACITY */
 			bool		empty() const;
