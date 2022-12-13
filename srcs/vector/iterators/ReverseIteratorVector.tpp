@@ -13,7 +13,13 @@ ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::~ReverseIt
 
 /* OPERATORS */
 template <class T, class Category, class Distance, class Pointer, class Reference>
-ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>	&ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::operator=(const ReverseIteratorVector &rhs)
+ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::operator ReverseIteratorVector<const T>() const
+{
+	return ReverseIteratorVector<const T>(this->_pointer);
+}
+
+template <class T, class Category, class Distance, class Pointer, class Reference>
+ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>	&ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::operator=(const ReverseIteratorVector<const T> &rhs)
 {
 	if (this == &rhs) {return *this;}
 
@@ -52,7 +58,7 @@ ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>	ft::Reverse
 }
 
 template <class T, class Category, class Distance, class Pointer, class Reference>
-bool	ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::operator>(ReverseIteratorVector const &iv) const
+bool	ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::operator>(ReverseIteratorVector<const T> const &iv) const
 {
 	if (this->_pointer < iv.get_pointer())
 		return 1;
@@ -61,7 +67,7 @@ bool	ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::opera
 }
 
 template <class T, class Category, class Distance, class Pointer, class Reference>
-bool	ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::operator<(ReverseIteratorVector const &iv) const
+bool	ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::operator<(ReverseIteratorVector<const T> const &iv) const
 {
 	if (this->_pointer > iv.get_pointer())
 		return 1;
@@ -69,7 +75,7 @@ bool	ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::opera
 }
 
 template <class T, class Category, class Distance, class Pointer, class Reference>
-bool	ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::operator>=(ReverseIteratorVector const &iv) const
+bool	ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::operator>=(ReverseIteratorVector<const T> const &iv) const
 {
 	if (this->_pointer <= iv.get_pointer())
 		return 1;
@@ -77,7 +83,7 @@ bool	ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::opera
 }
 
 template <class T, class Category, class Distance, class Pointer, class Reference>
-bool	ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::operator<=(ReverseIteratorVector const &iv) const
+bool	ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::operator<=(ReverseIteratorVector<const T> const &iv) const
 {
 	if (this->_pointer >= iv.get_pointer())
 		return 1;
@@ -85,7 +91,7 @@ bool	ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::opera
 }
 
 template <class T, class Category, class Distance, class Pointer, class Reference>
-bool	ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::operator==(ReverseIteratorVector const &iv) const
+bool	ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::operator==(ReverseIteratorVector<const T> const &iv) const
 {
 	if (this->_pointer == iv.get_pointer())
 		return 1;
@@ -93,7 +99,7 @@ bool	ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::opera
 }
 
 template <class T, class Category, class Distance, class Pointer, class Reference>
-bool	ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::operator!=(ReverseIteratorVector const &iv) const
+bool	ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::operator!=(ReverseIteratorVector<const T> const &iv) const
 {
 	if (this->_pointer != iv.get_pointer())
 		return 1;

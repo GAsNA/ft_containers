@@ -6,7 +6,7 @@
 /*   By: rleseur <rleseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:42:02 by rleseur           #+#    #+#             */
-/*   Updated: 2022/12/13 20:02:34 by rleseur          ###   ########.fr       */
+/*   Updated: 2022/12/13 22:36:57 by rleseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <memory>
 # include <stdexcept>
 
-# include "../utils/utils.hpp"
+//# include "../utils/utils.hpp"
 
 # include "iterators/IteratorVector.hpp"
 # include "iterators/ReverseIteratorVector.hpp"
@@ -36,11 +36,9 @@ namespace ft
 			typedef typename allocator_type::reference			reference;
 			typedef typename allocator_type::const_reference	const_reference;
 			typedef typename ft::IteratorVector<T>				iterator;
-			typedef typename ft::IteratorVector<T>				const_iterator;
-			//typedef typename ft::IteratorVector<const T>		const_iterator;
+			typedef typename ft::IteratorVector<const T>		const_iterator;
 			typedef typename ft::ReverseIteratorVector<T>		reverse_iterator;
-			typedef typename ft::ReverseIteratorVector<T>	const_reverse_iterator;
-			//typedef typename ft::ReverseIteratorVector<const T>	const_reverse_iterator;
+			typedef typename ft::ReverseIteratorVector<const T>	const_reverse_iterator;
 			
 			class InvalidIndexException : public std::exception
 			{

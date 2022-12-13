@@ -22,17 +22,18 @@ namespace ft
 			~IteratorVector();
 
 			/* OPERATORS */
-			IteratorVector	&operator=(const IteratorVector &rhs);
+			operator		IteratorVector<const T>() const;
+			IteratorVector	&operator=(const IteratorVector<const T> &rhs);
 			IteratorVector	&operator++();
 			IteratorVector	operator++(int);
 			IteratorVector	&operator--();
 			IteratorVector	operator--(int);
-			bool			operator>(IteratorVector const &) const;
-			bool			operator<(IteratorVector const &) const;
-			bool			operator>=(IteratorVector const &) const;
-			bool			operator<=(IteratorVector const &) const;
-			bool			operator==(IteratorVector const &) const;
-			bool			operator!=(IteratorVector const &) const;
+			bool			operator>(IteratorVector<const T> const &) const;
+			bool			operator<(IteratorVector<const T> const &) const;
+			bool			operator>=(IteratorVector<const T> const &) const;
+			bool			operator<=(IteratorVector<const T> const &) const;
+			bool			operator==(IteratorVector<const T> const &) const;
+			bool			operator!=(IteratorVector<const T> const &) const;
 			T				&operator*();
 
 			/* ACCESS */

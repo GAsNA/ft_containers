@@ -13,7 +13,13 @@ ft::IteratorVector<T, Category, Distance, Pointer, Reference>::~IteratorVector()
 
 /* OPERATORS */
 template <class T, class Category, class Distance, class Pointer, class Reference>
-ft::IteratorVector<T, Category, Distance, Pointer, Reference>	&ft::IteratorVector<T, Category, Distance, Pointer, Reference>::operator=(const IteratorVector &rhs)
+ft::IteratorVector<T, Category, Distance, Pointer, Reference>::operator IteratorVector<const T>() const
+{
+	return IteratorVector<const T>(this->_pointer);
+}
+
+template <class T, class Category, class Distance, class Pointer, class Reference>
+ft::IteratorVector<T, Category, Distance, Pointer, Reference>	&ft::IteratorVector<T, Category, Distance, Pointer, Reference>::operator=(const IteratorVector<const T> &rhs)
 {
 	if (this == &rhs) {return *this;}
 
@@ -52,7 +58,7 @@ ft::IteratorVector<T, Category, Distance, Pointer, Reference>	ft::IteratorVector
 }
 
 template <class T, class Category, class Distance, class Pointer, class Reference>
-bool	ft::IteratorVector<T, Category, Distance, Pointer, Reference>::operator>(IteratorVector const &iv) const
+bool	ft::IteratorVector<T, Category, Distance, Pointer, Reference>::operator>(IteratorVector<const T> const &iv) const
 {
 	if (this->_pointer > iv.get_pointer())
 		return 1;
@@ -61,7 +67,7 @@ bool	ft::IteratorVector<T, Category, Distance, Pointer, Reference>::operator>(It
 }
 
 template <class T, class Category, class Distance, class Pointer, class Reference>
-bool	ft::IteratorVector<T, Category, Distance, Pointer, Reference>::operator<(IteratorVector const &iv) const
+bool	ft::IteratorVector<T, Category, Distance, Pointer, Reference>::operator<(IteratorVector<const T> const &iv) const
 {
 	if (this->_pointer < iv.get_pointer())
 		return 1;
@@ -69,7 +75,7 @@ bool	ft::IteratorVector<T, Category, Distance, Pointer, Reference>::operator<(It
 }
 
 template <class T, class Category, class Distance, class Pointer, class Reference>
-bool	ft::IteratorVector<T, Category, Distance, Pointer, Reference>::operator>=(IteratorVector const &iv) const
+bool	ft::IteratorVector<T, Category, Distance, Pointer, Reference>::operator>=(IteratorVector<const T> const &iv) const
 {
 	if (this->_pointer >= iv.get_pointer())
 		return 1;
@@ -77,7 +83,7 @@ bool	ft::IteratorVector<T, Category, Distance, Pointer, Reference>::operator>=(I
 }
 
 template <class T, class Category, class Distance, class Pointer, class Reference>
-bool	ft::IteratorVector<T, Category, Distance, Pointer, Reference>::operator<=(IteratorVector const &iv) const
+bool	ft::IteratorVector<T, Category, Distance, Pointer, Reference>::operator<=(IteratorVector<const T> const &iv) const
 {
 	if (this->_pointer <= iv.get_pointer())
 		return 1;
@@ -85,7 +91,7 @@ bool	ft::IteratorVector<T, Category, Distance, Pointer, Reference>::operator<=(I
 }
 
 template <class T, class Category, class Distance, class Pointer, class Reference>
-bool	ft::IteratorVector<T, Category, Distance, Pointer, Reference>::operator==(IteratorVector const &iv) const
+bool	ft::IteratorVector<T, Category, Distance, Pointer, Reference>::operator==(IteratorVector<const T> const &iv) const
 {
 	if (this->_pointer == iv.get_pointer())
 		return 1;
@@ -93,7 +99,7 @@ bool	ft::IteratorVector<T, Category, Distance, Pointer, Reference>::operator==(I
 }
 
 template <class T, class Category, class Distance, class Pointer, class Reference>
-bool	ft::IteratorVector<T, Category, Distance, Pointer, Reference>::operator!=(IteratorVector const &iv) const
+bool	ft::IteratorVector<T, Category, Distance, Pointer, Reference>::operator!=(IteratorVector<const T> const &iv) const
 {
 	if (this->_pointer != iv.get_pointer())
 		return 1;

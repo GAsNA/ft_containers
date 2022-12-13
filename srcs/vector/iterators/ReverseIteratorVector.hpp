@@ -22,18 +22,19 @@ namespace ft
 			~ReverseIteratorVector();
 
 			/* OPERATORS */
-			ReverseIteratorVector	&operator=(const ReverseIteratorVector &rhs);
+			operator				ReverseIteratorVector<const T>() const;
+			ReverseIteratorVector	&operator=(const ReverseIteratorVector<const T> &rhs);
 			ReverseIteratorVector	&operator++();
 			ReverseIteratorVector	operator++(int);
 			ReverseIteratorVector	&operator--();
 			ReverseIteratorVector	operator--(int);
-			bool			operator>(ReverseIteratorVector const &) const;
-			bool			operator<(ReverseIteratorVector const &) const;
-			bool			operator>=(ReverseIteratorVector const &) const;
-			bool			operator<=(ReverseIteratorVector const &) const;
-			bool			operator==(ReverseIteratorVector const &) const;
-			bool			operator!=(ReverseIteratorVector const &) const;
-			T				&operator*();
+			bool					operator>(ReverseIteratorVector<const T> const &) const;
+			bool					operator<(ReverseIteratorVector<const T> const &) const;
+			bool					operator>=(ReverseIteratorVector<const T> const &) const;
+			bool					operator<=(ReverseIteratorVector<const T> const &) const;
+			bool					operator==(ReverseIteratorVector<const T> const &) const;
+			bool					operator!=(ReverseIteratorVector<const T> const &) const;
+			T						&operator*();
 
 			/* ACCESS */
 			pointer	get_pointer() const;
