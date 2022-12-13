@@ -276,6 +276,10 @@ int main()
 		std::cout << "/*                        ITERATORS                      */" << std::endl;
 		std::cout << "/*********************************************************/" << std::endl;
 
+		ft::vector<int> empty;
+		ft::vector<int>::iterator empty_it_begin = empty.begin();
+		ft::vector<int>::iterator empty_it_end = empty.end();
+
 		ft::vector<int> v(3);
 		v[0] = 1;
 		v[1] = 2;
@@ -294,38 +298,28 @@ int main()
 
 		/* begin and end */
 		std::cout << "Content of v with iterators:";
-		while (it_begin < it_end)
-		{
+		for (; it_begin < it_end; it_begin++)
 			std::cout << " " << *it_begin;
-			it_begin++;
-		}
 		std::cout << std::endl;
+
+		std::cout << "Is empty really empty : " << (empty_it_begin == empty_it_end) << std::endl;
 
 		/* begin and end const */
 		std::cout << "Content of v with const iterators:";
-		while (it_begin1 < it_end1)
-		{
+		for (; it_begin1 < it_end1; it_begin1++)
 			std::cout << " " << *it_begin1;
-			it_begin1++;
-		}
 		std::cout << std::endl;
 
 		/* rbegin and rend */
 		std::cout << "Content of v with reverse iterators:";
-		while (it_rbegin < it_rend)
-		{
+		for (; it_rbegin < it_rend; it_rbegin++)
 			std::cout << " " << *it_rbegin;
-			it_rbegin++;
-		}
 		std::cout << std::endl;
 
 		/* rbegin and rend const */
 		std::cout << "Content of v with const reverse iterators:";
-		while (it_rbegin1 < it_rend1)
-		{
+		for (; it_rbegin1 < it_rend1; it_rbegin1++)
 			std::cout << " " << *it_rbegin1;
-			it_rbegin1++;
-		}
 		std::cout << std::endl;
 
 	}

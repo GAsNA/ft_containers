@@ -6,7 +6,7 @@
 /*   By: rleseur <rleseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:42:02 by rleseur           #+#    #+#             */
-/*   Updated: 2022/12/13 18:01:32 by rleseur          ###   ########.fr       */
+/*   Updated: 2022/12/13 18:35:08 by rleseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,15 @@ namespace ft
 				public:
 					virtual const char* what() const throw() {return "Invalid index!";}
 			};
+
+			// TODO 
+				// assign
+				// assert
+				// erase
+				// <
+				// <=
+				// >
+				// >=
 
 			/* CONSTRUCTORS */
 			explicit vector (const allocator_type& alloc = allocator_type());
