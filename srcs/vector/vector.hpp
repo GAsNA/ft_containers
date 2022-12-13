@@ -6,7 +6,7 @@
 /*   By: rleseur <rleseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:42:02 by rleseur           #+#    #+#             */
-/*   Updated: 2022/12/13 18:35:08 by rleseur          ###   ########.fr       */
+/*   Updated: 2022/12/13 20:02:34 by rleseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@
 # include <memory>
 # include <stdexcept>
 
-# include "IteratorVector.hpp"
-# include "ReverseIteratorVector.hpp"
+# include "../utils/utils.hpp"
+
+# include "iterators/IteratorVector.hpp"
+# include "iterators/ReverseIteratorVector.hpp"
 
 namespace ft
 {
@@ -35,8 +37,10 @@ namespace ft
 			typedef typename allocator_type::const_reference	const_reference;
 			typedef typename ft::IteratorVector<T>				iterator;
 			typedef typename ft::IteratorVector<T>				const_iterator;
-			typedef typename ft::ReverseIteratorVector<T>				reverse_iterator;
-			typedef typename ft::ReverseIteratorVector<T>				const_reverse_iterator;
+			//typedef typename ft::IteratorVector<const T>		const_iterator;
+			typedef typename ft::ReverseIteratorVector<T>		reverse_iterator;
+			typedef typename ft::ReverseIteratorVector<T>	const_reverse_iterator;
+			//typedef typename ft::ReverseIteratorVector<const T>	const_reverse_iterator;
 			
 			class InvalidIndexException : public std::exception
 			{
@@ -45,8 +49,7 @@ namespace ft
 			};
 
 			// TODO 
-				// assign
-				// assert
+				// insert
 				// erase
 				// <
 				// <=
@@ -94,6 +97,9 @@ namespace ft
 			size_type	capacity() const;
 
 			/* MODIFIERS */
+			void	assign(size_type count, const T& value);
+			template <class InputIt>
+			void	assign(InputIt first, InputIt last, typename std::enable_if<!std::is_integral<InputIt>::value, InputIt>::type* = NULL);
 			void	clear();
 			void	push_back(const T& value);
 			void	pop_back();

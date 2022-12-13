@@ -174,11 +174,32 @@ int main()
 		v1[0] = 1;
 		v1[1] = 2;
 		v1[2] = 3;
+		ft::vector<int>::iterator it_begin = v1.begin();
+		ft::vector<int>::iterator it_end = v1.end();
 		ft::vector<int> v2(3);
 		v2[0] = 1;
 		v2[1] = 2;
 		v2[2] = 3;
 		ft::vector<std::string> vs(1, "abc");
+
+		/* assign */
+		std::cout << "Content of v before assign: ";
+		for (int i = 0; i < v.size(); i++)
+			std::cout << " " << v[i];
+		std::cout << std::endl;
+		std::cout << "// assign 7 9" << std::endl;
+		v.assign(7, 9);
+		std::cout << "Content of v after assign: ";
+		for (int i = 0; i < v.size(); i++)
+			std::cout << " " << v[i];
+		std::cout << std::endl;
+
+		std::cout << "// assign with iterators" << std::endl;
+		v.assign(it_begin, it_end);
+		std::cout << "Content of v after assign: ";
+		for (int i = 0; i < v.size(); i++)
+			std::cout << " " << v[i];
+		std::cout << std::endl;
 
 		/* clear */
 		std::cout << "Size v before clear: " << v.size() << std::endl;

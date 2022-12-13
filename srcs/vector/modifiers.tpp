@@ -1,4 +1,21 @@
 template <class T, class Alloc>
+void	ft::vector<T, Alloc>::assign(size_type count, const T& value)
+{
+	this->clear();
+	for (int i = 0; i < count; i++)
+		this->push_back(value);
+}
+
+template <class T, class Alloc>
+template <class InputIt>
+void	ft::vector<T, Alloc>::assign(InputIt first, InputIt last, typename std::enable_if<!std::is_integral<InputIt>::value, InputIt>::type*)
+{
+	this->clear();
+	for (; first < last; first++)
+		this->push_back(*first);
+}
+
+template <class T, class Alloc>
 void	ft::vector<T, Alloc>::clear()
 {
 	for (int i = 0; i < this->_size; i++)
