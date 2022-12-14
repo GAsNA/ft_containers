@@ -52,6 +52,8 @@ int main()
 		test[1] = "World";
 		test[2] = "!";
 		ft::vector<std::string> v = test;
+
+		std::cout << std::endl;
 		
 		/* [] */
 		std::cout << "test:\t\t\t";
@@ -73,13 +75,19 @@ int main()
 			std::cout << "Invalid index for v:\t" << v[3] << std::endl;
 		} catch (std::exception &e) {std::cout << e.what() << std::endl;}
 		
+		std::cout << std::endl;
+		
 		/* == */
 		std::cout << "test == v:\t\t" << (test == v) << std::endl;
 		std::cout << "v == v1:\t\t" << (v == v1) << std::endl;
+
+		std::cout << std::endl;
 		
 		/* != */
 		std::cout << "test != v:\t\t" << (test != v) << std::endl;
 		std::cout << "v != v1:\t\t" << (v != v1) << std::endl;
+
+		std::cout << std::endl;
 
 		/* < */
 		std::cout << "Content of vint:";
@@ -98,17 +106,25 @@ int main()
 		std::cout << "Is vint < vint1: " << (vint < vint1) << std::endl;
 		std::cout << "Is vint < vint2: " << (vint < vint2) << std::endl;
 
+		std::cout << std::endl;
+
 		/* <= */
 		std::cout << "Is vint <= vint1: " << (vint <= vint1) << std::endl;
 		std::cout << "Is vint <= vint2: " << (vint <= vint2) << std::endl;
 
+		std::cout << std::endl;
+
 		/* > */
 		std::cout << "Is vint > vint1: " << (vint > vint1) << std::endl;
 		std::cout << "Is vint > vint2: " << (vint > vint2) << std::endl;
+
+		std::cout << std::endl;
 		
 		/* >= */
 		std::cout << "Is vint >= vint1: " << (vint >= vint1) << std::endl;
 		std::cout << "Is vint >= vint2: " << (vint >= vint2) << std::endl;
+
+		std::cout << std::endl;
 	}
 
 	/*********************************************************/
@@ -143,17 +159,25 @@ int main()
 			std::cout << " " << data[i];
 		std::cout << std::endl;
 
+		std::cout << std::endl;
+
 		/* front */
 		std::cout << "Front element of data: " << data.front() << std::endl;
 
+		std::cout << std::endl;
+
 		/* back */
 		std::cout << "Back element of data: " << data.back() << std::endl;
+
+		std::cout << std::endl;
 
 		/* data */
 		int *d = data.data();
 		std::cout << "Pointer d for datas in data:";
 		for (int i = 0; i < data.size(); i++)
 			std::cout << " " << d[i];
+		std::cout << std::endl;
+
 		std::cout << std::endl;
 	}
 	
@@ -174,13 +198,19 @@ int main()
 		std::cout << "test is empty: " << test.empty() << std::endl;
 		std::cout << "v is empty: " << v.empty() << std::endl;
 
+		std::cout << std::endl;
+
 		/* size */
 		std::cout << "Size of empty: " << empty.size() << std::endl;
 		std::cout << "Size of test: " << test.size() << std::endl;
 		std::cout << "Size of v: " << v.size() << std::endl;
 
+		std::cout << std::endl;
+
 		/* max_size */
 		std::cout << "Max size of v: " << v.max_size() << std::endl;
+
+		std::cout << std::endl;
 
 		/* reserve and capacity */
 		std::cout << "Capacity of v: " << v.capacity() << std::endl;
@@ -197,6 +227,8 @@ int main()
 		std::cout << "Content of v: ";
 		for (int i = 0; i < v.size(); i++)
 			std::cout << " " << v[i];
+		std::cout << std::endl;
+		
 		std::cout << std::endl;
 	}
 
@@ -240,10 +272,14 @@ int main()
 			std::cout << " " << v[i];
 		std::cout << std::endl;
 
+		std::cout << std::endl;
+
 		/* clear */
 		std::cout << "Size v before clear: " << v.size() << std::endl;
 		v.clear();
 		std::cout << "Size v after clear: " << v.size() << std::endl;
+
+		std::cout << std::endl;
 
 		/* insert */
 		/*std::cout << "Content of vs: ";
@@ -258,6 +294,28 @@ int main()
 		std::cout << std::endl;
 		*/
 
+		/* erase */
+		std::cout << "Content of v2:";
+		for (int i = 0; i < v2.size(); i++)
+			std::cout << " " << v2[i];
+		std::cout << std::endl;
+		std::cout << "// erase 2" << std::endl;
+		v2.erase(v2.begin() + 1);
+		std::cout << "Content of v2:";
+		for (int i = 0; i < v2.size(); i++)
+			std::cout << " " << v2[i];
+		std::cout << std::endl;
+
+		v2.push_back(4);
+		std::cout << "Content of v2:";
+		for (int i = 0; i < v2.size(); i++)
+			std::cout << " " << v2[i];
+		std::cout << std::endl;
+
+
+
+		std::cout << std::endl;
+
 		/* push_back */
 		std::cout << "// push_back def" << std::endl;
 		vs.push_back("def");
@@ -266,12 +324,16 @@ int main()
 			std::cout << " " << vs[i];
 		std::cout << std::endl;
 
+		std::cout << std::endl;
+
 		/* pop_back */
 		std::cout << "// pop_back" << std::endl;
 		vs.pop_back();
 		std::cout << "Content of vs:";
 		for (int i = 0; i < vs.size(); i++)
 			std::cout << " " << vs[i];
+		std::cout << std::endl;
+
 		std::cout << std::endl;
 
 		/* resize */
@@ -296,6 +358,8 @@ int main()
 		std::cout << "Content of v1:";
 		for (int i = 0; i < v1.size(); i++)
 			std::cout << " " << v1[i];
+		std::cout << std::endl;
+
 		std::cout << std::endl;
 
 		/* swap */
@@ -324,6 +388,8 @@ int main()
 			std::cout << " " << v2[i];
 		std::cout << std::endl;
 
+		std::cout << std::endl;
+		
 		/* swap (ext) */
 		std::cout << "// swap v1/v2" << std::endl;
 		ft::swap(v1, v2);
@@ -334,6 +400,8 @@ int main()
 		std::cout << "Content of v2:";
 		for (int i = 0; i < v2.size(); i++)
 			std::cout << " " << v2[i];
+		std::cout << std::endl;
+
 		std::cout << std::endl;
 	}
 
@@ -373,16 +441,22 @@ int main()
 
 		std::cout << "Is empty really empty : " << (empty_it_begin == empty_it_end) << std::endl;
 
+		std::cout << std::endl;
+
 		/* begin and end const */
 		std::cout << "Content of v with const iterators:";
 		for (; it_begin1 < it_end1; it_begin1++)
 			std::cout << " " << *it_begin1;
 		std::cout << std::endl;
 
+		std::cout << std::endl;
+
 		/* rbegin and rend */
 		std::cout << "Content of v with reverse iterators:";
 		for (; it_rbegin < it_rend; it_rbegin++)
 			std::cout << " " << *it_rbegin;
+		std::cout << std::endl;
+
 		std::cout << std::endl;
 
 		/* rbegin and rend const */

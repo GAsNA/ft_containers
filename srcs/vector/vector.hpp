@@ -6,7 +6,7 @@
 /*   By: rleseur <rleseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:42:02 by rleseur           #+#    #+#             */
-/*   Updated: 2022/12/14 01:58:39 by rleseur          ###   ########.fr       */
+/*   Updated: 2022/12/14 14:33:24 by rleseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,6 @@ namespace ft
 			// TODO 
 				// insert
 				// erase
-				// <
-				// <=
-				// >
-				// >=
 
 			/* CONSTRUCTORS */
 			explicit vector (const allocator_type& alloc = allocator_type());
@@ -103,6 +99,8 @@ namespace ft
 			void		insert(iterator position, size_type n, const value_type& val);
 			template <class InputIterator>
 			void		insert(iterator position, InputIterator first, InputIterator last);
+			iterator	erase(iterator position);
+			iterator	erase(iterator first, iterator last);
 			void		push_back(const T& value);
 			void		pop_back();
 			void		resize(size_type count, T value = T());
