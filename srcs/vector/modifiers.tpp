@@ -25,6 +25,77 @@ void	ft::vector<T, Alloc>::clear()
 }
 
 template <class T, class Alloc>
+typename ft::vector<T, Alloc>::iterator	ft::vector<T, Alloc>::insert(iterator position, const value_type& val)
+{
+	size_type pos = position - this->_datas;
+
+	if (this->_capacity < this->_size + 1)
+		this->reserve(this->_capacity * 2);
+
+	for (size_type i = this->_size; i > pos; i--)
+	{
+		this->_alloc.construct(&this->_datas[i], this->_datas[i - 1]);
+		this->_alloc.destroy(&this->_datas[i - 1]);
+	}
+	this->_alloc.construct(&this->_datas[pos], val);
+	
+	this->_size++;
+
+	return iterator(&this->_datas[pos]);
+}
+
+template <class T, class Alloc>
+void	ft::vector<T, Alloc>::insert(iterator position, size_type n, const value_type& val)
+{
+	size_type pos = position - this->_datas;
+
+	if (this->_capacity < this->_size + n)
+	{
+		if (this->_capacity * 2 < this->_size + n)
+			this->reserve(this->_size + n);
+		else
+			this->reserve(this->_capacity * 2);
+	}
+
+	for (size_type i = this->_size; i > pos; i--)
+	{
+		this->_alloc.construct(&this->_datas[i + n + 1], this->_datas[i - 1]);
+		this->_alloc.destroy(&this->_datas[i - 1]);
+	}
+	for (size_type i = 0; i < n; i++)
+		this->_alloc.construct(&this->_datas[pos + i], val);
+
+	this->_size += n;
+}
+
+template <class T, class Alloc>
+template <class InputIterator>
+void	ft::vector<T, Alloc>::insert(iterator position, InputIterator first, InputIterator last)
+{
+	size_type pos = position - this->_vector;
+	size_type n = ft::distance(first, last);
+
+	if (this->_capacity < this->_size + n)
+	{
+		if (this->_capacity * 2 < this->_size + n)
+			this->reserve(this->_size + n);
+		else
+			this->reserve(this->_capacity * 2);
+	}
+
+	for (size_type i = this->_size; i > pos; i--)
+	{
+		this->_alloc.construct(&this->_datas[i + n - 1], this->_datas[i - 1]);
+		this->_alloc.destroy(&this->_datas[i - 1]);
+	}
+
+	for (size_type i = 0; first != last; first++, i++)
+		this->_alloc.construct(&this->_datas[pos + i], *first);
+
+	this->_size += n;
+}
+
+template <class T, class Alloc>
 void	ft::vector<T, Alloc>::push_back(const T& value)
 {
 	if (this->_size + 1 > this->_capacity) {this->reserve(this->_capacity * 2);}

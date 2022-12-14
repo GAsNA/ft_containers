@@ -206,11 +206,20 @@ int main()
 		v.clear();
 		std::cout << "Size v after clear: " << v.size() << std::endl;
 
-		/* push_back */
+		/* insert */
+		/*std::cout << "Content of vs: ";
+		for (int i = 0; i < vs.size(); i++)
+			std::cout << " " << vs[i];
+		std::cout << std::endl;
+		std::cout << "// insert vs.begin() test" << std::endl;
+		vs.insert(vs.begin(), "test");
 		std::cout << "Content of vs: ";
 		for (int i = 0; i < vs.size(); i++)
 			std::cout << " " << vs[i];
 		std::cout << std::endl;
+		*/
+
+		/* push_back */
 		std::cout << "// push_back def" << std::endl;
 		vs.push_back("def");
 		std::cout << "Content of vs:";

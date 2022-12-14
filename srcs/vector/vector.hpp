@@ -6,7 +6,7 @@
 /*   By: rleseur <rleseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:42:02 by rleseur           #+#    #+#             */
-/*   Updated: 2022/12/13 22:36:57 by rleseur          ###   ########.fr       */
+/*   Updated: 2022/12/14 01:58:39 by rleseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <memory>
 # include <stdexcept>
 
-//# include "../utils/utils.hpp"
+# include "../utils/utils.hpp"
 
 # include "iterators/IteratorVector.hpp"
 # include "iterators/ReverseIteratorVector.hpp"
@@ -95,14 +95,18 @@ namespace ft
 			size_type	capacity() const;
 
 			/* MODIFIERS */
-			void	assign(size_type count, const T& value);
+			void		assign(size_type count, const T& value);
 			template <class InputIt>
-			void	assign(InputIt first, InputIt last, typename std::enable_if<!std::is_integral<InputIt>::value, InputIt>::type* = NULL);
-			void	clear();
-			void	push_back(const T& value);
-			void	pop_back();
-			void	resize(size_type count, T value = T());
-			void	swap(vector &other);
+			void		assign(InputIt first, InputIt last, typename std::enable_if<!std::is_integral<InputIt>::value, InputIt>::type* = NULL);
+			void		clear();
+			iterator	insert(iterator position, const value_type& val);
+			void		insert(iterator position, size_type n, const value_type& val);
+			template <class InputIterator>
+			void		insert(iterator position, InputIterator first, InputIterator last);
+			void		push_back(const T& value);
+			void		pop_back();
+			void		resize(size_type count, T value = T());
+			void		swap(vector &other);
 
 		private:
 			pointer			_datas;
