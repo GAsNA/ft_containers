@@ -35,6 +35,16 @@ int main()
 		std::cout << "/*********************************************************/" << std::endl;
 		
 		ft::vector<std::string> v1(4, "Hello");
+
+		ft::vector<int> vint(3);
+		vint[0] = 1;
+		vint[1] = 2;
+		vint[2] = 3;
+		ft::vector<int> vint1(3);
+		vint1[0] = 2;
+		vint1[1] = 3;
+		vint1[2] = 4;
+		ft::vector<int> vint2 = vint;
 		
 		/* = */
 		ft::vector<std::string> test(3);
@@ -70,6 +80,35 @@ int main()
 		/* != */
 		std::cout << "test != v:\t\t" << (test != v) << std::endl;
 		std::cout << "v != v1:\t\t" << (v != v1) << std::endl;
+
+		/* < */
+		std::cout << "Content of vint:";
+		for (int i = 0; i < vint.size(); i++)
+			std::cout << " " << vint[i];
+		std::cout << std::endl;
+		std::cout << "Content of vint1:";
+		for (int i = 0; i < vint1.size(); i++)
+			std::cout << " " << vint1[i];
+		std::cout << std::endl;
+		std::cout << "Content of vint2:";
+		for (int i = 0; i < vint2.size(); i++)
+			std::cout << " " << vint2[i];
+		std::cout << std::endl;
+
+		std::cout << "Is vint < vint1: " << (vint < vint1) << std::endl;
+		std::cout << "Is vint < vint2: " << (vint < vint2) << std::endl;
+
+		/* <= */
+		std::cout << "Is vint <= vint1: " << (vint <= vint1) << std::endl;
+		std::cout << "Is vint <= vint2: " << (vint <= vint2) << std::endl;
+
+		/* > */
+		std::cout << "Is vint > vint1: " << (vint > vint1) << std::endl;
+		std::cout << "Is vint > vint2: " << (vint > vint2) << std::endl;
+		
+		/* >= */
+		std::cout << "Is vint >= vint1: " << (vint >= vint1) << std::endl;
+		std::cout << "Is vint >= vint2: " << (vint >= vint2) << std::endl;
 	}
 
 	/*********************************************************/
