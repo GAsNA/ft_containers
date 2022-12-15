@@ -57,15 +57,15 @@ int main()
 		
 		/* [] */
 		std::cout << "test:\t\t\t";
-		for (int i = 0; i < 3; i++)
+		for (size_t i = 0; i < 3; i++)
 			std::cout << test[i] << " ";
 		std::cout << std::endl;
 		std::cout << "v:\t\t\t";
-		for (int i = 0; i < 3; i++)
+		for (size_t i = 0; i < 3; i++)
 			std::cout << v[i] << " ";
 		std::cout << std::endl;
 		std::cout << "v1:\t\t\t";
-		for (int i = 0; i < 4; i++)
+		for (size_t i = 0; i < 4; i++)
 			std::cout << v1[i] << " ";
 		std::cout << std::endl;
 		try {
@@ -91,15 +91,15 @@ int main()
 
 		/* < */
 		std::cout << "Content of vint:";
-		for (int i = 0; i < vint.size(); i++)
+		for (size_t i = 0; i < vint.size(); i++)
 			std::cout << " " << vint[i];
 		std::cout << std::endl;
 		std::cout << "Content of vint1:";
-		for (int i = 0; i < vint1.size(); i++)
+		for (size_t i = 0; i < vint1.size(); i++)
 			std::cout << " " << vint1[i];
 		std::cout << std::endl;
 		std::cout << "Content of vint2:";
-		for (int i = 0; i < vint2.size(); i++)
+		for (size_t i = 0; i < vint2.size(); i++)
 			std::cout << " " << vint2[i];
 		std::cout << std::endl;
 
@@ -155,7 +155,7 @@ int main()
 		}
  
 		std::cout << "data:";
-		for (int i = 0; i < data.size(); i++)
+		for (size_t i = 0; i < data.size(); i++)
 			std::cout << " " << data[i];
 		std::cout << std::endl;
 
@@ -174,7 +174,7 @@ int main()
 		/* data */
 		int *d = data.data();
 		std::cout << "Pointer d for datas in data:";
-		for (int i = 0; i < data.size(); i++)
+		for (size_t i = 0; i < data.size(); i++)
 			std::cout << " " << d[i];
 		std::cout << std::endl;
 
@@ -215,7 +215,7 @@ int main()
 		/* reserve and capacity */
 		std::cout << "Capacity of v: " << v.capacity() << std::endl;
 		std::cout << "Content of v: ";
-		for (int i = 0; i < v.size(); i++)
+		for (size_t i = 0; i < v.size(); i++)
 			std::cout << " " << v[i];
 		std::cout << std::endl;
 		std::cout << "// Reserve on 4" << std::endl;
@@ -225,7 +225,7 @@ int main()
 		v.reserve(150);
 		std::cout << "Capacity of v: " << v.capacity() << std::endl;
 		std::cout << "Content of v: ";
-		for (int i = 0; i < v.size(); i++)
+		for (size_t i = 0; i < v.size(); i++)
 			std::cout << " " << v[i];
 		std::cout << std::endl;
 		
@@ -255,20 +255,20 @@ int main()
 
 		/* assign */
 		std::cout << "Content of v before assign:";
-		for (int i = 0; i < v.size(); i++)
+		for (size_t i = 0; i < v.size(); i++)
 			std::cout << " " << v[i];
 		std::cout << std::endl;
 		std::cout << "// assign 7 9" << std::endl;
 		v.assign(7, 9);
 		std::cout << "Content of v after assign:";
-		for (int i = 0; i < v.size(); i++)
+		for (size_t i = 0; i < v.size(); i++)
 			std::cout << " " << v[i];
 		std::cout << std::endl;
 
 		std::cout << "// assign with iterators" << std::endl;
 		v.assign(it_begin, it_end);
 		std::cout << "Content of v after assign:";
-		for (int i = 0; i < v.size(); i++)
+		for (size_t i = 0; i < v.size(); i++)
 			std::cout << " " << v[i];
 		std::cout << std::endl;
 
@@ -283,20 +283,20 @@ int main()
 
 		/* insert */
 		std::cout << "Content of vs:";
-		for (int i = 0; i < vs.size(); i++)
+		for (size_t i = 0; i < vs.size(); i++)
 			std::cout << " " << vs[i];
 		std::cout << std::endl;
 		std::cout << "// insert vs.begin() test" << std::endl;
 		vs.insert(vs.begin(), "test");
 		std::cout << "Content of vs:";
-		for (int i = 0; i < vs.size(); i++)
+		for (size_t i = 0; i < vs.size(); i++)
 			std::cout << " " << vs[i];
 		std::cout << std::endl;
 
 		std::cout << "// insert vs.begin() 3 third" << std::endl;
 		vs.insert(vs.begin(), 3, "third");
 		std::cout << "Content of vs:";
-		for (int i = 0; i < vs.size(); i++)
+		for (size_t i = 0; i < vs.size(); i++)
 			std::cout << " " << vs[i];
 		std::cout << std::endl;
 
@@ -304,25 +304,25 @@ int main()
 		std::cout << "// insert vs.begin() vs1.begin() vs1.end()" << std::endl;
 		vs.insert(vs.begin(), vs1.begin(), vs1.end());
 		std::cout << "Content of vs:";
-		for (int i = 0; i < vs.size(); i++)
+		for (size_t i = 0; i < vs.size(); i++)
 			std::cout << " " << vs[i];
 		std::cout << std::endl;
 		
 		/* erase */
 		std::cout << "Content of v2:";
-		for (int i = 0; i < v2.size(); i++)
+		for (size_t i = 0; i < v2.size(); i++)
 			std::cout << " " << v2[i];
 		std::cout << std::endl;
 		std::cout << "// erase 2" << std::endl;
 		v2.erase(v2.begin() + 1);
 		std::cout << "Content of v2:";
-		for (int i = 0; i < v2.size(); i++)
+		for (size_t i = 0; i < v2.size(); i++)
 			std::cout << " " << v2[i];
 		std::cout << std::endl;
 
 		v2.push_back(4);
 		std::cout << "Content of v2:";
-		for (int i = 0; i < v2.size(); i++)
+		for (size_t i = 0; i < v2.size(); i++)
 			std::cout << " " << v2[i];
 		std::cout << std::endl;
 
@@ -334,7 +334,7 @@ int main()
 		std::cout << "// push_back def" << std::endl;
 		vs.push_back("def");
 		std::cout << "Content of vs:";
-		for (int i = 0; i < vs.size(); i++)
+		for (size_t i = 0; i < vs.size(); i++)
 			std::cout << " " << vs[i];
 		std::cout << std::endl;
 
@@ -344,7 +344,7 @@ int main()
 		std::cout << "// pop_back" << std::endl;
 		vs.pop_back();
 		std::cout << "Content of vs:";
-		for (int i = 0; i < vs.size(); i++)
+		for (size_t i = 0; i < vs.size(); i++)
 			std::cout << " " << vs[i];
 		std::cout << std::endl;
 
@@ -352,25 +352,25 @@ int main()
 
 		/* resize */
 		std::cout << "Content of v1:";
-		for (int i = 0; i < v1.size(); i++)
+		for (size_t i = 0; i < v1.size(); i++)
 			std::cout << " " << v1[i];
 		std::cout << std::endl;
 		std::cout << "// resize 5" << std::endl;
 		v1.resize(5);
 		std::cout << "Content of v1:";
-		for (int i = 0; i < v1.size(); i++)
+		for (size_t i = 0; i < v1.size(); i++)
 			std::cout << " " << v1[i];
 		std::cout << std::endl;
 		std::cout << "// resize 2" << std::endl;
 		v1.resize(2);
 		std::cout << "Content of v1:";
-		for (int i = 0; i < v1.size(); i++)
+		for (size_t i = 0; i < v1.size(); i++)
 			std::cout << " " << v1[i];
 		std::cout << std::endl;
 		std::cout << "// resize 6 (initializer = 4)" << std::endl;
 		v1.resize(6, 4);
 		std::cout << "Content of v1:";
-		for (int i = 0; i < v1.size(); i++)
+		for (size_t i = 0; i < v1.size(); i++)
 			std::cout << " " << v1[i];
 		std::cout << std::endl;
 
@@ -378,27 +378,27 @@ int main()
 
 		/* swap */
 		std::cout << "Content of v2:";
-		for (int i = 0; i < v2.size(); i++)
+		for (size_t i = 0; i < v2.size(); i++)
 			std::cout << " " << v2[i];
 		std::cout << std::endl;
 		std::cout << "// swap v1 with v2" << std::endl;
 		v1.swap(v2);
 		std::cout << "Content of v1:";
-		for (int i = 0; i < v1.size(); i++)
+		for (size_t i = 0; i < v1.size(); i++)
 			std::cout << " " << v1[i];
 		std::cout << std::endl;
 		std::cout << "Content of v2:";
-		for (int i = 0; i < v2.size(); i++)
+		for (size_t i = 0; i < v2.size(); i++)
 			std::cout << " " << v2[i];
 		std::cout << std::endl;
 		std::cout << "// swap v2 with v1" << std::endl;
 		v2.swap(v1);
 		std::cout << "Content of v1:";
-		for (int i = 0; i < v1.size(); i++)
+		for (size_t i = 0; i < v1.size(); i++)
 			std::cout << " " << v1[i];
 		std::cout << std::endl;
 		std::cout << "Content of v2:";
-		for (int i = 0; i < v2.size(); i++)
+		for (size_t i = 0; i < v2.size(); i++)
 			std::cout << " " << v2[i];
 		std::cout << std::endl;
 
@@ -408,11 +408,11 @@ int main()
 		std::cout << "// swap v1/v2" << std::endl;
 		ft::swap(v1, v2);
 		std::cout << "Content of v1:";
-		for (int i = 0; i < v1.size(); i++)
+		for (size_t i = 0; i < v1.size(); i++)
 			std::cout << " " << v1[i];
 		std::cout << std::endl;
 		std::cout << "Content of v2:";
-		for (int i = 0; i < v2.size(); i++)
+		for (size_t i = 0; i < v2.size(); i++)
 			std::cout << " " << v2[i];
 		std::cout << std::endl;
 

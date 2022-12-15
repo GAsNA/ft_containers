@@ -1,10 +1,10 @@
 template <class T, class Alloc>
-ft::vector<T, Alloc>::vector (const allocator_type& alloc) : _alloc(alloc), _datas(NULL), _size(0), _capacity(0)
+ft::vector<T, Alloc>::vector (const allocator_type& alloc) : _datas(NULL), _size(0), _capacity(0), _alloc(alloc)
 {
 }
 
 template <class T, class Alloc>
-ft::vector<T, Alloc>::vector (size_type n, const value_type& val, const allocator_type& alloc) : _alloc(alloc), _size(n), _capacity(n * 2)
+ft::vector<T, Alloc>::vector (size_type n, const value_type& val, const allocator_type& alloc) : _size(n), _capacity(n * 2), _alloc(alloc)
 {
 	this->_datas = this->_alloc.allocate(this->_capacity);
 	for (int i = 0; i < (int)this->_size; i++)
@@ -23,7 +23,7 @@ ft::vector<T, Alloc>::vector (InputIterator first, InputIterator last, const all
 }
 
 template <class T, class Alloc>
-ft::vector<T, Alloc>::vector(const vector &x) : _alloc(x._alloc), _size(x._size), _capacity(x._capacity)
+ft::vector<T, Alloc>::vector(const vector &x) : _size(x._size), _capacity(x._capacity), _alloc(x._alloc)
 {
 	this->_datas = this->_alloc.allocate(this->_capacity);
 	for (int i = 0; i < (int)this->_size; i++)
@@ -33,7 +33,7 @@ ft::vector<T, Alloc>::vector(const vector &x) : _alloc(x._alloc), _size(x._size)
 template <class T, class Alloc>
 ft::vector<T, Alloc>::~vector ()
 {
-	for (int i = 0; i < this->_size; i++)
+	for (size_t i = 0; i < this->_size; i++)
 		this->_alloc.destroy(&this->_datas[i]);
 	
 	this->_alloc.deallocate(this->_datas, this->_size);

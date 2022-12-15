@@ -20,7 +20,7 @@ ft::vector<T, Alloc>	&ft::vector<T, Alloc>::operator=(vector const &rhs)
 template <class T, class Alloc>
 T		&ft::vector<T, Alloc>::operator[](const int i) const
 {
-	if (i >= this->_size || i < 0) {throw InvalidIndexException();}
+	if (i >= (int)this->_size || i < 0) {throw InvalidIndexException();}
 	return this->_datas[i];
 }
 
