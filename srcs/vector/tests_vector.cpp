@@ -300,7 +300,10 @@ int main()
 			std::cout << " " << vs[i];
 		std::cout << std::endl;
 
-		std::vector<std::string> vs1(2, "last");
+		std::vector<std::string> vs1(3);
+		vs1[0] = "last1";
+		vs1[1] = "last2";
+		vs1[2] = "last3";
 		std::cout << "// insert vs.begin() vs1.begin() vs1.end()" << std::endl;
 		vs.insert(vs.begin(), vs1.begin(), vs1.end());
 		std::cout << "Content of vs:";

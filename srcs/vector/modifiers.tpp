@@ -54,7 +54,7 @@ template <class T, class Alloc>
 void	ft::vector<T, Alloc>::insert(iterator position, size_type n, const value_type& val)
 {
 	for (size_type i = 0; i < n; i++)
-		position = this->insert(position, val);
+		position = this->insert(position, val) + 1;
 }
 
 template <class T, class Alloc>
@@ -64,7 +64,7 @@ void	ft::vector<T, Alloc>::insert(iterator position, InputIt first, InputIt last
 	size_type n = std::distance(first, last);
 
 	for (size_type i = 0; i < n; i++, first++)
-		position = this->insert(position, *first);
+		position = this->insert(position, *first) + 1;
 }
 
 template <class T, class Alloc>
