@@ -329,7 +329,12 @@ int main()
 			std::cout << " " << v2[i];
 		std::cout << std::endl;
 
-
+		std::cout << "// erase begin() begin() + 2" << std::endl;
+		v2.erase(v2.begin(), v2.begin() + 2);
+		std::cout << "Content of v2:";
+		for (size_t i = 0; i < v2.size(); i++)
+			std::cout << " " << v2[i];
+		std::cout << std::endl;
 
 		std::cout << std::endl;
 

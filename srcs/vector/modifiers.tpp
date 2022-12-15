@@ -92,8 +92,9 @@ typename ft::vector<T, Alloc>::iterator	ft::vector<T, Alloc>::erase(iterator pos
 template <class T, class Alloc>
 typename ft::vector<T, Alloc>::iterator	ft::vector<T, Alloc>::erase(iterator first, iterator last)
 {
-	(void)first;
-	(void)last;
+	for (; first < last; first++)
+		this->erase(first);
+	return last;
 }
 
 template <class T, class Alloc>
