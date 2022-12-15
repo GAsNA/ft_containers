@@ -254,20 +254,20 @@ int main()
 		ft::vector<std::string> vs(1, "abc");
 
 		/* assign */
-		std::cout << "Content of v before assign: ";
+		std::cout << "Content of v before assign:";
 		for (int i = 0; i < v.size(); i++)
 			std::cout << " " << v[i];
 		std::cout << std::endl;
 		std::cout << "// assign 7 9" << std::endl;
 		v.assign(7, 9);
-		std::cout << "Content of v after assign: ";
+		std::cout << "Content of v after assign:";
 		for (int i = 0; i < v.size(); i++)
 			std::cout << " " << v[i];
 		std::cout << std::endl;
 
 		std::cout << "// assign with iterators" << std::endl;
 		v.assign(it_begin, it_end);
-		std::cout << "Content of v after assign: ";
+		std::cout << "Content of v after assign:";
 		for (int i = 0; i < v.size(); i++)
 			std::cout << " " << v[i];
 		std::cout << std::endl;
@@ -282,18 +282,32 @@ int main()
 		std::cout << std::endl;
 
 		/* insert */
-		/*std::cout << "Content of vs: ";
+		std::cout << "Content of vs:";
 		for (int i = 0; i < vs.size(); i++)
 			std::cout << " " << vs[i];
 		std::cout << std::endl;
 		std::cout << "// insert vs.begin() test" << std::endl;
 		vs.insert(vs.begin(), "test");
-		std::cout << "Content of vs: ";
+		std::cout << "Content of vs:";
 		for (int i = 0; i < vs.size(); i++)
 			std::cout << " " << vs[i];
 		std::cout << std::endl;
-		*/
 
+		std::cout << "// insert vs.begin() 3 third" << std::endl;
+		vs.insert(vs.begin(), 3, "third");
+		std::cout << "Content of vs:";
+		for (int i = 0; i < vs.size(); i++)
+			std::cout << " " << vs[i];
+		std::cout << std::endl;
+
+		std::vector<std::string> vs1(2, "last");
+		std::cout << "// insert vs.begin() vs1.begin() vs1.end()" << std::endl;
+		vs.insert(vs.begin(), vs1.begin(), vs1.end());
+		std::cout << "Content of vs:";
+		for (int i = 0; i < vs.size(); i++)
+			std::cout << " " << vs[i];
+		std::cout << std::endl;
+		
 		/* erase */
 		std::cout << "Content of v2:";
 		for (int i = 0; i < v2.size(); i++)

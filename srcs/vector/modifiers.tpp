@@ -27,7 +27,13 @@ void	ft::vector<T, Alloc>::clear()
 template <class T, class Alloc>
 typename ft::vector<T, Alloc>::iterator	ft::vector<T, Alloc>::insert(iterator position, const value_type& val)
 {
-	size_type pos = position - this->_datas;
+	size_type pos = 0;
+	iterator it = this->begin();
+	while (position > it)
+	{
+		it++;
+		pos++;
+	}
 
 	if (this->_capacity < this->_size + 1)
 		this->reserve(this->_capacity * 2);
@@ -47,52 +53,18 @@ typename ft::vector<T, Alloc>::iterator	ft::vector<T, Alloc>::insert(iterator po
 template <class T, class Alloc>
 void	ft::vector<T, Alloc>::insert(iterator position, size_type n, const value_type& val)
 {
-	size_type pos = position - this->_datas;
-
-	if (this->_capacity < this->_size + n)
-	{
-		if (this->_capacity * 2 < this->_size + n)
-			this->reserve(this->_size + n);
-		else
-			this->reserve(this->_capacity * 2);
-	}
-
-	for (size_type i = this->_size; i > pos; i--)
-	{
-		this->_alloc.construct(&this->_datas[i + n + 1], this->_datas[i - 1]);
-		this->_alloc.destroy(&this->_datas[i - 1]);
-	}
 	for (size_type i = 0; i < n; i++)
-		this->_alloc.construct(&this->_datas[pos + i], val);
-
-	this->_size += n;
+		position = this->insert(position, val);
 }
 
 template <class T, class Alloc>
-template <class InputIterator>
-void	ft::vector<T, Alloc>::insert(iterator position, InputIterator first, InputIterator last)
+template <class InputIt>
+void	ft::vector<T, Alloc>::insert(iterator position, InputIt first, InputIt last)
 {
-	size_type pos = position - this->_vector;
-	size_type n = ft::distance(first, last);
+	size_type n = std::distance(first, last);
 
-	if (this->_capacity < this->_size + n)
-	{
-		if (this->_capacity * 2 < this->_size + n)
-			this->reserve(this->_size + n);
-		else
-			this->reserve(this->_capacity * 2);
-	}
-
-	for (size_type i = this->_size; i > pos; i--)
-	{
-		this->_alloc.construct(&this->_datas[i + n - 1], this->_datas[i - 1]);
-		this->_alloc.destroy(&this->_datas[i - 1]);
-	}
-
-	for (size_type i = 0; first != last; first++, i++)
-		this->_alloc.construct(&this->_datas[pos + i], *first);
-
-	this->_size += n;
+	for (size_type i = 0; i < n; i++, first++)
+		position = this->insert(position, *first);
 }
 
 template <class T, class Alloc>
@@ -172,6 +144,9 @@ void	ft::vector<T, Alloc>::swap(vector &other)
 
 	for (int i = 0; i < size_this; i++)
 		other.push_back(data_this[i]);
+
+	delete[] data_this;
+	delete[] data_other;
 }
 
 template <class T, class Alloc>
