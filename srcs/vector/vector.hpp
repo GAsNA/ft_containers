@@ -6,7 +6,7 @@
 /*   By: rleseur <rleseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:42:02 by rleseur           #+#    #+#             */
-/*   Updated: 2022/12/16 23:28:44 by rleseur          ###   ########.fr       */
+/*   Updated: 2022/12/16 23:48:43 by rleseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,11 @@ namespace ft
 */
 }
 
-# include "vector.tpp"
+#include "constructors.tpp"
+#include "operators.tpp"
+#include "access.tpp"
+#include "capacity.tpp"
+#include "modifiers.tpp"
+#include "iterators.tpp"
 
 #endif

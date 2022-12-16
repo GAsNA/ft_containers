@@ -1,6 +1,0 @@
-#include "constructors.tpp"
-#include "operators.tpp"
-#include "access.tpp"
-#include "capacity.tpp"
-#include "modifiers.tpp"
-#include "iterators.tpp"

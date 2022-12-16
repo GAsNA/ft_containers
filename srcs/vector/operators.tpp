@@ -1,5 +1,3 @@
-#include "lexicographical_compare.tpp"
-
 template <class T, class Alloc>
 ft::vector<T, Alloc>	&ft::vector<T, Alloc>::operator=(vector const &rhs)
 {
