@@ -27,13 +27,7 @@ void	ft::vector<T, Alloc>::clear()
 template <class T, class Alloc>
 typename ft::vector<T, Alloc>::iterator	ft::vector<T, Alloc>::insert(iterator position, const value_type& val)
 {
-	size_type pos = 0;
-	iterator it = this->begin();
-	while (position > it)
-	{
-		it++;
-		pos++;
-	}
+	size_type pos = ft::distance(this->begin(), position);
 
 	if (this->_capacity < this->_size + 1)
 		this->reserve(this->_capacity * 2);
@@ -70,13 +64,7 @@ void	ft::vector<T, Alloc>::insert(iterator position, InputIt first, InputIt last
 template <class T, class Alloc>
 typename ft::vector<T, Alloc>::iterator	ft::vector<T, Alloc>::erase(iterator pos)
 {
-	int			diff = 0;
-	iterator	it_begin = this->begin();
-	while (pos != it_begin)
-	{
-		it_begin++;
-		diff++;
-	}
+	int			diff = (int)ft::distance(this->begin(), pos);
 	iterator	it_end = this->end();
 
 	for (; pos < it_end; pos++, diff++)

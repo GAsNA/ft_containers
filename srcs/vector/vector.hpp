@@ -6,7 +6,7 @@
 /*   By: rleseur <rleseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:42:02 by rleseur           #+#    #+#             */
-/*   Updated: 2022/12/16 12:16:51 by rleseur          ###   ########.fr       */
+/*   Updated: 2022/12/16 13:07:46 by rleseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,6 @@ namespace ft
 				public:
 					virtual const char* what() const throw() {return "Invalid index!";}
 			};
-
-			// TODO 
-				// std::distance !!!!!!!!!!!!!!!!!!!!!!!!!!
-				// insert
-				// erase
 
 			/* CONSTRUCTORS */
 			explicit vector (const allocator_type& alloc = allocator_type());
