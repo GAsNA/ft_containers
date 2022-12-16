@@ -112,7 +112,7 @@ void	ft::vector<T, Alloc>::resize(size_type count, T value)
 			this->_alloc.destroy(&this->_datas[i]);
 	else if (this->_size < count)
 		for (size_type i = this->_size; i < count; i++)
-			this->_alloc.construct(&this->_datas[i], value);
+			this->push_back(value);
 	
 	this->_size = count;
 }
@@ -120,27 +120,20 @@ void	ft::vector<T, Alloc>::resize(size_type count, T value)
 template <class T, class Alloc>
 void	ft::vector<T, Alloc>::swap(vector &other)
 {
-	T	*data_this = new T[this->_size];
-	for (size_type i = 0; i < this->_size; i++)
-		data_this[i] = this->_datas[i];
-	size_type size_this = this->_size;
+	pointer	tmp_datas = this->_datas;
+	size_type tmp_size = this->_size;
+	size_type tmp_capacity = this->_capacity;
+	allocator_type tmp_alloc = this->_alloc;
 
-	T	*data_other = new T[other.size()];
-	for (size_type i = 0; i < other.size(); i++)
-		data_other[i] = other[i];
-	size_type size_other = other.size();
-	
-	this->clear();
-	other.clear();
+	this->_datas = other._datas;
+	this->_size = other._size;
+	this->_capacity = other._capacity;
+	this->_alloc = other._alloc;
 
-	for (size_type i = 0; i < size_other; i++)
-		this->push_back(data_other[i]);
-
-	for (size_type i = 0; i < size_this; i++)
-		other.push_back(data_this[i]);
-
-	delete[] data_this;
-	delete[] data_other;
+	other._datas = tmp_datas;
+	other._size = tmp_size;
+	other._capacity = tmp_capacity;
+	other._alloc = tmp_alloc;
 }
 
 template <class T, class Alloc>
