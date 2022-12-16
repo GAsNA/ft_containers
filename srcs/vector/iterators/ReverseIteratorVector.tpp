@@ -160,6 +160,12 @@ typename ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::r
 	return this->_pointer[i];
 }
 
+template <class T, class Category, class Distance, class Pointer, class Reference>
+ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>	operator+(int n, ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference> const &iv)
+{
+	return iv + n;
+}
+
 /* ACCESS  */
 template <class T, class Category, class Distance, class Pointer, class Reference>
 typename ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::pointer	ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::get_pointer() const
