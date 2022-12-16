@@ -53,9 +53,9 @@ void	ft::vector<T, Alloc>::insert(iterator position, size_type n, const value_ty
 
 template <class T, class Alloc>
 template <class InputIt>
-void	ft::vector<T, Alloc>::insert(iterator position, InputIt first, InputIt last)
+void	ft::vector<T, Alloc>::insert(iterator position, InputIt first, InputIt last, typename ft::enable_if<!ft::is_integral<InputIt>::value, InputIt>::type*)
 {
-	size_type n = std::distance(first, last);
+	size_type n = ft::distance(first, last);
 
 	for (size_type i = 0; i < n; i++, first++)
 		position = this->insert(position, *first) + 1;

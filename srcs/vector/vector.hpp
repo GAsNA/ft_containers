@@ -6,7 +6,7 @@
 /*   By: rleseur <rleseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:42:02 by rleseur           #+#    #+#             */
-/*   Updated: 2022/12/16 13:09:39 by rleseur          ###   ########.fr       */
+/*   Updated: 2022/12/16 23:28:44 by rleseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ namespace ft
 			iterator	insert(iterator position, const value_type& val);
 			void		insert(iterator position, size_type n, const value_type& val);
 			template <class InputIt>
-			void		insert(iterator position, InputIt first, InputIt last);
+			void		insert(iterator position, InputIt first, InputIt last, typename ft::enable_if<!ft::is_integral<InputIt>::value, InputIt>::type* = NULL);
 			iterator	erase(iterator position);
 			iterator	erase(iterator first, iterator last);
 			void		push_back(const T& value);
