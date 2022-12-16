@@ -35,12 +35,13 @@ namespace ft
 			bool			operator==(IteratorVector<const T> const &) const;
 			bool			operator!=(IteratorVector<const T> const &) const;
 			value_type		&operator*();
-			value_type		*operator->(); // TODO
+			value_type		*operator->();
 			IteratorVector	operator+(int n) const;
 			IteratorVector	&operator+=(int n);
 			IteratorVector	operator-(int n) const;
 			IteratorVector	&operator-=(int n);
 			int				operator-(IteratorVector<const T> const &) const;
+			reference		operator[](int i);
 
 			/* ACCESS */
 			pointer	get_pointer() const;
@@ -48,6 +49,9 @@ namespace ft
 		private:
 			pointer	_pointer;
 	};
+
+	/*template <class T, class Category, class Distance, class Pointer, class Reference>
+	IteratorVector	operator+(int n, IteratorVector<const T> const &) const;*/
 }
 
 # include "IteratorVector.tpp"

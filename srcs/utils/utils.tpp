@@ -5,9 +5,10 @@
 template <class InputIt>
 size_t	ft::distance(InputIt first, InputIt last)
 {
-	size_t i = 0;
+	/*size_t i = 0;
 	for (; first < last; first++, i++);
-	return i;
+	return i;*/
+	return last - first;
 }
 
 /**********************************************************/

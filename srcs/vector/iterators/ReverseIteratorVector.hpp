@@ -34,7 +34,14 @@ namespace ft
 			bool					operator<=(ReverseIteratorVector<const T> const &) const;
 			bool					operator==(ReverseIteratorVector<const T> const &) const;
 			bool					operator!=(ReverseIteratorVector<const T> const &) const;
-			T						&operator*();
+			value_type				&operator*();
+			value_type				*operator->();
+			ReverseIteratorVector	operator+(int n) const;
+			ReverseIteratorVector	&operator+=(int n);
+			ReverseIteratorVector	operator-(int n) const;
+			ReverseIteratorVector	&operator-=(int n);
+			int						operator-(ReverseIteratorVector<const T> const &) const;
+			reference				operator[](int i);
 
 			/* ACCESS */
 			pointer	get_pointer() const;
