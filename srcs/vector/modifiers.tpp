@@ -88,7 +88,7 @@ typename ft::vector<T, Alloc>::iterator	ft::vector<T, Alloc>::erase(iterator fir
 template <class T, class Alloc>
 void	ft::vector<T, Alloc>::push_back(const T& value)
 {
-	if (this->_size + 1 > this->_capacity) {this->reserve(this->_capacity * 2);}
+	if (this->_size + 1 > this->_capacity) {this->reserve(this->_capacity * 2 + 1);}
 
 	this->_alloc.construct(&this->_datas[this->_size], value);
 	this->_size += 1;
