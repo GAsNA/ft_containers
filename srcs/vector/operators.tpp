@@ -6,7 +6,7 @@ ft::vector<T, Alloc>	&ft::vector<T, Alloc>::operator=(vector const &rhs)
 	if (this == &rhs) {return *this;}
 	if (this->_datas)
 	{
-		for (int i = 0; i < this->_size; i++)
+		for (size_type i = 0; i < this->_size; i++)
 			this->_alloc.destroy(&this->_datas[i]);
 		this->_alloc.deallocate(this->_datas, this->_size);
 	}

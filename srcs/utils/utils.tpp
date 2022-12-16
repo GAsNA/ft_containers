@@ -5,7 +5,9 @@
 template <class InputIt>
 size_t	ft::distance(InputIt first, InputIt last)
 {
-	return last - first;
+	size_t i = 0;
+	for (; first < last; first++, i++);
+	return i;
 }
 
 /**********************************************************/
@@ -40,18 +42,6 @@ struct	ft::is_integral<bool>
 
 template <>
 struct	ft::is_integral<char>
-{
-	static const bool	value = true;
-};
-
-template <>
-struct	ft::is_integral<char16_t>
-{
-	static const bool	value = true;
-};
-
-template <>
-struct	ft::is_integral<char32_t>
 {
 	static const bool	value = true;
 };
@@ -130,18 +120,6 @@ struct	ft::is_integral<const bool>
 
 template <>
 struct	ft::is_integral<const char>
-{
-	static const bool	value = true;
-};
-
-template <>
-struct	ft::is_integral<const char16_t>
-{
-	static const bool	value = true;
-};
-
-template <>
-struct	ft::is_integral<const char32_t>
 {
 	static const bool	value = true;
 };

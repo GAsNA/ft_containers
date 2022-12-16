@@ -113,6 +113,12 @@ T	&ft::IteratorVector<T, Category, Distance, Pointer, Reference>::operator*()
 }
 
 template <class T, class Category, class Distance, class Pointer, class Reference>
+typename ft::IteratorVector<T, Category, Distance, Pointer, Reference>::value_type	*ft::IteratorVector<T, Category, Distance, Pointer, Reference>::operator->()
+{
+	return this->_pointer;
+}
+
+template <class T, class Category, class Distance, class Pointer, class Reference>
 ft::IteratorVector<T, Category, Distance, Pointer, Reference>	ft::IteratorVector<T, Category, Distance, Pointer, Reference>::operator+(int n) const
 {
 	IteratorVector iv(*this);
@@ -140,6 +146,12 @@ ft::IteratorVector<T, Category, Distance, Pointer, Reference>	&ft::IteratorVecto
 {
 	this->_pointer -= n;
 	return *this;
+}
+
+template <class T, class Category, class Distance, class Pointer, class Reference>
+int	ft::IteratorVector<T, Category, Distance, Pointer, Reference>::operator-(IteratorVector<const T> const &iv) const
+{
+	return this->_pointer - iv.get_pointer();
 }
 
 /* ACCESS  */

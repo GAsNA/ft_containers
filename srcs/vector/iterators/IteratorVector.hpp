@@ -34,11 +34,13 @@ namespace ft
 			bool			operator<=(IteratorVector<const T> const &) const;
 			bool			operator==(IteratorVector<const T> const &) const;
 			bool			operator!=(IteratorVector<const T> const &) const;
-			T				&operator*();
+			value_type		&operator*();
+			value_type		*operator->(); // TODO
 			IteratorVector	operator+(int n) const;
 			IteratorVector	&operator+=(int n);
 			IteratorVector	operator-(int n) const;
 			IteratorVector	&operator-=(int n);
+			int				operator-(IteratorVector<const T> const &) const;
 
 			/* ACCESS */
 			pointer	get_pointer() const;
