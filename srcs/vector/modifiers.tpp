@@ -64,25 +64,28 @@ void	ft::vector<T, Alloc>::insert(iterator position, InputIt first, InputIt last
 template <class T, class Alloc>
 typename ft::vector<T, Alloc>::iterator	ft::vector<T, Alloc>::erase(iterator pos)
 {
-	int			diff = (int)ft::distance(this->begin(), pos);
+	size_type	diff = ft::distance(this->begin(), pos);
+	size_type	ret = diff;
 	iterator	it_end = this->end();
 
 	for (; pos < it_end; pos++, diff++)
 	{
 		this->_alloc.destroy(&this->_datas[diff]);
-		if (diff + 1 < (int)this->_size)
+		if (diff + 1 < this->_size)
 			this->_alloc.construct(&this->_datas[diff], this->_datas[diff + 1]);
 	}
 	this->_size--;
-	return iterator(this->begin() + diff);
+	return iterator(this->begin() + ret);
 }
 
 template <class T, class Alloc>
 typename ft::vector<T, Alloc>::iterator	ft::vector<T, Alloc>::erase(iterator first, iterator last)
 {
-	for (; first < last; first++)
+	size_type	dis = ft::distance(first, last);
+	size_type	ret = ft::distance(this->begin(), first);
+	for (; dis > 0; dis--)
 		this->erase(first);
-	return last;
+	return iterator(this->begin() + ret);
 }
 
 template <class T, class Alloc>
