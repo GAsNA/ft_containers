@@ -30,7 +30,7 @@ typename ft::vector<T, Alloc>::iterator	ft::vector<T, Alloc>::insert(iterator po
 	size_type pos = ft::distance(this->begin(), position);
 
 	if (this->_capacity < this->_size + 1)
-		this->reserve(this->_capacity * 2);
+		this->reserve(this->_capacity * 2 + 1);
 
 	for (size_type i = this->_size; i > pos; i--)
 	{
