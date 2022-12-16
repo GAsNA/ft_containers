@@ -51,18 +51,18 @@ bool	operator<(const ft::vector<T, Alloc> &lhs, const ft::vector<T, Alloc> &rhs)
 template <class T, class Alloc>
 bool	operator<=(const ft::vector<T, Alloc> &lhs, const ft::vector<T, Alloc> &rhs)
 {
-	return ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()) || ft::lexicographical_compare_equal(lhs.begin(), lhs.end(), rhs.begin(), rhs.end());
+	return !(rhs < lhs);
 }
 
 template <class T, class Alloc>
 bool	operator>(const ft::vector<T, Alloc> &lhs, const ft::vector<T, Alloc> &rhs)
 {
-	return !(lhs < rhs) && !ft::lexicographical_compare_equal(lhs.begin(), lhs.end(), rhs.begin(), rhs.end());
+	return rhs < lhs;
 }
 
 template <class T, class Alloc>
 bool	operator>=(const ft::vector<T, Alloc> &lhs, const ft::vector<T, Alloc> &rhs)
 {
-	return !(lhs < rhs) || ft::lexicographical_compare_equal(lhs.begin(), lhs.end(), rhs.begin(), rhs.end());
+	return !(lhs < rhs);
 }
 

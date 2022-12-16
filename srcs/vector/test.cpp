@@ -19,29 +19,39 @@ void	printSize(TESTED_NAMESPACE::vector<T> const &deq, bool print_content = 1)
 	std::cout << "###############################################" << std::endl;
 }
 
+template <class T, class Alloc>
+void	cmp(const TESTED_NAMESPACE::vector<T, Alloc> &lhs, const TESTED_NAMESPACE::vector<T, Alloc> &rhs)
+{
+	static int i = 0;
+
+	std::cout << "############### [" << i++ << "] ###############"  << std::endl;
+	std::cout << "eq: " << (lhs == rhs) << " | ne: " << (lhs != rhs) << std::endl;
+	std::cout << "lt: " << (lhs <  rhs) << " | le: " << (lhs <= rhs) << std::endl;
+	std::cout << "gt: " << (lhs >  rhs) << " | ge: " << (lhs >= rhs) << std::endl;
+}
+
 int		main(void)
 {
-	TESTED_NAMESPACE::vector<TESTED_TYPE> vct(5);
-	TESTED_NAMESPACE::vector<TESTED_TYPE> vct2;
-	const int cut = 3;
+	TESTED_NAMESPACE::vector<TESTED_TYPE> vct(4);
+	TESTED_NAMESPACE::vector<TESTED_TYPE> vct2(4);
 
-	for (unsigned long int i = 0; i < vct.size(); ++i)
-		vct[i] = (vct.size() - i) * 7;
-	printSize(vct);
+	cmp(vct, vct);  // 0
+	cmp(vct, vct2); // 1
 
-	vct2.insert(vct2.begin(), vct.begin(), vct.begin() + cut);
-	printSize(vct2);
-	vct2.insert(vct2.begin(), vct.begin() + cut, vct.end());
-	printSize(vct2);
-	vct2.insert(vct2.end(), vct.begin(), vct.begin() + cut);
-	printSize(vct2);
+	vct2.resize(10);
 
-	std::cout << "insert return:" << std::endl;
+	cmp(vct, vct2); // 2
+	cmp(vct2, vct); // 3
 
-	std::cout << *vct2.insert(vct2.end(), 42) << std::endl;
-	std::cout << *vct2.insert(vct2.begin() + 5, 84) << std::endl;
-	std::cout << "----------------------------------------" << std::endl;
+	vct[2] = 42;
 
-	printSize(vct2);
+	cmp(vct, vct2); // 4
+	cmp(vct2, vct); // 5
+
+	swap(vct, vct2);
+
+	cmp(vct, vct2); // 6
+	cmp(vct2, vct); // 7
+
 	return (0);
 }
