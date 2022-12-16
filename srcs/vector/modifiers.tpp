@@ -8,7 +8,7 @@ void	ft::vector<T, Alloc>::assign(size_type count, const T& value)
 
 template <class T, class Alloc>
 template <class InputIt>
-void	ft::vector<T, Alloc>::assign(InputIt first, InputIt last, typename std::enable_if<!std::is_integral<InputIt>::value, InputIt>::type*)
+void	ft::vector<T, Alloc>::assign(InputIt first, InputIt last, typename std::enable_if<!ft::is_integral<InputIt>::value, InputIt>::type*)
 {
 	this->clear();
 	for (; first < last; first++)

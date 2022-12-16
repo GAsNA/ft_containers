@@ -13,7 +13,7 @@ ft::vector<T, Alloc>::vector (size_type n, const value_type& val, const allocato
 
 template <class T, class Alloc>
 template <class InputIterator>
-ft::vector<T, Alloc>::vector (InputIterator first, InputIterator last, const allocator_type& alloc, typename std::enable_if<!std::is_integral<InputIterator>::value, InputIterator>::type*) : _alloc(alloc)
+ft::vector<T, Alloc>::vector (InputIterator first, InputIterator last, const allocator_type& alloc, typename std::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type*) : _alloc(alloc)
 {
 	this->_size = std::distance(first, last);
 	this->_capacity = this->_size * 2;
