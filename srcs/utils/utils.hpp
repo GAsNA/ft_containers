@@ -10,7 +10,7 @@ namespace ft
 	size_t	distance(InputIt first, InputIt last);
 
 	/* ITERATOR_TRAITS */
-	template <class Iterator>
+	template <class Ite>
 	class iterator_traits;
 
 	template <class T>

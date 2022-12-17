@@ -1,174 +1,165 @@
-/* CONSTRUCTORS */
-template <class T, class Category, class Distance, class Pointer, class Reference>
-ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::ReverseIteratorVector() : _pointer(NULL) {}
+/**********************************************************/
+/*						CONSTRUCTORS					  */
+/**********************************************************/
+template <class Iterator>
+ft::ReverseIteratorVector<Iterator>::ReverseIteratorVector() : _iterator(NULL)
+{}
 
-template <class T, class Category, class Distance, class Pointer, class Reference>
-ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::ReverseIteratorVector(pointer ptr) : _pointer(ptr) {}
+template <class Iterator>
+ft::ReverseIteratorVector<Iterator>::ReverseIteratorVector(iterator x) : _iterator(x)
+{}
 
-template <class T, class Category, class Distance, class Pointer, class Reference>
-ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::ReverseIteratorVector(const ReverseIteratorVector &x) : _pointer(x.get_pointer()) {}
+template <class Iterator>
+template <class U>
+ft::ReverseIteratorVector<Iterator>::ReverseIteratorVector(const ReverseIteratorVector<U>& other) : _iterator(other.base())
+{}
 
-template <class T, class Category, class Distance, class Pointer, class Reference>
-ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::~ReverseIteratorVector() {};
-
-/* OPERATORS */
-template <class T, class Category, class Distance, class Pointer, class Reference>
-ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::operator ReverseIteratorVector<const T>() const
+/**********************************************************/
+/*						OPERATORS						  */
+/**********************************************************/
+template <class Iterator>
+template <class U>
+ft::ReverseIteratorVector<Iterator>	&ft::ReverseIteratorVector<Iterator>::operator=(const ReverseIteratorVector<U>& other)
 {
-	return ReverseIteratorVector<const T>(this->_pointer);
-}
+	if (this == &other) {return;}
 
-template <class T, class Category, class Distance, class Pointer, class Reference>
-ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>	&ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::operator=(const ReverseIteratorVector<const T> &rhs)
-{
-	if (this == &rhs) {return *this;}
-
-	this->_pointer = rhs.get_pointer();
+	this->_iterator = other.base();
 	return *this;
 }
 
-template <class T, class Category, class Distance, class Pointer, class Reference>
-ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>	&ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::operator++()
+template <class Iterator>
+typename ft::ReverseIteratorVector<Iterator>::reference	ft::ReverseIteratorVector<Iterator>::operator*() const
 {
-	this->_pointer--;
+	iterator tmp = this->_iterator;
+	return *(--tmp);
+}
+
+template <class Iterator>
+typename ft::ReverseIteratorVector<Iterator>::pointer	ft::ReverseIteratorVector<Iterator>::operator->() const
+{
+	return &(this->operator*()); //??????
+}
+
+template <class Iterator>
+typename ft::ReverseIteratorVector<Iterator>::reference	ft::ReverseIteratorVector<Iterator>::operator[](difference_type n) const
+{
+	return &(this->base()[-n-1]);
+}
+
+template <class Iterator>
+ft::ReverseIteratorVector<Iterator>	&ft::ReverseIteratorVector<Iterator>::operator++()
+{
+	this->_iterator--;
 	return *this;
 }
 
-template <class T, class Category, class Distance, class Pointer, class Reference>
-ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>	ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::operator++(int)
+template <class Iterator>
+ft::ReverseIteratorVector<Iterator>	&ft::ReverseIteratorVector<Iterator>::operator--()
 {
-	ReverseIteratorVector iv(*this);
+	this->_iterator++;
+	return *this;
+}
+
+template <class Iterator>
+ft::ReverseIteratorVector<Iterator>	ft::ReverseIteratorVector<Iterator>::operator++(int)
+{
+	ReverseIteratorVector	riv(*this);
 	operator++();
-	return iv;
+	return riv;
 }
 
-template <class T, class Category, class Distance, class Pointer, class Reference>
-ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>	&ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::operator--()
+template <class Iterator>
+ft::ReverseIteratorVector<Iterator>	ft::ReverseIteratorVector<Iterator>::operator--(int)
 {
-	this->_pointer++;
-	return *this;
-}
-
-template <class T, class Category, class Distance, class Pointer, class Reference>
-ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>	ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::operator--(int)
-{
-	ReverseIteratorVector iv(*this);
+	ReverseIteratorVector	riv(*this);
 	operator--();
-	return iv;
+	return riv;
 }
 
-template <class T, class Category, class Distance, class Pointer, class Reference>
-bool	ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::operator>(ReverseIteratorVector<const T> const &iv) const
+template <class Iterator>
+ft::ReverseIteratorVector<Iterator>	ft::ReverseIteratorVector<Iterator>::operator+(difference_type n) const
 {
-	if (this->_pointer < iv.get_pointer())
-		return 1;
-	return 0;
-	//return this->_pointer > iv.pointer()
+	ReverseIteratorVector	riv(*this);
+	riv -= n;
+	return riv;
 }
 
-template <class T, class Category, class Distance, class Pointer, class Reference>
-bool	ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::operator<(ReverseIteratorVector<const T> const &iv) const
+template <class Iterator>
+ft::ReverseIteratorVector<Iterator>	ft::ReverseIteratorVector<Iterator>::operator-(difference_type n) const
 {
-	if (this->_pointer > iv.get_pointer())
-		return 1;
-	return 0;
+	ReverseIteratorVector	riv(*this);
+	riv += n;
+	return riv;
 }
 
-template <class T, class Category, class Distance, class Pointer, class Reference>
-bool	ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::operator>=(ReverseIteratorVector<const T> const &iv) const
+template <class Iterator>
+ft::ReverseIteratorVector<Iterator>	&ft::ReverseIteratorVector<Iterator>::operator+=(difference_type n)
 {
-	if (this->_pointer <= iv.get_pointer())
-		return 1;
-	return 0;
-}
-
-template <class T, class Category, class Distance, class Pointer, class Reference>
-bool	ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::operator<=(ReverseIteratorVector<const T> const &iv) const
-{
-	if (this->_pointer >= iv.get_pointer())
-		return 1;
-	return 0;
-}
-
-template <class T, class Category, class Distance, class Pointer, class Reference>
-bool	ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::operator==(ReverseIteratorVector<const T> const &iv) const
-{
-	if (this->_pointer == iv.get_pointer())
-		return 1;
-	return 0;
-}
-
-template <class T, class Category, class Distance, class Pointer, class Reference>
-bool	ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::operator!=(ReverseIteratorVector<const T> const &iv) const
-{
-	if (this->_pointer != iv.get_pointer())
-		return 1;
-	return 0;
-}
-
-template <class T, class Category, class Distance, class Pointer, class Reference>
-T	&ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::operator*()
-{
-	return *this->_pointer;
-}
-
-template <class T, class Category, class Distance, class Pointer, class Reference>
-typename ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::value_type	*ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::operator->()
-{
-	return this->_pointer;
-}
-
-template <class T, class Category, class Distance, class Pointer, class Reference>
-ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>	ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::operator+(int n) const
-{
-	ReverseIteratorVector iv(*this);
-	iv += n;
-	return iv;
-}
-
-template <class T, class Category, class Distance, class Pointer, class Reference>
-ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>	&ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::operator+=(int n)
-{
-	this->_pointer -= n;
+	this->_iterator -= n;
 	return *this;
 }
 
-template <class T, class Category, class Distance, class Pointer, class Reference>
-ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>	ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::operator-(int n) const
+template <class Iterator>
+ft::ReverseIteratorVector<Iterator>	&ft::ReverseIteratorVector<Iterator>::operator-=(difference_type n)
 {
-	ReverseIteratorVector iv(*this);
-	iv -= n;
-	return iv;
-}
-
-template <class T, class Category, class Distance, class Pointer, class Reference>
-ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>	&ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::operator-=(int n)
-{
-	this->_pointer += n;
+	this->_iterator += n;
 	return *this;
 }
 
-template <class T, class Category, class Distance, class Pointer, class Reference>
-int	ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::operator-(ReverseIteratorVector<const T> const &iv) const
+// EXTERN
+template <class Iterator1, class Iterator2>
+bool operator==(const ft::ReverseIteratorVector<Iterator1>& lhs, const ft::ReverseIteratorVector<Iterator2>& rhs)
 {
-	return this->_pointer - iv.get_pointer();
+	return lhs.base() == rhs.base();
 }
 
-template <class T, class Category, class Distance, class Pointer, class Reference>
-typename ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::reference		ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::operator[](int i)
+template <class Iterator1, class Iterator2>
+bool operator!=(const ft::ReverseIteratorVector<Iterator1>& lhs, const ft::ReverseIteratorVector<Iterator2>& rhs)
 {
-	return this->_pointer[i];
+	return lhs.base() != rhs.base();
 }
 
-template <class T, class Category, class Distance, class Pointer, class Reference>
-ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>	operator+(int n, ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference> const &iv)
+template <class Iterator1, class Iterator2>
+bool operator<(const ft::ReverseIteratorVector<Iterator1>& lhs, const ft::ReverseIteratorVector<Iterator2>& rhs)
 {
-	return iv + n;
+	return lhs.base < rhs.base();
 }
 
-/* ACCESS  */
-template <class T, class Category, class Distance, class Pointer, class Reference>
-typename ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::pointer	ft::ReverseIteratorVector<T, Category, Distance, Pointer, Reference>::get_pointer() const
+template <class Iterator1, class Iterator2>
+bool operator<=(const ft::ReverseIteratorVector<Iterator1>& lhs, const ft::ReverseIteratorVector<Iterator2>& rhs)
 {
-	return this->_pointer;
+	return lhs.base() <= rhs.base();
+}
+
+template <class Iterator1, class Iterator2>
+bool operator>(const ft::ReverseIteratorVector<Iterator1>& lhs, const ft::ReverseIteratorVector<Iterator2>& rhs)
+{
+	return lhs.base() > rhs.base();
+}
+
+template <class Iterator1, class Iterator2>
+bool operator>=(const ft::ReverseIteratorVector<Iterator1>& lhs, const ft::ReverseIteratorVector<Iterator2>& rhs)
+{
+	return lhs.base >= rhs.base();
+}
+
+template <class Iter>
+ft::ReverseIteratorVector<Iter> operator+(typename ft::ReverseIteratorVector<Iter>::difference_type n, const ft::ReverseIteratorVector<Iter>& it)
+{
+	return ft::ReverseIteratorVector<Iter>(it.base() - n);
+}
+
+template <class Iterator1, class Iterator2>
+typename ft::ReverseIteratorVector<Iterator1>::difference_type operator-(const ft::ReverseIteratorVector<Iterator1>& lhs, const ft::ReverseIteratorVector<Iterator2>& rhs)
+{
+	return rhs.base - lhs.base();
+}
+
+/**********************************************************/
+/*							ACCESS						  */
+/**********************************************************/
+template <class Iterator>
+typename ft::ReverseIteratorVector<Iterator>::iterator	ft::ReverseIteratorVector<Iterator>::base() const
+{
+	return iterator(this->_iterator);
 }

@@ -1,4 +1,6 @@
-/* CONSTRUCTORS */
+/**********************************************************/
+/*						CONSTRUCTORS					  */
+/**********************************************************/
 template <class T, class Category, class Distance, class Pointer, class Reference>
 ft::IteratorVector<T, Category, Distance, Pointer, Reference>::IteratorVector() : _pointer(NULL) {}
 
@@ -11,7 +13,9 @@ ft::IteratorVector<T, Category, Distance, Pointer, Reference>::IteratorVector(co
 template <class T, class Category, class Distance, class Pointer, class Reference>
 ft::IteratorVector<T, Category, Distance, Pointer, Reference>::~IteratorVector() {};
 
-/* OPERATORS */
+/**********************************************************/
+/*						OPERATORS						  */
+/**********************************************************/
 template <class T, class Category, class Distance, class Pointer, class Reference>
 ft::IteratorVector<T, Category, Distance, Pointer, Reference>::operator IteratorVector<const T>() const
 {
@@ -166,7 +170,9 @@ ft::IteratorVector<T, Category, Distance, Pointer, Reference>	operator+(int n, f
 	return iv + n;
 }
 
-/* ACCESS  */
+/**********************************************************/
+/*							ACCESS						  */
+/**********************************************************/
 template <class T, class Category, class Distance, class Pointer, class Reference>
 typename ft::IteratorVector<T, Category, Distance, Pointer, Reference>::pointer	ft::IteratorVector<T, Category, Distance, Pointer, Reference>::get_pointer() const
 {
