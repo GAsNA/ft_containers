@@ -30,7 +30,7 @@ template <class T>
 class ft::iterator_traits<T*>
 {
 	public:
-		typedef ptrdiff_t						difference_type;
+		typedef std::ptrdiff_t					difference_type;
 		typedef T								value_type;
 		typedef T*								pointer;
 		typedef T&								reference;
@@ -41,7 +41,7 @@ template <class T>
 class ft::iterator_traits<const T*>
 {
 	public:
-		typedef ptrdiff_t						difference_type;
+		typedef std::ptrdiff_t					difference_type;
 		typedef T								value_type;
 		typedef const T*						pointer;
 		typedef const T&						reference;
