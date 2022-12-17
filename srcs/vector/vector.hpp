@@ -6,7 +6,7 @@
 /*   By: rleseur <rleseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:42:02 by rleseur           #+#    #+#             */
-/*   Updated: 2022/12/16 23:48:43 by rleseur          ###   ########.fr       */
+/*   Updated: 2022/12/17 13:15:43 by rleseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,8 @@
 # include <iterator>
 
 # include "../utils/utils.hpp"
-
-# include "iterators/IteratorVector.hpp"
-# include "iterators/ReverseIteratorVector.hpp"
+# include "../iterators/IteratorVector.hpp"
+# include "../iterators/ReverseIteratorVector.hpp"
 
 namespace ft
 {
