@@ -449,11 +449,11 @@ int main()
 		ft::vector<int>::const_iterator it_begin1 = v.begin();
 		ft::vector<int>::const_iterator it_end1 = v.end();
 
-		//ft::vector<int>::reverse_iterator it_rbegin = v.rbegin();
-		//ft::vector<int>::reverse_iterator it_rend = v.rend();
+		ft::vector<int>::reverse_iterator it_rbegin = v.rbegin();
+		ft::vector<int>::reverse_iterator it_rend = v.rend();
 
-		//ft::vector<int>::const_reverse_iterator it_rbegin1 = v.rbegin();
-		//ft::vector<int>::const_reverse_iterator it_rend1 = v.rend();
+		ft::vector<int>::const_reverse_iterator it_rbegin1 = v.rbegin();
+		ft::vector<int>::const_reverse_iterator it_rend1 = v.rend();
 
 		/* begin and end */
 		std::cout << "Content of v with iterators:";
@@ -474,18 +474,18 @@ int main()
 		std::cout << std::endl;
 
 		/* rbegin and rend */
-		//std::cout << "Content of v with reverse iterators:";
-		//for (; it_rbegin < it_rend; it_rbegin++)
-		//	std::cout << " " << *it_rbegin;
-		//std::cout << std::endl;
+		std::cout << "Content of v with reverse iterators:";
+		for (; it_rbegin < it_rend; it_rbegin++)
+			std::cout << " " << *it_rbegin;
+		std::cout << std::endl;
 
 		std::cout << std::endl;
 
 		/* rbegin and rend const */
-		//std::cout << "Content of v with const reverse iterators:";
-		//for (; it_rbegin1 < it_rend1; it_rbegin1++)
-		//	std::cout << " " << *it_rbegin1;
-		//std::cout << std::endl;
+		std::cout << "Content of v with const reverse iterators:";
+		for (; it_rbegin1 < it_rend1; it_rbegin1++)
+			std::cout << " " << *it_rbegin1;
+		std::cout << std::endl;
 
 	}
 }
