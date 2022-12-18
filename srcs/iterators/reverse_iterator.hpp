@@ -1,5 +1,5 @@
-#ifndef REVERSE_ITERATOR_VECTOR
-# define REVERSE_ITERATOR_VECTOR
+#ifndef REVERSE_ITERATOR
+# define REVERSE_ITERATOR
 
 # include <iterator>
 
@@ -8,7 +8,7 @@
 namespace ft
 {
 	template <class Iterator>
-	class ReverseIteratorVector
+	class reverse_iterator
 	{
 		public:
 			typedef Iterator													iterator;
@@ -19,25 +19,25 @@ namespace ft
 			typedef typename ft::iterator_traits<Iterator>::iterator_category	iterator_category;
 
 			/* CONSTRUCTORS */
-			ReverseIteratorVector();
-			explicit ReverseIteratorVector(iterator x);
+			reverse_iterator();
+			explicit reverse_iterator(iterator x);
 			template <class U>
-			ReverseIteratorVector(const ReverseIteratorVector<U>& other);
+			reverse_iterator(const reverse_iterator<U>& other);
 
 			/* OPERATORS */
 			template <class U>
-			ReverseIteratorVector	&operator=(const ReverseIteratorVector<U>& other);
+			reverse_iterator	&operator=(const reverse_iterator<U>& other);
 			reference				operator*() const;
 			pointer					operator->() const;
 			reference				operator[](difference_type n) const;
-			ReverseIteratorVector	&operator++();
-			ReverseIteratorVector	&operator--();
-			ReverseIteratorVector	operator++(int);
-			ReverseIteratorVector	operator--(int);
-			ReverseIteratorVector	operator+(difference_type n) const;
-			ReverseIteratorVector	operator-(difference_type n) const;
-			ReverseIteratorVector	&operator+=(difference_type n);
-			ReverseIteratorVector	&operator-=(difference_type n);
+			reverse_iterator	&operator++();
+			reverse_iterator	&operator--();
+			reverse_iterator	operator++(int);
+			reverse_iterator	operator--(int);
+			reverse_iterator	operator+(difference_type n) const;
+			reverse_iterator	operator-(difference_type n) const;
+			reverse_iterator	&operator+=(difference_type n);
+			reverse_iterator	&operator-=(difference_type n);
 			
 			/* ACCESS */
 			iterator	base() const;
@@ -47,6 +47,6 @@ namespace ft
 	};
 }
 
-# include "ReverseIteratorVector.tpp"
+# include "reverse_iterator.tpp"
 
 #endif

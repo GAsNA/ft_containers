@@ -2,28 +2,28 @@
 /*						CONSTRUCTORS					  */
 /**********************************************************/
 template <class T, class Category, class Distance, class Pointer, class Reference>
-ft::IteratorVector<T, Category, Distance, Pointer, Reference>::IteratorVector() : _pointer(NULL) {}
+ft::iterator_vector<T, Category, Distance, Pointer, Reference>::iterator_vector() : _pointer(NULL) {}
 
 template <class T, class Category, class Distance, class Pointer, class Reference>
-ft::IteratorVector<T, Category, Distance, Pointer, Reference>::IteratorVector(pointer ptr) : _pointer(ptr) {}
+ft::iterator_vector<T, Category, Distance, Pointer, Reference>::iterator_vector(pointer ptr) : _pointer(ptr) {}
 
 template <class T, class Category, class Distance, class Pointer, class Reference>
-ft::IteratorVector<T, Category, Distance, Pointer, Reference>::IteratorVector(const IteratorVector &x) : _pointer(x.get_pointer()) {}
+ft::iterator_vector<T, Category, Distance, Pointer, Reference>::iterator_vector(const iterator_vector &x) : _pointer(x.get_pointer()) {}
 
 template <class T, class Category, class Distance, class Pointer, class Reference>
-ft::IteratorVector<T, Category, Distance, Pointer, Reference>::~IteratorVector() {};
+ft::iterator_vector<T, Category, Distance, Pointer, Reference>::~iterator_vector() {};
 
 /**********************************************************/
 /*						OPERATORS						  */
 /**********************************************************/
 template <class T, class Category, class Distance, class Pointer, class Reference>
-ft::IteratorVector<T, Category, Distance, Pointer, Reference>::operator IteratorVector<const T>() const
+ft::iterator_vector<T, Category, Distance, Pointer, Reference>::operator iterator_vector<const T>() const
 {
-	return IteratorVector<const T>(this->_pointer);
+	return iterator_vector<const T>(this->_pointer);
 }
 
 template <class T, class Category, class Distance, class Pointer, class Reference>
-ft::IteratorVector<T, Category, Distance, Pointer, Reference>	&ft::IteratorVector<T, Category, Distance, Pointer, Reference>::operator=(const IteratorVector<const T> &rhs)
+ft::iterator_vector<T, Category, Distance, Pointer, Reference>	&ft::iterator_vector<T, Category, Distance, Pointer, Reference>::operator=(const iterator_vector<const T> &rhs)
 {
 	if (this == &rhs) {return *this;}
 
@@ -32,37 +32,37 @@ ft::IteratorVector<T, Category, Distance, Pointer, Reference>	&ft::IteratorVecto
 }
 
 template <class T, class Category, class Distance, class Pointer, class Reference>
-ft::IteratorVector<T, Category, Distance, Pointer, Reference>	&ft::IteratorVector<T, Category, Distance, Pointer, Reference>::operator++()
+ft::iterator_vector<T, Category, Distance, Pointer, Reference>	&ft::iterator_vector<T, Category, Distance, Pointer, Reference>::operator++()
 {
 	this->_pointer++;
 	return *this;
 }
 
 template <class T, class Category, class Distance, class Pointer, class Reference>
-ft::IteratorVector<T, Category, Distance, Pointer, Reference>	ft::IteratorVector<T, Category, Distance, Pointer, Reference>::operator++(int)
+ft::iterator_vector<T, Category, Distance, Pointer, Reference>	ft::iterator_vector<T, Category, Distance, Pointer, Reference>::operator++(int)
 {
-	IteratorVector iv(*this);
+	iterator_vector iv(*this);
 	operator++();
 	return iv;
 }
 
 template <class T, class Category, class Distance, class Pointer, class Reference>
-ft::IteratorVector<T, Category, Distance, Pointer, Reference>	&ft::IteratorVector<T, Category, Distance, Pointer, Reference>::operator--()
+ft::iterator_vector<T, Category, Distance, Pointer, Reference>	&ft::iterator_vector<T, Category, Distance, Pointer, Reference>::operator--()
 {
 	this->_pointer--;
 	return *this;
 }
 
 template <class T, class Category, class Distance, class Pointer, class Reference>
-ft::IteratorVector<T, Category, Distance, Pointer, Reference>	ft::IteratorVector<T, Category, Distance, Pointer, Reference>::operator--(int)
+ft::iterator_vector<T, Category, Distance, Pointer, Reference>	ft::iterator_vector<T, Category, Distance, Pointer, Reference>::operator--(int)
 {
-	IteratorVector iv(*this);
+	iterator_vector iv(*this);
 	operator--();
 	return iv;
 }
 
 template <class T, class Category, class Distance, class Pointer, class Reference>
-bool	ft::IteratorVector<T, Category, Distance, Pointer, Reference>::operator>(IteratorVector<const T> const &iv) const
+bool	ft::iterator_vector<T, Category, Distance, Pointer, Reference>::operator>(iterator_vector<const T> const &iv) const
 {
 	if (this->_pointer > iv.get_pointer())
 		return 1;
@@ -71,7 +71,7 @@ bool	ft::IteratorVector<T, Category, Distance, Pointer, Reference>::operator>(It
 }
 
 template <class T, class Category, class Distance, class Pointer, class Reference>
-bool	ft::IteratorVector<T, Category, Distance, Pointer, Reference>::operator<(IteratorVector<const T> const &iv) const
+bool	ft::iterator_vector<T, Category, Distance, Pointer, Reference>::operator<(iterator_vector<const T> const &iv) const
 {
 	if (this->_pointer < iv.get_pointer())
 		return 1;
@@ -79,7 +79,7 @@ bool	ft::IteratorVector<T, Category, Distance, Pointer, Reference>::operator<(It
 }
 
 template <class T, class Category, class Distance, class Pointer, class Reference>
-bool	ft::IteratorVector<T, Category, Distance, Pointer, Reference>::operator>=(IteratorVector<const T> const &iv) const
+bool	ft::iterator_vector<T, Category, Distance, Pointer, Reference>::operator>=(iterator_vector<const T> const &iv) const
 {
 	if (this->_pointer >= iv.get_pointer())
 		return 1;
@@ -87,7 +87,7 @@ bool	ft::IteratorVector<T, Category, Distance, Pointer, Reference>::operator>=(I
 }
 
 template <class T, class Category, class Distance, class Pointer, class Reference>
-bool	ft::IteratorVector<T, Category, Distance, Pointer, Reference>::operator<=(IteratorVector<const T> const &iv) const
+bool	ft::iterator_vector<T, Category, Distance, Pointer, Reference>::operator<=(iterator_vector<const T> const &iv) const
 {
 	if (this->_pointer <= iv.get_pointer())
 		return 1;
@@ -95,7 +95,7 @@ bool	ft::IteratorVector<T, Category, Distance, Pointer, Reference>::operator<=(I
 }
 
 template <class T, class Category, class Distance, class Pointer, class Reference>
-bool	ft::IteratorVector<T, Category, Distance, Pointer, Reference>::operator==(IteratorVector<const T> const &iv) const
+bool	ft::iterator_vector<T, Category, Distance, Pointer, Reference>::operator==(iterator_vector<const T> const &iv) const
 {
 	if (this->_pointer == iv.get_pointer())
 		return 1;
@@ -103,7 +103,7 @@ bool	ft::IteratorVector<T, Category, Distance, Pointer, Reference>::operator==(I
 }
 
 template <class T, class Category, class Distance, class Pointer, class Reference>
-bool	ft::IteratorVector<T, Category, Distance, Pointer, Reference>::operator!=(IteratorVector<const T> const &iv) const
+bool	ft::iterator_vector<T, Category, Distance, Pointer, Reference>::operator!=(iterator_vector<const T> const &iv) const
 {
 	if (this->_pointer != iv.get_pointer())
 		return 1;
@@ -111,61 +111,61 @@ bool	ft::IteratorVector<T, Category, Distance, Pointer, Reference>::operator!=(I
 }
 
 template <class T, class Category, class Distance, class Pointer, class Reference>
-T	&ft::IteratorVector<T, Category, Distance, Pointer, Reference>::operator*()
+T	&ft::iterator_vector<T, Category, Distance, Pointer, Reference>::operator*()
 {
 	return *this->_pointer;
 }
 
 template <class T, class Category, class Distance, class Pointer, class Reference>
-typename ft::IteratorVector<T, Category, Distance, Pointer, Reference>::value_type	*ft::IteratorVector<T, Category, Distance, Pointer, Reference>::operator->()
+typename ft::iterator_vector<T, Category, Distance, Pointer, Reference>::value_type	*ft::iterator_vector<T, Category, Distance, Pointer, Reference>::operator->()
 {
 	return this->_pointer;
 }
 
 template <class T, class Category, class Distance, class Pointer, class Reference>
-ft::IteratorVector<T, Category, Distance, Pointer, Reference>	ft::IteratorVector<T, Category, Distance, Pointer, Reference>::operator+(int n) const
+ft::iterator_vector<T, Category, Distance, Pointer, Reference>	ft::iterator_vector<T, Category, Distance, Pointer, Reference>::operator+(int n) const
 {
-	IteratorVector iv(*this);
+	iterator_vector iv(*this);
 	iv += n;
 	return iv;
 }
 
 template <class T, class Category, class Distance, class Pointer, class Reference>
-ft::IteratorVector<T, Category, Distance, Pointer, Reference>	&ft::IteratorVector<T, Category, Distance, Pointer, Reference>::operator+=(int n)
+ft::iterator_vector<T, Category, Distance, Pointer, Reference>	&ft::iterator_vector<T, Category, Distance, Pointer, Reference>::operator+=(int n)
 {
 	this->_pointer += n;
 	return *this;
 }
 
 template <class T, class Category, class Distance, class Pointer, class Reference>
-ft::IteratorVector<T, Category, Distance, Pointer, Reference>	ft::IteratorVector<T, Category, Distance, Pointer, Reference>::operator-(int n) const
+ft::iterator_vector<T, Category, Distance, Pointer, Reference>	ft::iterator_vector<T, Category, Distance, Pointer, Reference>::operator-(int n) const
 {
-	IteratorVector iv(*this);
+	iterator_vector iv(*this);
 	iv -= n;
 	return iv;
 }
 
 template <class T, class Category, class Distance, class Pointer, class Reference>
-ft::IteratorVector<T, Category, Distance, Pointer, Reference>	&ft::IteratorVector<T, Category, Distance, Pointer, Reference>::operator-=(int n)
+ft::iterator_vector<T, Category, Distance, Pointer, Reference>	&ft::iterator_vector<T, Category, Distance, Pointer, Reference>::operator-=(int n)
 {
 	this->_pointer -= n;
 	return *this;
 }
 
 template <class T, class Category, class Distance, class Pointer, class Reference>
-int	ft::IteratorVector<T, Category, Distance, Pointer, Reference>::operator-(IteratorVector<const T> const &iv) const
+int	ft::iterator_vector<T, Category, Distance, Pointer, Reference>::operator-(iterator_vector<const T> const &iv) const
 {
 	return this->_pointer - iv.get_pointer();
 }
 
 template <class T, class Category, class Distance, class Pointer, class Reference>
-typename ft::IteratorVector<T, Category, Distance, Pointer, Reference>::reference		ft::IteratorVector<T, Category, Distance, Pointer, Reference>::operator[](int i)
+typename ft::iterator_vector<T, Category, Distance, Pointer, Reference>::reference		ft::iterator_vector<T, Category, Distance, Pointer, Reference>::operator[](int i)
 {
 	return this->_pointer[i];
 }
 
 template <class T, class Category, class Distance, class Pointer, class Reference>
-ft::IteratorVector<T, Category, Distance, Pointer, Reference>	operator+(int n, ft::IteratorVector<T, Category, Distance, Pointer, Reference> const &iv)
+ft::iterator_vector<T, Category, Distance, Pointer, Reference>	operator+(int n, ft::iterator_vector<T, Category, Distance, Pointer, Reference> const &iv)
 {
 	return iv + n;
 }
@@ -174,7 +174,7 @@ ft::IteratorVector<T, Category, Distance, Pointer, Reference>	operator+(int n, f
 /*							ACCESS						  */
 /**********************************************************/
 template <class T, class Category, class Distance, class Pointer, class Reference>
-typename ft::IteratorVector<T, Category, Distance, Pointer, Reference>::pointer	ft::IteratorVector<T, Category, Distance, Pointer, Reference>::get_pointer() const
+typename ft::iterator_vector<T, Category, Distance, Pointer, Reference>::pointer	ft::iterator_vector<T, Category, Distance, Pointer, Reference>::get_pointer() const
 {
 	return this->_pointer;
 }

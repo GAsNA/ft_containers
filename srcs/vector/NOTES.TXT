@@ -1,2 +1,0 @@
-containers_test 
-|-> compilation bidirect_it.cpp
