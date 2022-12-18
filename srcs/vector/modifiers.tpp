@@ -11,7 +11,7 @@ template <class InputIt>
 void	ft::vector<T, Alloc>::assign(InputIt first, InputIt last, typename ft::enable_if<!ft::is_integral<InputIt>::value, InputIt>::type*)
 {
 	this->clear();
-	for (; first < last; first++)
+	for (; first != last; ++first)
 		this->push_back(*first);
 }
 
