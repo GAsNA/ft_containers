@@ -137,7 +137,7 @@ void	ft::vector<T, Alloc>::swap(vector &other)
 }
 
 template <class T, class Alloc>
-void	ft::swap(ft::vector<T, Alloc> &lhs, ft::vector<T, Alloc> &rhs)
+void	swap(ft::vector<T, Alloc> &lhs, ft::vector<T, Alloc> &rhs)
 {
 	lhs.swap(rhs);
 }

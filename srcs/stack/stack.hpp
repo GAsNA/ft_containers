@@ -6,7 +6,7 @@
 /*   By: rleseur <rleseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:42:02 by rleseur           #+#    #+#             */
-/*   Updated: 2022/12/19 17:08:36 by rleseur          ###   ########.fr       */
+/*   Updated: 2022/12/19 18:53:04 by rleseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <memory>
 # include <stdexcept>
 # include <iterator>
+# include <vector>
 
 # include "../utils/utils.hpp"
 # include "../vector/vector.hpp"
@@ -33,7 +34,7 @@ namespace ft
 			typedef typename container_type::size_type			size_type;
 			typedef typename container_type::reference			reference;
 			typedef typename container_type::const_reference	const_reference;
-			
+
 			/* CONSTRUCTORS */
 			explicit stack(const container_type& cont = container_type());
 			stack(const stack& other);
@@ -41,12 +42,18 @@ namespace ft
 
 			/* OPERATORS */
 			stack&	operator=(const stack& other);
-			friend bool operator==(const stack& lhs, const stack& rhs);
-			friend bool operator!=(const stack& lhs, const stack& rhs);
-			friend bool operator<(const stack& lhs, const stack& rhs);
-			friend bool operator<=(const stack& lhs, const stack& rhs);
-			friend bool operator>(const stack& lhs, const stack& rhs);
-			friend bool operator>=(const stack& lhs, const stack& rhs);
+			template <class T2, class Container2>
+			friend bool operator==(const stack<T2, Container2>& lhs, const stack<T2, Container2>& rhs);
+			template <class T2, class Container2>
+			friend bool operator!=(const stack<T2, Container2>& lhs, const stack<T2, Container2>& rhs);
+			template <class T2, class Container2>
+			friend bool operator<(const stack<T2, Container2>& lhs, const stack<T2, Container2>& rhs);
+			template <class T2, class Container2>
+			friend bool operator<=(const stack<T2, Container2>& lhs, const stack<T2, Container2>& rhs);
+			template <class T2, class Container2>
+			friend bool operator>(const stack<T2, Container2>& lhs, const stack<T2, Container2>& rhs);
+			template <class T2, class Container2>
+			friend bool operator>=(const stack<T2, Container2>& lhs, const stack<T2, Container2>& rhs);
 
 			/* ACCESS */
 			reference		top();
@@ -63,12 +70,12 @@ namespace ft
 		protected:
 			container_type _cont;
 	};
-}
 
-# include "constructors.tpp"
-# include "operators.tpp"
-# include "access.tpp"
-# include "capacity.tpp"
-# include "modifiers.tpp"
+	# include "operators.tpp"
+	# include "constructors.tpp"
+	# include "access.tpp"
+	# include "capacity.tpp"
+	# include "modifiers.tpp"
+}
 
 #endif

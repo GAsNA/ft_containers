@@ -6,7 +6,7 @@
 /*   By: rleseur <rleseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:42:02 by rleseur           #+#    #+#             */
-/*   Updated: 2022/12/18 17:41:14 by rleseur          ###   ########.fr       */
+/*   Updated: 2022/12/19 18:56:46 by rleseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,29 +109,12 @@ namespace ft
 			allocator_type	_alloc;
 	};
 
-	template <class T, class Alloc>
-	void swap(vector<T,Alloc>& lhs, vector<T,Alloc>& rhs);
-	
-/*	template <class T, class Alloc>
-	bool	operator==(const ft::vector<T, Alloc> &lhs, const ft::vector<T, Alloc> &rhs);
-	template <class T, class Alloc>
-	bool	operator!=(const ft::vector<T, Alloc> &lhs, const ft::vector<T, Alloc> &rhs);
-	template <class T, class Alloc>
-	bool	operator<(const ft::vector<T, Alloc> &lhs, const ft::vector<T, Alloc> &rhs);
-	template <class T, class Alloc>
-	bool	operator<=(const ft::vector<T, Alloc> &lhs, const ft::vector<T, Alloc> &rhs);
-	template <class T, class Alloc>
-	bool	operator>(const ft::vector<T, Alloc> &lhs, const ft::vector<T, Alloc> &rhs);
-	template <class T, class Alloc>
-	bool	operator>=(const ft::vector<T, Alloc> &lhs, const ft::vector<T, Alloc> &rhs);
-*/
+	# include "constructors.tpp"
+	# include "operators.tpp"
+	# include "access.tpp"
+	# include "capacity.tpp"
+	# include "modifiers.tpp"
+	# include "iterators.tpp"
 }
-
-# include "constructors.tpp"
-# include "operators.tpp"
-# include "access.tpp"
-# include "capacity.tpp"
-# include "modifiers.tpp"
-# include "iterators.tpp"
 
 #endif
