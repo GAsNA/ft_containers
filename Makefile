@@ -4,10 +4,10 @@
 
 SRCS_PATH		=	./srcs/
 OBJS_PATH		=	./objs/
-HEAD_PATH		=	./srcs/vector/
+HEAD_PATH		=	./srcs/utils/
 
-FILES			=	tests_vector.cpp
-HEAD_FILES		=	vector.hpp
+FILES			=	tests_pair.cpp
+HEAD_FILES		=	utils.hpp
 
 SRCS			=	${addprefix ${SRCS_PATH}, ${FILES}}
 OBJS			=	${addprefix ${OBJS_PATH}, ${FILES:.cpp=.o}}
