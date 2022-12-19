@@ -35,9 +35,13 @@ namespace ft
 	template <class InputIt1, class InputIt2, class Compare>
 	bool	lexicographical_compare(InputIt1 first1, InputIt1 last1, InputIt2 first2, InputIt2 last2, Compare comp);
 
-	//pair
+	/* PAIR */
+	template <class T1, class T2>
+	struct pair;
 
-	//make_pair
+	/* MAKE_PAIR */
+	template <class T1, class T2>
+	ft::pair<T1, T2> make_pair(T1 t, T2 u);
 }
 
 # include "utils.tpp"
