@@ -6,7 +6,7 @@
 /*   By: rleseur <rleseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:42:02 by rleseur           #+#    #+#             */
-/*   Updated: 2022/12/21 16:05:36 by rleseur          ###   ########.fr       */
+/*   Updated: 2022/12/22 22:00:26 by rleseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ namespace ft
 			allocator_type	_alloc;
 	};
 
-	//# include "constructors.tpp"
+	# include "constructors.tpp"
 }
 
 #endif
