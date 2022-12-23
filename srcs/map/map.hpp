@@ -6,7 +6,7 @@
 /*   By: rleseur <rleseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:42:02 by rleseur           #+#    #+#             */
-/*   Updated: 2022/12/22 22:00:26 by rleseur          ###   ########.fr       */
+/*   Updated: 2022/12/23 11:57:20 by rleseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ namespace ft
 			/* MODIFIERS */
 
 		private:
-			Compare			_comp;
+			Key_compare		_comp;
 			allocator_type	_alloc;
 	};
 
