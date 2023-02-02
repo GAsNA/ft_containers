@@ -6,7 +6,7 @@ SRCS_PATH		=	./srcs/
 OBJS_PATH		=	./objs/
 HEAD_PATH		=	./srcs/utils/
 
-FILES			=	tests_vector.cpp
+FILES			=	tests_rbt.cpp
 HEAD_FILES		=	utils.hpp
 
 SRCS			=	${addprefix ${SRCS_PATH}, ${FILES}}
@@ -46,4 +46,4 @@ exec:			${NAME}
 
 -include : ${DEPS}
 
-.PHONY:			all clean fclean re
+.PHONY:			all clean fclean re exec

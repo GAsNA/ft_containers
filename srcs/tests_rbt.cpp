@@ -1,7 +1,9 @@
 #include "utils/RedBlackTree.hpp"
 
+#include <iostream>
+
 int main() {
-	ft::RBT bst;
+	ft::RBT<int, int> bst;
 	bst.insert(55);
 	bst.insert(40);
 	bst.insert(65);
