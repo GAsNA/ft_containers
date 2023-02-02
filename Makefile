@@ -6,7 +6,7 @@ SRCS_PATH		=	./srcs/
 OBJS_PATH		=	./objs/
 HEAD_PATH		=	./srcs/utils/
 
-FILES			=	tests_pair.cpp
+FILES			=	tests_vector.cpp
 HEAD_FILES		=	utils.hpp
 
 SRCS			=	${addprefix ${SRCS_PATH}, ${FILES}}
@@ -25,7 +25,6 @@ CFLAGS			=	-Wall -Wextra -Werror -std=c++98
 ### Commandes
 
 all:			${NAME}
-				${CLEAR} && ./${NAME}
 
 ${NAME}:		${OBJS}
 				${CC} ${CFLAGS} ${OBJS} -o ${NAME}
@@ -41,6 +40,9 @@ fclean:			clean
 				${RM} ${NAME}
 
 re:				fclean all
+
+exec:			${NAME}
+				${CLEAR} && ./${NAME}
 
 -include : ${DEPS}
 
