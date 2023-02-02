@@ -3,7 +3,7 @@
 #include <iostream>
 
 int main() {
-	ft::RBT<int, int> bst;
+	ft::RBT<int> bst;
 	bst.insert(55);
 	bst.insert(40);
 	bst.insert(65);
