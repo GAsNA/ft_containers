@@ -39,7 +39,7 @@ namespace ft
 			typedef typename allocator_type::const_pointer		const_pointer;
 
 			/* CONSTRUCTORS */
-			RBT();
+			explicit RBT(const allocator_type& alloc = allocator_type(), const value_compare& comp = value_compare());
 			RBT(const RBT &cpy);
 			~RBT();
 

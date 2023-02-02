@@ -2,7 +2,7 @@
 /*						CONSTRUCTORS					  */
 /**********************************************************/
 template <class T, class Comp, class Alloc>
-ft::RBT<T, Comp, Alloc>::RBT() : _root(NULL) {}
+ft::RBT<T, Comp, Alloc>::RBT(const allocator_type& alloc, const value_compare& comp) : _alloc(alloc), _comp(comp), _root(NULL), _size(0) {}
 
 template <class T, class Comp, class Alloc>
 ft::RBT<T, Comp, Alloc>::RBT(const RBT &cpy) : _root(cpy._root) {}
