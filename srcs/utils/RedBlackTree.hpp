@@ -50,7 +50,8 @@ namespace ft
 			Node<T>	*getRoot() const;
 
 			/* MODIFIERS */
-			void		setRoot(Node<T> *root);
+			//void	setRoot(Node<T> *root);
+			void	leftRotate(Node<T> *node);
 
 		private:
 			allocator_type	_alloc;
