@@ -32,3 +32,9 @@ ft::Node<T>	*ft::RBT<T, Comp, Alloc>::getRoot() const { return this->_root; }
 /**********************************************************/
 template <class T, class Comp, class Alloc>
 void	ft::RBT<T, Comp, Alloc>::setRoot(Node<T> *root) { this->_root = root; }
+
+template <class T, class Comp, class Alloc>
+void	ft::RBT<T, Comp, Alloc>::leftRotate(Node<T> *node)
+{
+	Node<T>	*tmp;
+}
