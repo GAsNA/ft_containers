@@ -39,7 +39,7 @@ void	ft::RBT<T, Comp, Alloc>::insert(value_type val)
 	Node<T>	*newNode = createNode(val);
 	Node<T>	*parent = NULL;
 	Node<T>	*node = this->_root;
-	int	dir = 1;
+	int		dir = 1;
 
 	if (!this->_root) { this->_root = newNode; return; }
 	while (node != this->_nil)
@@ -52,6 +52,25 @@ void	ft::RBT<T, Comp, Alloc>::insert(value_type val)
 	else { parent->right = newNode; }
 	newNode->parent = parent;
 	this->_size++;
+}
+
+template <class T, class Comp, class Alloc>
+void	ft::RBT<T, Comp, Alloc>::delete(value_type val)
+{
+	Node<T>	*nodeToDestroy = searchNode(val);
+	Node<T>	*parent = NULL;
+	Node<T>	*node = this->_root;
+	int		dir = 1;
+
+	if (!nodeToDestroy) { return; }
+	if (nodeToDestroy == this->_root) { this->_root =  }
+	while (node != this->_nil)
+	{
+		parent = node;
+		if (*nodeToDestroy >= *node) { dir = 2; node = node->right; }
+		else if (*nodeToDestroy < *node) { dir = 1; node = node->left; }
+		if (*node == *nodeToDestroy) { parent }
+	}
 }
 
 template <class T, class Comp, class Alloc>

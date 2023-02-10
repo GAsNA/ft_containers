@@ -91,6 +91,7 @@ namespace ft
 			/* MODIFIERS */
 			void	setRoot(Node<T> *root);
 			void	insert(value_type val);
+			void	delete(value_type val);
 			void	leftRotate(Node<T> *node);
 
 			/* OTHERS */
