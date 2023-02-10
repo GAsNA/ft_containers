@@ -3,6 +3,7 @@
 
 # include <functional>
 # include <memory>
+# include <iostream>
 
 # include "utils.hpp"
 
@@ -18,9 +19,47 @@ namespace ft
 		Node<T>		*left;
 		Node<T>		*right;
 		Node<T>		*parent;
+
+		Node(T val) : color(BLACK), value(val), left(NULL), right(NULL), parent(NULL) {}
 	};
 
-	template <class T, class Compare = std::less<T>, class Allocator = std::allocator<T> >
+	template <class T>
+	bool	operator==(const Node<T>& lhs, const Node<T>& rhs)
+	{
+		return lhs.value == rhs.value;
+	}
+
+	template <class T>
+	bool	operator!=(const Node<T>& lhs, const Node<T>& rhs)
+	{
+		return lhs.value != rhs.value;
+	}
+
+	template <class T>
+	bool	operator<(const Node<T>& lhs, const Node<T>& rhs)
+	{
+		return lhs.value < rhs.value;
+	}
+
+	template <class T>
+	bool	operator>(const Node<T>& lhs, const Node<T>& rhs)
+	{
+		return lhs.value > rhs.value;
+	}
+	
+	template <class T>
+	bool	operator<=(const Node<T>& lhs, const Node<T>& rhs)
+	{
+		return lhs.value <= rhs.value;
+	}
+
+	template <class T>
+	bool	operator>=(const Node<T>& lhs, const Node<T>& rhs)
+	{
+		return lhs.value >= rhs.value;
+	}
+
+	template <class T, class Compare = std::less<T>, class Allocator = std::allocator<Node<T> > >
 	class RBT
 	{
 		public:
@@ -50,16 +89,23 @@ namespace ft
 			Node<T>	*getRoot() const;
 
 			/* MODIFIERS */
-			//void	setRoot(Node<T> *root);
+			void	setRoot(Node<T> *root);
+			void	insert(value_type val);
 			void	leftRotate(Node<T> *node);
+
+			/* OTHERS */
+			void	printHelper(Node<T> *root, std::string indent, bool last) const;
+			void	printTree() const;
 
 		private:
 			allocator_type	_alloc;
 			//node alloc ?? see for typedef
 			value_compare	_comp;
 			Node<T>			*_root;
-			// nill and header ?
+			Node<T>			*_nil;
 			size_type		_size;
+
+			Node<T>			*createNode(value_type val);
 	};
 
 	# include "RedBlackTree.tpp"
