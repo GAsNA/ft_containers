@@ -8,8 +8,14 @@ template <class T, class Comp, class Alloc>
 ft::RBT<T, Comp, Alloc>::RBT(const RBT &cpy) : _root(cpy._root) {}
 
 template <class T, class Comp, class Alloc>
-ft::RBT<T, Comp, Alloc>::~RBT() {}		// delete root
-
+ft::RBT<T, Comp, Alloc>::~RBT()
+{
+	//node = this->_alloc.allocate(sizeof(Node<T>));
+	//this->_alloc.construct(node, Node<T>(val));
+	//Node<T>	*node = this->_root;
+	//Node<T>	*tmp = this->_root;
+	// HOW ?
+}
 /**********************************************************/
 /*						OPERATORS						  */
 /**********************************************************/
@@ -27,6 +33,9 @@ ft::RBT<T, Comp, Alloc>	&ft::RBT<T, Comp, Alloc>::operator=(RBT const &rhs)
 template <class T, class Comp, class Alloc>
 ft::Node<T>	*ft::RBT<T, Comp, Alloc>::getRoot() const { return this->_root; }
 
+template <class T, class Comp, class Alloc>
+typename ft::RBT<T, Comp, Alloc>::size_type	ft::RBT<T, Comp, Alloc>::size() const { return this->_size; }
+
 /**********************************************************/
 /*						MODIFIERS						  */
 /**********************************************************/
@@ -41,7 +50,7 @@ void	ft::RBT<T, Comp, Alloc>::insert(value_type val)
 	Node<T>	*node = this->_root;
 	int		dir = 1;
 
-	if (!this->_root) { this->_root = newNode; return; }
+	if (!this->_root) { this->_root = newNode; this->_size++; return; }
 	while (node != this->_nil)
 	{
 		parent = node;
@@ -55,21 +64,27 @@ void	ft::RBT<T, Comp, Alloc>::insert(value_type val)
 }
 
 template <class T, class Comp, class Alloc>
-void	ft::RBT<T, Comp, Alloc>::delete(value_type val)
+void	ft::RBT<T, Comp, Alloc>::deleteNode(value_type val)
 {
 	Node<T>	*nodeToDestroy = searchNode(val);
 	Node<T>	*parent = NULL;
 	Node<T>	*node = this->_root;
+	Node<T>	*tmp;
 	int		dir = 1;
 
 	if (!nodeToDestroy) { return; }
-	if (nodeToDestroy == this->_root) { this->_root =  }
+	if (nodeToDestroy == this->_root) { tmp = this->_root->left; /*tmp*/  }
 	while (node != this->_nil)
 	{
 		parent = node;
 		if (*nodeToDestroy >= *node) { dir = 2; node = node->right; }
 		else if (*nodeToDestroy < *node) { dir = 1; node = node->left; }
-		if (*node == *nodeToDestroy) { parent }
+		
+		/*if (*node == *nodeToDestroy)
+		{
+			parent
+		}*/
+		if (dir == 1) {}
 	}
 }
 

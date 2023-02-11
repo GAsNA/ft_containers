@@ -17,6 +17,8 @@ int main() {
 	bst.insert(75);
 	bst.insert(57);
 
+	std::cout << "NB nodes (should be 7): " << bst.size() << std::endl;
+
 	bst.printTree();
 	/*std::cout << std::endl << "After deleting" << std::endl;
 	bst.deleteNode(40);

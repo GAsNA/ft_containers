@@ -26,13 +26,13 @@ namespace ft
 	template <class T>
 	bool	operator==(const Node<T>& lhs, const Node<T>& rhs)
 	{
-		return lhs.value == rhs.value;
+		return lhs.value == rhs.value && lhs.parent == rhs.parent;
 	}
 
 	template <class T>
 	bool	operator!=(const Node<T>& lhs, const Node<T>& rhs)
 	{
-		return lhs.value != rhs.value;
+		return !(lhs == rhs);
 	}
 
 	template <class T>
@@ -86,12 +86,13 @@ namespace ft
 			RBT	&operator=(const RBT &rhs);
 
 			/* ACCESS */
-			Node<T>	*getRoot() const;
+			Node<T>		*getRoot() const;
+			size_type	size() const;
 
 			/* MODIFIERS */
 			void	setRoot(Node<T> *root);
 			void	insert(value_type val);
-			void	delete(value_type val);
+			void	deleteNode(value_type val);
 			void	leftRotate(Node<T> *node);
 
 			/* OTHERS */
