@@ -19,6 +19,15 @@ int main() {
 
 	std::cout << "NB nodes (should be 7): " << bst.size() << std::endl;
 
+	std::cout << std::endl;
+
+	std::cout << "Search node 55: " << (bst.search(55) != NULL ? "OK" : "KO") << std::endl;
+	std::cout << "Search node 60: " << (bst.search(60) != NULL ? "OK" : "KO") << std::endl;
+	std::cout << "Search node 57: " << (bst.search(57) != NULL ? "OK" : "KO") << std::endl;
+	std::cout << "Search node 45: " << (bst.search(45) != NULL ? "OK" : "KO") << std::endl;
+
+	std::cout << std::endl;
+
 	bst.printTree();
 	/*std::cout << std::endl << "After deleting" << std::endl;
 	bst.deleteNode(40);

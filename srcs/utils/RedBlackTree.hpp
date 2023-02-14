@@ -88,6 +88,7 @@ namespace ft
 			/* ACCESS */
 			Node<T>		*getRoot() const;
 			size_type	size() const;
+			Node<T>		*search(value_type val) const;
 
 			/* MODIFIERS */
 			void	setRoot(Node<T> *root);

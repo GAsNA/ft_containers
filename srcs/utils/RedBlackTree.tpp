@@ -33,6 +33,20 @@ ft::Node<T>	*ft::RBT<T, Comp, Alloc>::getRoot() const { return this->_root; }
 template <class T, class Comp, class Alloc>
 typename ft::RBT<T, Comp, Alloc>::size_type	ft::RBT<T, Comp, Alloc>::size() const { return this->_size; }
 
+template <class T, class Comp, class Alloc>
+ft::Node<T>	*ft::RBT<T, Comp, Alloc>::search(value_type val) const
+{
+	Node<T>	*node = this->_root;
+
+	while(node != this->_nil)
+	{
+		if (node->value == val) { return node; }
+		if (node->value > val) { node = node->left; }
+		else { node = node->right; }
+	}
+	return NULL;
+}
+
 /**********************************************************/
 /*						MODIFIERS						  */
 /**********************************************************/
