@@ -10,11 +10,8 @@ ft::RBT<T, Comp, Alloc>::RBT(const RBT &cpy) : _root(cpy._root) {}
 template <class T, class Comp, class Alloc>
 ft::RBT<T, Comp, Alloc>::~RBT()
 {
-	//node = this->_alloc.allocate(sizeof(Node<T>));
-	//this->_alloc.construct(node, Node<T>(val));
-	//Node<T>	*node = this->_root;
-	//Node<T>	*tmp = this->_root;
-	// HOW ?
+	this->clear(this->_root);
+	this->destroyNode(this->_nil);
 }
 /**********************************************************/
 /*						OPERATORS						  */
@@ -55,7 +52,7 @@ void	ft::RBT<T, Comp, Alloc>::insert(value_type val)
 	{
 		parent = node;
 		if (*newNode >= *node) { dir = 2; node = node->right; }
-		else if (*newNode < *node) { dir = 1; node = node->left; } // what if equal
+		else if (*newNode < *node) { dir = 1; node = node->left; }
 	}
 	if (dir == 1) { parent->left = newNode; }
 	else { parent->right = newNode; }
@@ -66,26 +63,27 @@ void	ft::RBT<T, Comp, Alloc>::insert(value_type val)
 template <class T, class Comp, class Alloc>
 void	ft::RBT<T, Comp, Alloc>::deleteNode(value_type val)
 {
-	Node<T>	*nodeToDestroy = searchNode(val);
-	Node<T>	*parent = NULL;
-	Node<T>	*node = this->_root;
-	Node<T>	*tmp;
-	int		dir = 1;
+//	Node<T>	*nodeToDestroy = searchNode(val);
+//	Node<T>	*parent = NULL;
+//	Node<T>	*node = this->_root;
+//	Node<T>	*tmp;
+//	int		dir = 1;
 
-	if (!nodeToDestroy) { return; }
-	if (nodeToDestroy == this->_root) { tmp = this->_root->left; /*tmp*/  }
-	while (node != this->_nil)
-	{
-		parent = node;
-		if (*nodeToDestroy >= *node) { dir = 2; node = node->right; }
-		else if (*nodeToDestroy < *node) { dir = 1; node = node->left; }
+//	if (!nodeToDestroy) { return; }
+//	if (nodeToDestroy == this->_root) { tmp = this->_root->left; /*tmp*/  }
+//	while (node != this->_nil)
+//	{
+//		parent = node;
+//		if (*nodeToDestroy >= *node) { dir = 2; node = node->right; }
+//		else if (*nodeToDestroy < *node) { dir = 1; node = node->left; }
 		
 		/*if (*node == *nodeToDestroy)
 		{
 			parent
 		}*/
-		if (dir == 1) {}
-	}
+//		if (dir == 1) {}
+//	}
+	(void)val;
 }
 
 template <class T, class Comp, class Alloc>
@@ -141,4 +139,20 @@ Node<T>	*ft::RBT<T, Comp, Alloc>::createNode(value_type val)
 	node->left = this->_nil;
 	node->right = this->_nil;
 	return node;
+}
+
+template <class T, class Comp, class Alloc>
+void	ft::RBT<T, Comp, Alloc>::destroyNode(Node<T> *node)
+{
+	this->_alloc.destroy(node);
+	this->_alloc.deallocate(node, sizeof(Node<T>));
+}
+
+template <class T, class Comp, class Alloc>
+void	ft::RBT<T, Comp, Alloc>::clear(Node<T> *node)
+{
+	if (node == NULL || node == this->_nil) { return; }
+	clear(node->left);
+	clear(node->right);
+	destroyNode(node);
 }

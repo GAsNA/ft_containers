@@ -108,6 +108,8 @@ namespace ft
 			size_type		_size;
 
 			Node<T>			*createNode(value_type val);
+			void			destroyNode(Node<T> *node);
+			void			clear(Node<T> *node);
 	};
 
 	# include "RedBlackTree.tpp"
