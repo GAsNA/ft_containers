@@ -32,11 +32,7 @@ int main() {
 
 	std::cout << std::endl;
 
-	std::cout << "Left rotate on Root: " << std::endl;
-	bst.leftRotate(bst.getRoot());
-	bst.printTree();
-
-	/*std::cout << std::endl << "After deleting" << std::endl;
+	std::cout << "Supp 40: " << std::endl;
 	bst.deleteNode(40);
-	bst.printTree();*/
+	bst.printTree();
 }

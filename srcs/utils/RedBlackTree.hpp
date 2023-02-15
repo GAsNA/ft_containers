@@ -115,6 +115,7 @@ namespace ft
 			Node<T>			*createNode(value_type val);
 			void			destroyNode(Node<T> *node);
 			void			transplant(Node<T> *n1, Node<T> *n2);
+			void			delete_fixup(Node<T> *node);
 	};
 
 	# include "RedBlackTree.tpp"
