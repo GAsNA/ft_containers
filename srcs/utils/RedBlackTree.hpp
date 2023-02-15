@@ -89,12 +89,16 @@ namespace ft
 			Node<T>		*getRoot() const;
 			size_type	size() const;
 			Node<T>		*search(value_type val) const;
+			Node<T>		*minimum(Node<T> *node) const;
+			Node<T>		*maximum(Node<T> *node) const;
 
 			/* MODIFIERS */
 			void	setRoot(Node<T> *root);
 			void	insert(value_type val);
 			void	deleteNode(value_type val);
 			void	leftRotate(Node<T> *node);
+			void	rightRotate(Node<T> *node); // TODO
+			void	clear(Node<T> *node);
 
 			/* OTHERS */
 			void	printHelper(Node<T> *root, std::string indent, bool last) const;
@@ -110,7 +114,7 @@ namespace ft
 
 			Node<T>			*createNode(value_type val);
 			void			destroyNode(Node<T> *node);
-			void			clear(Node<T> *node);
+			void			transplant(Node<T> *n1, Node<T> *n2);
 	};
 
 	# include "RedBlackTree.tpp"

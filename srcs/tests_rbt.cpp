@@ -29,6 +29,13 @@ int main() {
 	std::cout << std::endl;
 
 	bst.printTree();
+
+	std::cout << std::endl;
+
+	std::cout << "Left rotate on Root: " << std::endl;
+	bst.leftRotate(bst.getRoot());
+	bst.printTree();
+
 	/*std::cout << std::endl << "After deleting" << std::endl;
 	bst.deleteNode(40);
 	bst.printTree();*/

@@ -47,6 +47,20 @@ ft::Node<T>	*ft::RBT<T, Comp, Alloc>::search(value_type val) const
 	return NULL;
 }
 
+template <class T, class Comp, class Alloc>
+Node<T>		*minimum(Node<T> *node) const
+{
+	while (node->left != this->_nil) { node = node->left; }
+	return node;
+}
+
+template <class T, class Comp, class Alloc>
+Node<T>		*maximum(Node<T> *node) const
+{
+	while (node->right != this->_nil) { node = node->right; }
+	return node;
+}
+
 /**********************************************************/
 /*						MODIFIERS						  */
 /**********************************************************/
@@ -54,7 +68,7 @@ template <class T, class Comp, class Alloc>
 void	ft::RBT<T, Comp, Alloc>::setRoot(Node<T> *root) { this->_root = root; }
 
 template <class T, class Comp, class Alloc>
-void	ft::RBT<T, Comp, Alloc>::insert(value_type val)
+void	ft::RBT<T, Comp, Alloc>::insert(value_type val) // TODO A FIXE
 {
 	Node<T>	*newNode = createNode(val);
 	Node<T>	*parent = NULL;
@@ -75,35 +89,65 @@ void	ft::RBT<T, Comp, Alloc>::insert(value_type val)
 }
 
 template <class T, class Comp, class Alloc>
-void	ft::RBT<T, Comp, Alloc>::deleteNode(value_type val)
+void	ft::RBT<T, Comp, Alloc>::deleteNode(value_type val)			// TODO delete_fixup (RB-DELETE)
 {
-//	Node<T>	*nodeToDestroy = searchNode(val);
-//	Node<T>	*parent = NULL;
-//	Node<T>	*node = this->_root;
-//	Node<T>	*tmp;
-//	int		dir = 1;
+	Node<T>	*z = searchNode(val);
+	Node<T>	*y = z;
+	Node<T>	*x;
+	Color	y_original_color = y->color;
 
-//	if (!nodeToDestroy) { return; }
-//	if (nodeToDestroy == this->_root) { tmp = this->_root->left; /*tmp*/  }
-//	while (node != this->_nil)
-//	{
-//		parent = node;
-//		if (*nodeToDestroy >= *node) { dir = 2; node = node->right; }
-//		else if (*nodeToDestroy < *node) { dir = 1; node = node->left; }
+	if (z->left == this->_nil) { x = z->right; this->transplant(z, z->right); }
+	else if (z->right == this->_nil) { x = z->left; this->transplant(z, z->left); }
+	else
+	{
+		y = minimum(z->right);
+		y_original_color = y->color;
+		x = y->right;
 		
-		/*if (*node == *nodeToDestroy)
-		{
-			parent
-		}*/
-//		if (dir == 1) {}
-//	}
-	(void)val;
+		if (y->parent == z) { x->parent = y; }
+		else { this->transplant(y, y->right); y->right = z->right; y->right->parent = y; }
+
+		this->transplant(z, y);
+		y->left = z->left;
+		y->left->parent = y;
+		y->color = z->color;
+	}
+
+	if (y_original_color == BLACK) { this->delete_fixup(x); }
 }
 
 template <class T, class Comp, class Alloc>
 void	ft::RBT<T, Comp, Alloc>::leftRotate(Node<T> *node)
 {
-	(void)node;
+	Node<T>	*x = node;
+	Node<T>	*y;
+
+	y = x->right;
+	x->right = y->left;
+
+	if (y->left != this->_nil) { y->left->parent = x; }
+	
+	y->parent = x->parent;
+
+	if (x->parent == this->_nil) { this->_root = y; }
+	else if (x == x->parent->left) { x->parent->left = y; }
+	else { x->parent->right = y; }
+
+	y->left = x;
+	x->parent = y;
+}
+
+template <class T, class Comp, class Alloc>
+void	ft::RBT<T, Comp, Alloc>::rightRotate(Node<T> *node) // TODO
+{}
+
+template <class T, class Comp, class Alloc>
+void	ft::RBT<T, Comp, Alloc>::clear(Node<T> *node)
+{
+	if (node == NULL || node == this->_nil) { return; }
+	clear(node->left);
+	clear(node->right);
+	destroyNode(node);
 }
 
 /**********************************************************/
@@ -163,10 +207,11 @@ void	ft::RBT<T, Comp, Alloc>::destroyNode(Node<T> *node)
 }
 
 template <class T, class Comp, class Alloc>
-void	ft::RBT<T, Comp, Alloc>::clear(Node<T> *node)
+void	ft::RBT<T, Comp, Alloc>::transplant(Node<T> *n1, Node<T> *n2)
 {
-	if (node == NULL || node == this->_nil) { return; }
-	clear(node->left);
-	clear(node->right);
-	destroyNode(node);
+	if (n1->parent == this->_nil) { this->_root = n2; }
+	else if (n1 == n1->parent->left) { n1->parent->left = n2; }
+	else { n1->parent->right = n2; }
+
+	n2->parent = n1->parent;
 }
