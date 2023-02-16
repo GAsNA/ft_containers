@@ -114,6 +114,8 @@ void	ft::RBT<T, Comp, Alloc>::deleteNode(value_type val)
 		y->color = z->color;
 	}
 
+	this->destroyNode(z);
+
 	if (y_original_color == BLACK) { this->delete_fixup(x); }
 }
 
