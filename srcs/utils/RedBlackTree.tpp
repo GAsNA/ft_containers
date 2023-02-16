@@ -2,7 +2,7 @@
 /*						CONSTRUCTORS					  */
 /**********************************************************/
 template <class T, class Comp, class Alloc>
-ft::RBT<T, Comp, Alloc>::RBT(const allocator_type& alloc, const value_compare& comp) : _alloc(alloc), _comp(comp), _root(NULL), _nil(createNode(0)), _size(0) {}
+ft::RBT<T, Comp, Alloc>::RBT(const allocator_type& alloc, const value_compare& comp) : _alloc(alloc), _comp(comp), _nil(createNode(0)), _size(0) { this->_root = this->_nil; }
 
 template <class T, class Comp, class Alloc>
 ft::RBT<T, Comp, Alloc>::RBT(const RBT &cpy) : _root(cpy._root) {}
@@ -74,7 +74,7 @@ void	ft::RBT<T, Comp, Alloc>::insert(value_type val)
 	Node<T>	*node = this->_root;
 	Node<T>	*tmp = this->_nil;
 
-	if (!this->_root) { this->_root = newNode; this->_size++; return; }
+	if (this->_root == this->_nil) { this->_root = newNode; this->_size++; return; }
 
 	while (node != this->_nil)
 	{
