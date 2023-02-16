@@ -96,8 +96,6 @@ namespace ft
 			void	setRoot(Node<T> *root);
 			void	insert(value_type val);
 			void	deleteNode(value_type val);
-			void	leftRotate(Node<T> *node);
-			void	rightRotate(Node<T> *node); // TODO
 			void	clear(Node<T> *node);
 
 			/* OTHERS */
@@ -114,6 +112,8 @@ namespace ft
 
 			Node<T>			*createNode(value_type val);
 			void			destroyNode(Node<T> *node);
+			void			leftRotate(Node<T> *node);
+			void			rightRotate(Node<T> *node);
 			void			insert_fixup(Node<T> *node);
 			void			transplant(Node<T> *n1, Node<T> *n2);
 			void			delete_fixup(Node<T> *node);

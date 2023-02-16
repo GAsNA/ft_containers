@@ -25,6 +25,7 @@ CFLAGS			=	-Wall -Wextra -Werror -std=c++98
 ### Commandes
 
 all:			${NAME}
+				${CLEAR} && valgrind --leak-check=full ./${NAME}
 
 ${NAME}:		${OBJS}
 				${CC} ${CFLAGS} ${OBJS} -o ${NAME}

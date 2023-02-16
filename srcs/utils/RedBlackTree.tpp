@@ -37,11 +37,11 @@ template <class T, class Comp, class Alloc>
 ft::Node<T>	*ft::RBT<T, Comp, Alloc>::search(value_type val) const
 {
 	Node<T>	*node = this->_root;
-
+	
 	while(node != this->_nil)
 	{
 		if (node->value == val) { return node; }
-		if (node->value > val) { node = node->left; }
+		if (node->value >= val) { node = node->left; }
 		else { node = node->right; }
 	}
 	return NULL;
@@ -99,11 +99,13 @@ template <class T, class Comp, class Alloc>
 void	ft::RBT<T, Comp, Alloc>::deleteNode(value_type val)
 {
 	Node<T>	*z = search(val);
+
+	if (z == NULL) { return; }
+
 	Node<T>	*y = z;
 	Node<T>	*x;
 	Color	y_original_color = y->color;
 
-	if (z == NULL) { return; }
 	if (z->left == this->_nil) { x = z->right; this->transplant(z, z->right); }
 	else if (z->right == this->_nil) { x = z->left; this->transplant(z, z->left); }
 	else
@@ -122,50 +124,9 @@ void	ft::RBT<T, Comp, Alloc>::deleteNode(value_type val)
 	}
 
 	this->destroyNode(z);
+	this->_size--;
 
 	if (y_original_color == BLACK) { this->delete_fixup(x); }
-}
-
-template <class T, class Comp, class Alloc>
-void	ft::RBT<T, Comp, Alloc>::leftRotate(Node<T> *node)
-{
-	Node<T>	*x = node;
-	Node<T>	*y;
-
-	y = x->right;
-	x->right = y->left;
-
-	if (y->left != this->_nil) { y->left->parent = x; }
-	
-	y->parent = x->parent;
-
-	if (x->parent == this->_nil) { this->_root = y; }
-	else if (x == x->parent->left) { x->parent->left = y; }
-	else { x->parent->right = y; }
-
-	y->left = x;
-	x->parent = y;
-}
-
-template <class T, class Comp, class Alloc>
-void	ft::RBT<T, Comp, Alloc>::rightRotate(Node<T> *node)
-{
-	Node<T>	*x = node;
-	Node<T>	*y;
-
-	y = x->left;
-	x->left = y->right;
-
-	if (y->right != this->_nil) { y->right->parent = x; }
-	
-	y->parent = x->parent;
-
-	if (x->parent == this->_nil) { this->_root = y; }
-	else if (x == x->parent->right) { x->parent->right = y; }
-	else { x->parent->left = y; }
-
-	y->right = x;
-	x->parent = y;
 }
 
 template <class T, class Comp, class Alloc>
@@ -234,6 +195,48 @@ void	ft::RBT<T, Comp, Alloc>::destroyNode(Node<T> *node)
 }
 
 template <class T, class Comp, class Alloc>
+void	ft::RBT<T, Comp, Alloc>::leftRotate(Node<T> *node)
+{
+	Node<T>	*x = node;
+	Node<T>	*y;
+
+	y = x->right;
+	x->right = y->left;
+
+	if (y->left != this->_nil) { y->left->parent = x; }
+	
+	y->parent = x->parent;
+
+	if (x->parent == this->_nil) { this->_root = y; }
+	else if (x == x->parent->left) { x->parent->left = y; }
+	else { x->parent->right = y; }
+
+	y->left = x;
+	x->parent = y;
+}
+
+template <class T, class Comp, class Alloc>
+void	ft::RBT<T, Comp, Alloc>::rightRotate(Node<T> *node)
+{
+	Node<T>	*x = node;
+	Node<T>	*y;
+
+	y = x->left;
+	x->left = y->right;
+
+	if (y->right != this->_nil) { y->right->parent = x; }
+	
+	y->parent = x->parent;
+
+	if (x->parent == this->_nil) { this->_root = y; }
+	else if (x == x->parent->right) { x->parent->right = y; }
+	else { x->parent->left = y; }
+
+	y->right = x;
+	x->parent = y;
+}
+
+template <class T, class Comp, class Alloc>
 void	ft::RBT<T, Comp, Alloc>::insert_fixup(Node<T> *node)
 {
 	Node<T>	*tmp;
@@ -252,10 +255,10 @@ void	ft::RBT<T, Comp, Alloc>::insert_fixup(Node<T> *node)
 			}
 			else
 			{
-				if (node == node->parent->right) { node = node->parent; leftRotate(node); }
+				if (node == node->parent->right) { node = node->parent; this->leftRotate(node); }
 				node->parent->color = BLACK;
 				node->parent->parent->color = RED;
-				rightRotate(node->parent->parent);
+				this->rightRotate(node->parent->parent);
 			}
 		}
 		else
@@ -270,10 +273,10 @@ void	ft::RBT<T, Comp, Alloc>::insert_fixup(Node<T> *node)
 			}
 			else
 			{
-				if (node == node->parent->left) { node = node->parent; rightRotate(node); }
+				if (node == node->parent->left) { node = node->parent; this->rightRotate(node); }
 				node->parent->color = BLACK;
 				node->parent->parent->color = RED;
-				leftRotate(node->parent->parent);
+				this->leftRotate(node->parent->parent);
 			}
 		}
 	}
@@ -305,7 +308,7 @@ void	ft::RBT<T, Comp, Alloc>::delete_fixup(Node<T> *node)
 			{
 				tmp->color = BLACK;
 				node->parent->color = RED;
-				leftRotate(node->parent);
+				this->leftRotate(node->parent);
 				tmp = node->parent->right;
 			}
 			if (tmp->left->color == BLACK && tmp->right->color == BLACK) { tmp->color = RED; node = node->parent; }
@@ -315,40 +318,40 @@ void	ft::RBT<T, Comp, Alloc>::delete_fixup(Node<T> *node)
 				{
 					tmp->left->color = BLACK;
 					tmp->color = RED;
-					rightRotate(tmp);
+					this->rightRotate(tmp);
 					tmp = node->parent->right;
 				}
 				tmp->color = node->parent->color;
 				node->parent->color = BLACK;
 				tmp->right->color = BLACK;
-				leftRotate(node->parent);
+				this->leftRotate(node->parent);
 				node = this->_root;
 			}
 		}
 		else
 		{
-			tmp = node->parent->right;
+			tmp = node->parent->left;
 			if (tmp->color == RED)
 			{
 				tmp->color = BLACK;
 				node->parent->color = RED;
-				rightRotate(node->parent);
+				this->rightRotate(node->parent);
 				tmp = node->parent->left;
 			}
-			if (tmp->left->color == BLACK && tmp->right->color == BLACK) { tmp->color = RED; node = node->parent; }
+			if (tmp->right->color == BLACK && tmp->left->color == BLACK) { tmp->color = RED; node = node->parent; }
 			else
 			{
 				if (tmp->left->color == BLACK)
 				{
 					tmp->right->color = BLACK;
 					tmp->color = RED;
-					leftRotate(tmp);
+					this->leftRotate(tmp);
 					tmp = node->parent->left;
 				}
 				tmp->color = node->parent->color;
 				node->parent->color = BLACK;
 				tmp->left->color = BLACK;
-				rightRotate(node->parent);
+				this->rightRotate(node->parent);
 				node = this->_root;
 			}
 		}

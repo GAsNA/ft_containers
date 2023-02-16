@@ -31,8 +31,14 @@ int main()
 	bst.printTree();
 
 	std::cout << std::endl;
-
-	std::cout << "Supp 40: " << std::endl;
+	
+	std::cout << "Supp 60: " << std::endl;
+	bst.deleteNode(60);
+	bst.printTree();
+	/*std::cout << "Supp 40: " << std::endl;
 	bst.deleteNode(40);
 	bst.printTree();
+	std::cout << "Supp 60: " << std::endl;
+	bst.deleteNode(60);
+	bst.printTree();*/
 }
