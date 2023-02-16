@@ -2,13 +2,11 @@
 
 #include <iostream>
 
-int main() {
-
-	/*ft::Node<int>	node(7);
-	std::cout << "color: " << node.color << std::endl;
-	std::cout << "value: " << node.value << std::endl;*/
-
+int main()
+{
 	ft::RBT<int> bst;
+
+	std::cout << "Insertion 55, 40, 65, 60, 55, 75, 57: " << std::endl;
 	bst.insert(55);
 	bst.insert(40);
 	bst.insert(65);
@@ -16,6 +14,8 @@ int main() {
 	bst.insert(55);
 	bst.insert(75);
 	bst.insert(57);
+
+	std::cout << std::endl;
 
 	std::cout << "NB nodes (should be 7): " << bst.size() << std::endl;
 

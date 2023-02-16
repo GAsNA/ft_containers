@@ -68,24 +68,31 @@ template <class T, class Comp, class Alloc>
 void	ft::RBT<T, Comp, Alloc>::setRoot(Node<T> *root) { this->_root = root; }
 
 template <class T, class Comp, class Alloc>
-void	ft::RBT<T, Comp, Alloc>::insert(value_type val) // TODO A FIXE
+void	ft::RBT<T, Comp, Alloc>::insert(value_type val)
 {
 	Node<T>	*newNode = createNode(val);
-	Node<T>	*parent = NULL;
 	Node<T>	*node = this->_root;
-	int		dir = 1;
+	Node<T>	*tmp = this->_nil;
 
 	if (!this->_root) { this->_root = newNode; this->_size++; return; }
+
 	while (node != this->_nil)
 	{
-		parent = node;
-		if (*newNode >= *node) { dir = 2; node = node->right; }
-		else if (*newNode < *node) { dir = 1; node = node->left; }
+		tmp = node;
+		if (newNode->value < node->value) { node = node->left; }
+		else { node = node->right; }
 	}
-	if (dir == 1) { parent->left = newNode; }
-	else { parent->right = newNode; }
-	newNode->parent = parent;
+
+	newNode->parent = tmp;
+
+	if (tmp == this->_nil) { this->_root = newNode; }
+	else if (newNode->value < tmp->value) { tmp->left = newNode; }
+	else { tmp->right = newNode; }
+
+	newNode->color = RED;
 	this->_size++;
+
+	this->insert_fixup(newNode);
 }
 
 template <class T, class Comp, class Alloc>
@@ -224,6 +231,54 @@ void	ft::RBT<T, Comp, Alloc>::destroyNode(Node<T> *node)
 {
 	this->_alloc.destroy(node);
 	this->_alloc.deallocate(node, sizeof(Node<T>));
+}
+
+template <class T, class Comp, class Alloc>
+void	ft::RBT<T, Comp, Alloc>::insert_fixup(Node<T> *node)
+{
+	Node<T>	*tmp;
+
+	while (node->parent->color == RED)
+	{
+		if (node->parent == node->parent->parent->left)
+		{
+			tmp = node->parent->parent->right;
+			if (tmp->color == RED)
+			{
+				node->parent->color = BLACK;
+				tmp->color = BLACK;
+				node->parent->parent->color = RED;
+				node = node->parent->parent;
+			}
+			else
+			{
+				if (node == node->parent->right) { node = node->parent; leftRotate(node); }
+				node->parent->color = BLACK;
+				node->parent->parent->color = RED;
+				rightRotate(node->parent->parent);
+			}
+		}
+		else
+		{
+			tmp = node->parent->parent->left;
+			if (tmp->color == RED)
+			{
+				node->parent->color = BLACK;
+				tmp->color = BLACK;
+				node->parent->parent->color = RED;
+				node = node->parent->parent;
+			}
+			else
+			{
+				if (node == node->parent->left) { node = node->parent; rightRotate(node); }
+				node->parent->color = BLACK;
+				node->parent->parent->color = RED;
+				leftRotate(node->parent->parent);
+			}
+		}
+	}
+
+	this->_root->color = BLACK;
 }
 
 template <class T, class Comp, class Alloc>
