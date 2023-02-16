@@ -235,7 +235,7 @@ void	ft::RBT<T, Comp, Alloc>::transplant(Node<T> *n1, Node<T> *n2)
 }
 
 template <class T, class Comp, class Alloc>
-void	ft::RBT<T, Comp, Alloc>::delete_fixup(Node<T> *node) // TODO VERIF
+void	ft::RBT<T, Comp, Alloc>::delete_fixup(Node<T> *node)
 {
 	Node<T>	*tmp;
 
@@ -252,42 +252,49 @@ void	ft::RBT<T, Comp, Alloc>::delete_fixup(Node<T> *node) // TODO VERIF
 				tmp = node->parent->right;
 			}
 			if (tmp->left->color == BLACK && tmp->right->color == BLACK) { tmp->color = RED; node = node->parent; }
-			else if (tmp->right->color == BLACK)
+			else
 			{
-				tmp->left->color = BLACK;
-				tmp->color = RED;
-				rightRotate(tmp);
-				tmp = node->parent->right;
+				if (tmp->right->color == BLACK)
+				{
+					tmp->left->color = BLACK;
+					tmp->color = RED;
+					rightRotate(tmp);
+					tmp = node->parent->right;
+				}
+				tmp->color = node->parent->color;
+				node->parent->color = BLACK;
+				tmp->right->color = BLACK;
+				leftRotate(node->parent);
+				node = this->_root;
 			}
-			tmp->color = node->parent->color;
-			node->parent->color = BLACK;
-			tmp->right->color = BLACK;
-			leftRotate(node->parent);
-			node = this->_root;
 		}
 		else
 		{
-			tmp = node->parent->left;
+			tmp = node->parent->right;
 			if (tmp->color == RED)
 			{
 				tmp->color = BLACK;
 				node->parent->color = RED;
-				leftRotate(node->parent); // RIGHT ?
+				rightRotate(node->parent);
 				tmp = node->parent->left;
 			}
-			if (tmp->right->color == BLACK && tmp->left->color == BLACK) { tmp->color = RED; node = node->parent; }
-			else if (tmp->left->color == BLACK)
+			if (tmp->left->color == BLACK && tmp->right->color == BLACK) { tmp->color = RED; node = node->parent; }
+			else
 			{
-				tmp->right->color = BLACK;
-				tmp->color = RED;
-				rightRotate(tmp); // LEFT ?
-				tmp = node->parent->left;
+				if (tmp->left->color == BLACK)
+				{
+					tmp->right->color = BLACK;
+					tmp->color = RED;
+					leftRotate(tmp);
+					tmp = node->parent->left;
+				}
+				tmp->color = node->parent->color;
+				node->parent->color = BLACK;
+				tmp->left->color = BLACK;
+				rightRotate(node->parent);
+				node = this->_root;
 			}
-			tmp->color = node->parent->color;
-			node->parent->color = BLACK;
-			tmp->left->color = BLACK;
-			leftRotate(node->parent); // RIGHT ?
-			node = this->_root;
 		}
 	}
+	node->color = BLACK;
 }
