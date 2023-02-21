@@ -60,23 +60,23 @@ namespace ft
 		return !(lhs.value > rhs.value);
 	}
 
-	template <class T, class Compare = std::less<T>, class Allocator = std::allocator<Node<T> > >
+	template <class T, class Compare = std::less<T>, class Allocator = std::allocator<T> >
 	class RBT
 	{
 		public:
-			typedef	T											value_type;
-			typedef Allocator									allocator_type;
-			typedef Compare										value_compare;
+			typedef	T															value_type;
+			typedef Allocator													allocator_type;
+			typedef Compare														value_compare;
 
-			typedef std::ptrdiff_t								difference_type;
-			typedef std::size_t									size_type;
+			typedef std::ptrdiff_t												difference_type;
+			typedef std::size_t													size_type;
 			// SEE ITERATORS
 
-			//template rebind ?? node alloc
-			typedef typename allocator_type::reference			reference;
-			typedef typename allocator_type::const_reference	const_reference;
-			typedef typename allocator_type::pointer			pointer;
-			typedef typename allocator_type::const_pointer		const_pointer;
+			typedef typename allocator_type::template rebind<Node<T> >::other	node_allocator;
+			typedef typename allocator_type::reference							reference;
+			typedef typename allocator_type::const_reference					const_reference;
+			typedef typename allocator_type::pointer							pointer;
+			typedef typename allocator_type::const_pointer						const_pointer;
 
 			/* CONSTRUCTORS */
 			explicit RBT(const allocator_type& alloc = allocator_type(), const value_compare& comp = value_compare());
@@ -105,7 +105,7 @@ namespace ft
 
 		private:
 			allocator_type	_alloc;
-			//node alloc ?? see for typedef
+			node_allocator	_node_alloc;
 			value_compare	_comp;
 			Node<T>			*_root;
 			Node<T>			*_nil;

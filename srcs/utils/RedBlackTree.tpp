@@ -181,8 +181,8 @@ Node<T>	*ft::RBT<T, Comp, Alloc>::createNode(value_type val, bool is_nil)
 {
 	Node<T>	*node;
 
-	node = this->_alloc.allocate(sizeof(Node<T>));
-	this->_alloc.construct(node, Node<T>(val, is_nil));
+	node = this->_node_alloc.allocate(1);
+	this->_node_alloc.construct(node, Node<T>(val, is_nil));
 	node->parent = this->_nil;
 	node->left = this->_nil;
 	node->right = this->_nil;
@@ -192,8 +192,8 @@ Node<T>	*ft::RBT<T, Comp, Alloc>::createNode(value_type val, bool is_nil)
 template <class T, class Comp, class Alloc>
 void	ft::RBT<T, Comp, Alloc>::destroyNode(Node<T> *node)
 {
-	this->_alloc.destroy(node);
-	this->_alloc.deallocate(node, sizeof(Node<T>));
+	this->_node_alloc.destroy(node);
+	this->_node_alloc.deallocate(node, 1);
 }
 
 template <class T, class Comp, class Alloc>
