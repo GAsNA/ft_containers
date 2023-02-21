@@ -19,14 +19,15 @@ namespace ft
 		Node<T>		*left;
 		Node<T>		*right;
 		Node<T>		*parent;
+		bool		is_nil;
 
-		Node(T val) : color(BLACK), value(val), left(NULL), right(NULL), parent(NULL) {}
+		Node(T val, bool is_nil) : color(BLACK), value(val), left(NULL), right(NULL), parent(NULL), is_nil(is_nil) {}
 	};
 
 	template <class T>
 	bool	operator==(const Node<T>& lhs, const Node<T>& rhs)
 	{
-		return lhs.value == rhs.value;
+		return lhs.value == rhs.value && lhs.is_nil == rhs.is_nil;
 	}
 
 	template <class T>
@@ -38,25 +39,25 @@ namespace ft
 	template <class T>
 	bool	operator<(const Node<T>& lhs, const Node<T>& rhs)
 	{
-		return lhs.value < rhs.value;
+		return lhs.value < rhs.value && !lhs.is_nil && !rhs.is_nil;
 	}
 
 	template <class T>
 	bool	operator>(const Node<T>& lhs, const Node<T>& rhs)
 	{
-		return lhs.value > rhs.value;
+		return lhs.value > rhs.value && !lhs.is_nil && !rhs.is_nil;
 	}
 	
 	template <class T>
 	bool	operator<=(const Node<T>& lhs, const Node<T>& rhs)
 	{
-		return lhs.value <= rhs.value;
+		return !(lhs.value < rhs.value);
 	}
 
 	template <class T>
 	bool	operator>=(const Node<T>& lhs, const Node<T>& rhs)
 	{
-		return lhs.value >= rhs.value;
+		return !(lhs.value > rhs.value);
 	}
 
 	template <class T, class Compare = std::less<T>, class Allocator = std::allocator<Node<T> > >
@@ -110,7 +111,7 @@ namespace ft
 			Node<T>			*_nil;
 			size_type		_size;
 
-			Node<T>			*createNode(value_type val);
+			Node<T>			*createNode(value_type val, bool is_nil);
 			void			destroyNode(Node<T> *node);
 			void			leftRotate(Node<T> *node);
 			void			rightRotate(Node<T> *node);

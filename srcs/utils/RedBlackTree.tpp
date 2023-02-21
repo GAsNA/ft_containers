@@ -2,7 +2,7 @@
 /*						CONSTRUCTORS					  */
 /**********************************************************/
 template <class T, class Comp, class Alloc>
-ft::RBT<T, Comp, Alloc>::RBT(const allocator_type& alloc, const value_compare& comp) : _alloc(alloc), _comp(comp), _nil(createNode(0)), _size(0) { this->_root = this->_nil; }
+ft::RBT<T, Comp, Alloc>::RBT(const allocator_type& alloc, const value_compare& comp) : _alloc(alloc), _comp(comp), _nil(createNode(0, true)), _size(0) { this->_root = this->_nil; }
 
 template <class T, class Comp, class Alloc>
 ft::RBT<T, Comp, Alloc>::RBT(const RBT &cpy) : _root(cpy._root) {}
@@ -72,7 +72,7 @@ void	ft::RBT<T, Comp, Alloc>::insert(value_type val)
 {
 	if (search(val)) { return; }
 
-	Node<T>	*newNode = createNode(val);
+	Node<T>	*newNode = createNode(val, false);
 	Node<T>	*node = this->_root;
 	Node<T>	*tmp = this->_nil;
 
@@ -177,12 +177,12 @@ void	ft::RBT<T, Comp, Alloc>::printTree() const
 /*						PRIVATES						  */
 /**********************************************************/
 template <class T, class Comp, class Alloc>
-Node<T>	*ft::RBT<T, Comp, Alloc>::createNode(value_type val)
+Node<T>	*ft::RBT<T, Comp, Alloc>::createNode(value_type val, bool is_nil)
 {
 	Node<T>	*node;
 
 	node = this->_alloc.allocate(sizeof(Node<T>));
-	this->_alloc.construct(node, Node<T>(val));
+	this->_alloc.construct(node, Node<T>(val, is_nil));
 	node->parent = this->_nil;
 	node->left = this->_nil;
 	node->right = this->_nil;
