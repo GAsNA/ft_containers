@@ -11,7 +11,7 @@ int main()
 	bst.insert(40);
 	bst.insert(65);
 	bst.insert(60);
-	bst.insert(55);
+	bst.insert(55); // twice same value (do not add)
 	bst.insert(75);
 	bst.insert(57);
 
@@ -44,12 +44,11 @@ int main()
 	
 	std::cout << std::endl;
 
-	std::cout << "NB nodes (should be 4): " << bst.size() << std::endl;
-
-	/*std::cout << "Supp 40: " << std::endl;
-	bst.deleteNode(40);
+	std::cout << "Add 65: " << std::endl;
+	bst.insert(65);
 	bst.printTree();
-	std::cout << "Supp 60: " << std::endl;
-	bst.deleteNode(60);
-	bst.printTree();*/
+	
+	std::cout << std::endl;
+
+	std::cout << "NB nodes (should be 5): " << bst.size() << std::endl;
 }
