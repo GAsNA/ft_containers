@@ -39,13 +39,13 @@ namespace ft
 	template <class T>
 	bool	operator<(const Node<T>& lhs, const Node<T>& rhs)
 	{
-		return lhs.value < rhs.value && !lhs.is_nil && !rhs.is_nil;
+		return lhs.value < rhs.value && lhs.is_nil == rhs.is_nil;
 	}
 
 	template <class T>
 	bool	operator>(const Node<T>& lhs, const Node<T>& rhs)
 	{
-		return lhs.value > rhs.value && !lhs.is_nil && !rhs.is_nil;
+		return lhs.value > rhs.value && lhs.is_nil == rhs.is_nil;
 	}
 	
 	template <class T>
