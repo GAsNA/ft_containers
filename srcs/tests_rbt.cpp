@@ -6,7 +6,7 @@ int main()
 {
 	ft::RBT<int> bst;
 
-	std::cout << "Insertion 55, 40, 65, 60, 75, 57: " << std::endl;
+	std::cout << "Insertion 55, 40, 65, 60, 55 (do not add), 75, 57: " << std::endl;
 	bst.insert(55);
 	bst.insert(40);
 	bst.insert(65);
