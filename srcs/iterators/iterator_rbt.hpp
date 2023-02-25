@@ -9,7 +9,7 @@ namespace ft
 	class iterator_rbt
 	{
 		public:
-			typedef std::bidirectionel_iterator_tag						iterator_category;
+			typedef std::bidirectional_iterator_tag						iterator_category;
 			typedef typename ft::iterator_traits<T*>::value_type		value_type;
 			typedef typename ft::iterator_traits<T*>::difference_type	difference_type;
 			typedef typename ft::iterator_traits<T*>::pointer			pointer;

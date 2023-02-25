@@ -5,7 +5,7 @@ template <class T>
 ft::iterator_rbt<T>::iterator_rbt() : _pointer(NULL) {}
 
 template <class T>
-ft::iterator_rbt<T>::iterator_rbt(pointer ptr) : _pointer(ptr) {}
+ft::iterator_rbt<T>::iterator_rbt(node_pointer ptr) : _pointer(ptr) {}
 
 template <class T>
 ft::iterator_rbt<T>::iterator_rbt(const iterator_rbt &x) : _pointer(x.get_pointer()) {}
@@ -138,7 +138,7 @@ bool	ft::iterator_rbt<T>::operator!=(iterator_rbt<const T> const &iv) const
 }
 
 template <class T>
-T	&ft::iterator_rbt<T>::operator*()
+typename ft::iterator_rbt<T>::value_type	&ft::iterator_rbt<T>::operator*()
 {
 	return *(this->_pointer->value);
 }
@@ -159,7 +159,7 @@ typename ft::iterator_rbt<T>::reference		ft::iterator_rbt<T>::operator[](int i)
 /*							ACCESS						  */
 /**********************************************************/
 template <class T>
-typename ft::iterator_rbt<T>::pointer	ft::iterator_rbt<T>::get_pointer() const
+typename ft::iterator_rbt<T>::node_pointer	ft::iterator_rbt<T>::get_pointer() const
 {
 	return this->_pointer;
 }
