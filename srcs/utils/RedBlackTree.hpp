@@ -7,6 +7,7 @@
 
 # include "utils.hpp"
 # include "Node.hpp"
+# include "../iterators/reverse_iterator.hpp"
 # include "../iterators/iterator_rbt.hpp"
 
 namespace ft
@@ -22,14 +23,16 @@ namespace ft
 
 			typedef std::ptrdiff_t													difference_type;
 			typedef std::size_t														size_type;
-			typedef typename ft::iterator_rbt<value_type>							iterator;
-			typedef typename ft::iterator_rbt<const_value_type>						const_iterator;
 
 			typedef typename allocator_type::template rebind<ft::Node<T> >::other	node_allocator;
 			typedef typename allocator_type::reference								reference;
 			typedef typename allocator_type::const_reference						const_reference;
 			typedef typename allocator_type::pointer								pointer;
 			typedef typename allocator_type::const_pointer							const_pointer;
+			typedef typename ft::iterator_rbt<value_type>							iterator;
+			typedef typename ft::iterator_rbt<const_value_type>						const_iterator;
+			typedef typename ft::reverse_iterator<iterator>							reverse_iterator;
+			typedef typename ft::reverse_iterator<const_iterator>					const_reverse_iterator;
 
 			/* CONSTRUCTORS */
 			explicit RBT(const allocator_type& alloc = allocator_type(), const value_compare& comp = value_compare());
@@ -41,16 +44,31 @@ namespace ft
 
 			/* ACCESS */
 			ft::Node<T>		*getRoot() const;
-			size_type		size() const;
 			ft::Node<T>		*search(value_type val) const;
 			ft::Node<T>		*minimum(ft::Node<T> *node) const;
 			ft::Node<T>		*maximum(ft::Node<T> *node) const;
+
+			/* ITERATORS */
+			iterator				begin();
+			const_iterator			begin() const;
+			//iterator				end();			//TODO
+			//const_iterator			end() const;	//TODO
+			//reverse_iterator		rbegin();		//TODO
+			//const_reverse_iterator	rbegin() const;	//TODO
+			reverse_iterator		rend();
+			const_reverse_iterator	rend() const;
+			
 
 			/* MODIFIERS */
 			void	setRoot(ft::Node<T> *root);
 			void	insert(value_type val);
 			void	deleteNode(value_type val);
 			void	clear(ft::Node<T> *node);
+
+			/* CAPACITY */
+			bool			empty() const;
+			size_type		size() const;
+			size_type		max_size() const;
 
 			/* OTHERS */
 			void	printHelper(ft::Node<T> *root, std::string indent, bool last) const;
