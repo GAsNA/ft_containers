@@ -51,4 +51,12 @@ int main()
 	std::cout << std::endl;
 
 	std::cout << "NB nodes (should be 5): " << bst.size() << std::endl;
+
+	std::cout << std::endl;
+
+	std::cout << "ITERATORS TESTS" << std::endl;
+
+	ft::RBT<int>::iterator	it = bst.begin();
+	ft::RBT<int>::iterator	end = bst.end();
+	for (; it < end; it++) { std::cout << *it << std::endl; }
 }

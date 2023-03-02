@@ -51,10 +51,10 @@ namespace ft
 			/* ITERATORS */
 			iterator				begin();
 			const_iterator			begin() const;
-			//iterator				end();			//TODO
-			//const_iterator			end() const;	//TODO
-			//reverse_iterator		rbegin();		//TODO
-			//const_reverse_iterator	rbegin() const;	//TODO
+			iterator				end();
+			const_iterator			end() const;
+			reverse_iterator		rbegin();
+			const_reverse_iterator	rbegin() const;
 			reverse_iterator		rend();
 			const_reverse_iterator	rend() const;
 			
@@ -79,11 +79,13 @@ namespace ft
 			node_allocator	_node_alloc;
 			value_compare	_comp;
 			ft::Node<T>		*_root;
+			ft::Node<T>		*_end;
 			ft::Node<T>		*_nil;
 			size_type		_size;
 
 			ft::Node<T>		*createNode(value_type val, bool is_nil);
 			void			destroyNode(ft::Node<T> *node);
+			void			updateEnd();
 			void			leftRotate(ft::Node<T> *node);
 			void			rightRotate(ft::Node<T> *node);
 			void			insert_fixup(ft::Node<T> *node);

@@ -2,7 +2,7 @@
 /*						CONSTRUCTORS					  */
 /**********************************************************/
 template <class T, class Comp, class Alloc>
-ft::RBT<T, Comp, Alloc>::RBT(const allocator_type& alloc, const value_compare& comp) : _alloc(alloc), _comp(comp), _nil(createNode(0, true)), _size(0) { this->_root = this->_nil; }
+ft::RBT<T, Comp, Alloc>::RBT(const allocator_type& alloc, const value_compare& comp) : _alloc(alloc), _comp(comp), _end(createNode(0, true)), _nil(createNode(0, true)), _size(0) { this->_root = this->_nil; }
 
 template <class T, class Comp, class Alloc>
 ft::RBT<T, Comp, Alloc>::RBT(const RBT &cpy) : _root(cpy._root) {}
@@ -11,6 +11,7 @@ template <class T, class Comp, class Alloc>
 ft::RBT<T, Comp, Alloc>::~RBT()
 {
 	this->clear(this->_root);
+	this->destroyNode(this->_end);
 	this->destroyNode(this->_nil);
 }
 /**********************************************************/
@@ -67,17 +68,17 @@ typename ft::RBT<T, Comp, Alloc>::iterator	ft::RBT<T, Comp, Alloc>::begin() { re
 template <class T, class Comp, class Alloc>
 typename ft::RBT<T, Comp, Alloc>::const_iterator	ft::RBT<T, Comp, Alloc>::begin() const { return const_iterator(minimum(this->_root)); }
 
-//template <class T, class Comp, class Alloc> //TODO
-//typename ft::RBT<T, Comp, Alloc>::iterator	ft::RBT<T, Comp, Alloc>::end() { return iterator(/*end*/); }
+template <class T, class Comp, class Alloc>
+typename ft::RBT<T, Comp, Alloc>::iterator	ft::RBT<T, Comp, Alloc>::end() { return iterator(this->_end); }
 
-//template <class T, class Comp, class Alloc> //TODO
-//typename ft::RBT<T, Comp, Alloc>::const_iterator	ft::RBT<T, Comp, Alloc>::end() const { return const_iterator(/*end*/); }
+template <class T, class Comp, class Alloc>
+typename ft::RBT<T, Comp, Alloc>::const_iterator	ft::RBT<T, Comp, Alloc>::end() const { return const_iterator(this->_end); }
 
-//template <class T, class Comp, class Alloc> //TODO
-//typename ft::RBT<T, Comp, Alloc>::reverse_iterator	ft::RBT<T, Comp, Alloc>::rbegin() { return reverse_iterator(/**/); }
+template <class T, class Comp, class Alloc>
+typename ft::RBT<T, Comp, Alloc>::reverse_iterator	ft::RBT<T, Comp, Alloc>::rbegin() { return reverse_iterator(this->_end); }
 
-//template <class T, class Comp, class Alloc> //TODO
-//typename ft::RBT<T, Comp, Alloc>::const_reverse_iterator	ft::RBT<T, Comp, Alloc>::rbegin() { return const_reverse_iterator(/**/); }
+template <class T, class Comp, class Alloc>
+typename ft::RBT<T, Comp, Alloc>::const_reverse_iterator	ft::RBT<T, Comp, Alloc>::rbegin() const { return const_reverse_iterator(this->_end); }
 
 template <class T, class Comp, class Alloc>
 typename ft::RBT<T, Comp, Alloc>::reverse_iterator	ft::RBT<T, Comp, Alloc>::rend() { return reverse_iterator(minimum(this->_root)); }
@@ -119,6 +120,7 @@ void	ft::RBT<T, Comp, Alloc>::insert(value_type val)
 	this->_size++;
 
 	this->insert_fixup(newNode);
+	this->updateEnd();
 }
 
 template <class T, class Comp, class Alloc>
@@ -153,6 +155,7 @@ void	ft::RBT<T, Comp, Alloc>::deleteNode(value_type val)
 	this->_size--;
 
 	if (y_original_color == BLACK) { this->delete_fixup(x); }
+	this->updateEnd();
 }
 
 template <class T, class Comp, class Alloc>
@@ -231,6 +234,9 @@ void	ft::RBT<T, Comp, Alloc>::destroyNode(Node<T> *node)
 	this->_node_alloc.destroy(node);
 	this->_node_alloc.deallocate(node, 1);
 }
+
+template <class T, class Comp, class Alloc>
+void	ft::RBT<T, Comp, Alloc>::updateEnd() { this->_end->parent = maximum(this->_root); }
 
 template <class T, class Comp, class Alloc>
 void	ft::RBT<T, Comp, Alloc>::leftRotate(Node<T> *node)
