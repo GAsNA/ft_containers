@@ -5,7 +5,7 @@
 
 namespace ft
 {
-	template <class T>
+	template <class T, class N>
 	class iterator_rbt
 	{
 		public:
@@ -14,7 +14,7 @@ namespace ft
 			typedef typename ft::iterator_traits<T*>::difference_type	difference_type;
 			typedef typename ft::iterator_traits<T*>::pointer			pointer;
 			typedef typename ft::iterator_traits<T*>::reference			reference;
-			typedef T*													node_pointer;
+			typedef N*													node_pointer;
 
 			/* CONSTRUCTORS */
 			iterator_rbt();
@@ -23,18 +23,18 @@ namespace ft
 			~iterator_rbt();
 
 			/* OPERATORS */
-			operator		iterator_rbt<const T>() const;
-			iterator_rbt	&operator=(const iterator_rbt<const T> &rhs);
+			operator		iterator_rbt<const T, N>() const;
+			iterator_rbt	&operator=(const iterator_rbt<const T, N> &rhs);
 			iterator_rbt	&operator++();
 			iterator_rbt	operator++(int);
 			iterator_rbt	&operator--();
 			iterator_rbt	operator--(int);
-			bool			operator>(iterator_rbt<const T> const &) const;
-			bool			operator<(iterator_rbt<const T> const &) const;
-			bool			operator>=(iterator_rbt<const T> const &) const;
-			bool			operator<=(iterator_rbt<const T> const &) const;
-			bool			operator==(iterator_rbt<const T> const &) const;
-			bool			operator!=(iterator_rbt<const T> const &) const;
+			bool			operator>(iterator_rbt<const T, N> const &) const;
+			bool			operator<(iterator_rbt<const T, N> const &) const;
+			bool			operator>=(iterator_rbt<const T, N> const &) const;
+			bool			operator<=(iterator_rbt<const T, N> const &) const;
+			bool			operator==(iterator_rbt<const T, N> const &) const;
+			bool			operator!=(iterator_rbt<const T, N> const &) const;
 			value_type		&operator*();
 			value_type		*operator->();
 			//reference		operator[](int i);
