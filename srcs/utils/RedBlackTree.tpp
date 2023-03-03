@@ -185,25 +185,24 @@ typename ft::RBT<T, Comp, Alloc>::size_type	ft::RBT<T, Comp, Alloc>::max_size() 
 template <class T, class Comp, class Alloc>
 void	ft::RBT<T, Comp, Alloc>::printHelper(Node<T> *root, std::string indent, bool last) const
 {
-	if (root != this->_nil)
+	if (root == this->_nil) { return; }
+		
+	std::cout << indent;
+	if (last)
 	{
-		std::cout << indent;
-		if (last)
-		{
-			std::cout << "R----";
-			indent += "   ";
-		}
-		else
-		{
-			std::cout << "L----";
-			indent += "|  ";
-		}
-
-		std::string sColor = root->color == RED ? "RED" : "BLACK";
-		std::cout << root->value << "(" << sColor << ")" << std::endl;
-		printHelper(root->left, indent, false);
-		printHelper(root->right, indent, true);
+		std::cout << "R----";
+		indent += "   ";
 	}
+	else
+	{
+		std::cout << "L----";
+		indent += "|  ";
+	}
+
+	std::string sColor = root->color == RED ? "RED" : "BLACK";
+	std::cout << root->value << "(" << sColor << ")" << std::endl;
+	printHelper(root->left, indent, false);
+	printHelper(root->right, indent, true);
 }
 
 template <class T, class Comp, class Alloc>
