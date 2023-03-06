@@ -72,7 +72,8 @@ ft::iterator_rbt<T, N>	&ft::iterator_rbt<T, N>::operator--()
 	ft::Node<T>	*node = this->_pointer;
 	ft::Node<T>	*tmp = this->_pointer->parent;
 
-	if (!this->_pointer->is_nil && !this->_pointer->left->is_nil)
+	if (this->_pointer->is_nil) { this->_pointer = this->_pointer->parent; }
+	else if (!this->_pointer->is_nil && !this->_pointer->left->is_nil)
 	{
 		this->_pointer = this->_pointer->left;
 		while (!this->_pointer->is_nil && !this->_pointer->right->is_nil) { this->_pointer = this->_pointer->right; }

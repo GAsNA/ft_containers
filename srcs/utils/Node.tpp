@@ -1,6 +1,7 @@
 template <class T>
 bool	operator==(const ft::Node<T>& lhs, const ft::Node<T>& rhs)
 {
+	std::cout << "hello" << std::endl;
 	return lhs.value == rhs.value && lhs.is_nil == rhs.is_nil;
 }
 

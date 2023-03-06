@@ -36,7 +36,7 @@ ft::Node<T>	*ft::RBT<T, Comp, Alloc>::search(value_type val) const
 {
 	Node<T>	*node = this->_root;
 	
-	while(node != this->_nil)
+	while(node != this->_nil && node != this->_end)
 	{
 		if (node->value == val) { return node; }
 		if (node->value >= val) { node = node->left; }
@@ -48,14 +48,14 @@ ft::Node<T>	*ft::RBT<T, Comp, Alloc>::search(value_type val) const
 template <class T, class Comp, class Alloc>
 ft::Node<T>		*ft::RBT<T, Comp, Alloc>::minimum(Node<T> *node) const
 {
-	while (node->left != this->_nil) { node = node->left; }
+	while (node->left != this->_nil && node->left != this->_end) { node = node->left; }
 	return node;
 }
 
 template <class T, class Comp, class Alloc>
 ft::Node<T>		*ft::RBT<T, Comp, Alloc>::maximum(Node<T> *node) const
 {
-	while (node->right != this->_nil) { node = node->right; }
+	while (node->right != this->_nil && node->right != this->_end) { node = node->right; }
 	return node;
 }
 
@@ -101,9 +101,9 @@ void	ft::RBT<T, Comp, Alloc>::insert(value_type val)
 	Node<T>	*node = this->_root;
 	Node<T>	*tmp = this->_nil;
 
-	if (this->_root == this->_nil) { this->_root = newNode; this->_size++; return; }
+	if (this->_root == this->_nil || this->_root == this->_end) { this->_root = newNode; this->updateEnd(); this->_size++; return; }
 
-	while (node != this->_nil)
+	while (node != this->_nil && node != this->_end)
 	{
 		tmp = node;
 		if (newNode->value < node->value) { node = node->left; }
@@ -112,7 +112,7 @@ void	ft::RBT<T, Comp, Alloc>::insert(value_type val)
 
 	newNode->parent = tmp;
 
-	if (tmp == this->_nil) { this->_root = newNode; }
+	if (tmp == this->_nil || tmp == this->_end) { this->_root = newNode; }
 	else if (newNode->value < tmp->value) { tmp->left = newNode; }
 	else { tmp->right = newNode; }
 
@@ -134,8 +134,8 @@ void	ft::RBT<T, Comp, Alloc>::deleteNode(value_type val)
 	Node<T>	*x;
 	Color	y_original_color = y->color;
 
-	if (z->left == this->_nil) { x = z->right; this->transplant(z, z->right); }
-	else if (z->right == this->_nil) { x = z->left; this->transplant(z, z->left); }
+	if (z->left == this->_nil || z->left == this->_end) { x = z->right; this->transplant(z, z->right); }
+	else if (z->right == this->_nil || z->right == this->_end) { x = z->left; this->transplant(z, z->left); }
 	else
 	{
 		y = minimum(z->right);
@@ -161,7 +161,7 @@ void	ft::RBT<T, Comp, Alloc>::deleteNode(value_type val)
 template <class T, class Comp, class Alloc>
 void	ft::RBT<T, Comp, Alloc>::clear(Node<T> *node)
 {
-	if (node == NULL || node == this->_nil) { return; }
+	if (node == NULL || node == this->_nil || node == this->_end) { return; }
 	clear(node->left);
 	clear(node->right);
 	destroyNode(node);
@@ -185,7 +185,7 @@ typename ft::RBT<T, Comp, Alloc>::size_type	ft::RBT<T, Comp, Alloc>::max_size() 
 template <class T, class Comp, class Alloc>
 void	ft::RBT<T, Comp, Alloc>::printHelper(Node<T> *root, std::string indent, bool last) const
 {
-	if (root == this->_nil) { return; }
+	if (root == this->_nil || root == this->_end) { return; }
 		
 	std::cout << indent;
 	if (last)
@@ -235,7 +235,13 @@ void	ft::RBT<T, Comp, Alloc>::destroyNode(Node<T> *node)
 }
 
 template <class T, class Comp, class Alloc>
-void	ft::RBT<T, Comp, Alloc>::updateEnd() { this->_end->parent = maximum(this->_root); }
+void	ft::RBT<T, Comp, Alloc>::updateEnd()
+{
+	ft::Node<T>	*node = maximum(this->_root);
+
+	this->_end->parent = node;
+	node->right = this->_end;
+}
 
 template <class T, class Comp, class Alloc>
 void	ft::RBT<T, Comp, Alloc>::leftRotate(Node<T> *node)
@@ -246,11 +252,11 @@ void	ft::RBT<T, Comp, Alloc>::leftRotate(Node<T> *node)
 	y = x->right;
 	x->right = y->left;
 
-	if (y->left != this->_nil) { y->left->parent = x; }
+	if (y->left != this->_nil && y->left != this->_end) { y->left->parent = x; }
 	
 	y->parent = x->parent;
 
-	if (x->parent == this->_nil) { this->_root = y; }
+	if (x->parent == this->_nil || x->parent == this->_end) { this->_root = y; }
 	else if (x == x->parent->left) { x->parent->left = y; }
 	else { x->parent->right = y; }
 
@@ -267,11 +273,11 @@ void	ft::RBT<T, Comp, Alloc>::rightRotate(Node<T> *node)
 	y = x->left;
 	x->left = y->right;
 
-	if (y->right != this->_nil) { y->right->parent = x; }
+	if (y->right != this->_nil && y->right != this->_end) { y->right->parent = x; }
 	
 	y->parent = x->parent;
 
-	if (x->parent == this->_nil) { this->_root = y; }
+	if (x->parent == this->_nil || x->parent == this->_end) { this->_root = y; }
 	else if (x == x->parent->right) { x->parent->right = y; }
 	else { x->parent->left = y; }
 
@@ -330,7 +336,7 @@ void	ft::RBT<T, Comp, Alloc>::insert_fixup(Node<T> *node)
 template <class T, class Comp, class Alloc>
 void	ft::RBT<T, Comp, Alloc>::transplant(Node<T> *n1, Node<T> *n2)
 {
-	if (n1->parent == this->_nil) { this->_root = n2; }
+	if (n1->parent == this->_nil || n1->parent == this->_end) { this->_root = n2; }
 	else if (n1 == n1->parent->left) { n1->parent->left = n2; }
 	else { n1->parent->right = n2; }
 
