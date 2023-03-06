@@ -6,7 +6,7 @@
 /*   By: rleseur <rleseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:42:02 by rleseur           #+#    #+#             */
-/*   Updated: 2023/03/06 16:54:39 by rleseur          ###   ########.fr       */
+/*   Updated: 2023/03/06 17:06:38 by rleseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,14 @@ namespace ft
 			map(const map &other);
 			~map();
 
-			/* OPERATORS */
+			/* OPERATORS */	//TODO
+			map&	operator=(const map& other);
+			T&		operator[](const Key& key);
 
-			/* ACCESS */
+			/* ACCESS */	//TODO
+			T&				at(const Key &key);
+			const T&		at(const Key &key) const;
+			allocator_type	get_allocator() const;
 
 			/* ITERATORS */
 			iterator				begin();
@@ -75,6 +80,7 @@ namespace ft
 			size_type	max_size() const;
 
 			/* MODIFIERS */	//TODO
+			void					clear();
 			pair<iterator, bool>	insert(const value_type& x);
 			iterator				insert(iterator pos, const value_type& x);
 			template <class InputIterator>
@@ -83,7 +89,23 @@ namespace ft
 			size_type				erase(const key_type& x);
 			void					erase(iterator first, iterator last);
 			void					swap(map& map);
-			void					clear();
+
+			/* LOOKUP */	//TODO
+			size_type									count(const Key &key) const;
+			iterator									find(const Key &key);
+			const_iterator								find(const Key &key) const;
+			ft::pair<iterator, iterator>				equal_range(const Key& key);
+			ft::pair<const_iterator, const_iterator>	equal_range(const Key& key) const;
+			iterator									lower_bound(const Key& key);
+			const_iterator								lower_bound(const Key& key) const;
+			iterator									uper_bound(const Key& key);
+			const_iterator								uper_bound(const Key& key) const;
+
+			/* OBSERVERS */	//TODO
+			key_compare	key_comp() const;
+			//value_compare	value_comp() const;
+
+			// TODO NON_MEMBER FUNCTIONS
 
 		private:
 			RBT	_tree;
