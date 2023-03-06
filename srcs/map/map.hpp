@@ -6,7 +6,7 @@
 /*   By: rleseur <rleseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:42:02 by rleseur           #+#    #+#             */
-/*   Updated: 2023/03/06 16:47:39 by rleseur          ###   ########.fr       */
+/*   Updated: 2023/03/06 16:54:39 by rleseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ namespace ft
 			reverse_iterator		rend();
 			const_reverse_iterator	rend() const;
 
-			/* CAPACITY */	//TODO
+			/* CAPACITY */
 			bool		empty() const;
 			size_type	size() const;
 			size_type	max_size() const;
@@ -91,6 +91,7 @@ namespace ft
 
 	# include "constructors.tpp"
 	# include "iterators.tpp"
+	# include "capacity.tpp"
 }
 
 #endif
