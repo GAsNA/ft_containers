@@ -8,4 +8,5 @@ ft::map<Key, T, Compare, Allocator>	&ft::map<Key, T, Compare, Allocator>::operat
 template <class Key, class T, class Compare, class Allocator>
 T&	ft::map<Key, T, Compare, Allocator>::operator[](const Key& key)
 {
+	return (insert(ft::make_pair(key, mapped_type())).first)->second;
 }
