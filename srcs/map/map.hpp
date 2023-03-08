@@ -6,7 +6,7 @@
 /*   By: rleseur <rleseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:42:02 by rleseur           #+#    #+#             */
-/*   Updated: 2023/03/06 17:06:38 by rleseur          ###   ########.fr       */
+/*   Updated: 2023/03/08 10:50:57 by rleseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,8 @@ namespace ft
 			ft::pair<const_iterator, const_iterator>	equal_range(const Key& key) const;
 			iterator									lower_bound(const Key& key);
 			const_iterator								lower_bound(const Key& key) const;
-			iterator									uper_bound(const Key& key);
-			const_iterator								uper_bound(const Key& key) const;
+			iterator									upper_bound(const Key& key);
+			const_iterator								upper_bound(const Key& key) const;
 
 			/* OBSERVERS */	//TODO
 			key_compare	key_comp() const;
@@ -112,8 +112,13 @@ namespace ft
 	};
 
 	# include "constructors.tpp"
+	# include "operators.tpp"
+	# include "access.tpp"
 	# include "iterators.tpp"
 	# include "capacity.tpp"
+	# include "modifiers.tpp"
+	# include "lookup.tpp"
+	# include "observers.tpp"
 }
 
 #endif
