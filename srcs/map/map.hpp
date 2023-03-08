@@ -6,7 +6,7 @@
 /*   By: rleseur <rleseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:42:02 by rleseur           #+#    #+#             */
-/*   Updated: 2023/03/08 10:50:57 by rleseur          ###   ########.fr       */
+/*   Updated: 2023/03/08 15:44:43 by rleseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,13 @@ namespace ft
 			map(const map &other);
 			~map();
 
-			/* OPERATORS */	//TODO
+			/* OPERATORS */
 			map&	operator=(const map& other);
 			T&		operator[](const Key& key);
 
-			/* ACCESS */	//TODO
-			T&				at(const Key &key);
-			const T&		at(const Key &key) const;
+			/* ACCESS */
+			T&				at(const Key &key);			// TODO
+			const T&		at(const Key &key) const;	// TODO
 			allocator_type	get_allocator() const;
 
 			/* ITERATORS */
@@ -79,7 +79,7 @@ namespace ft
 			size_type	size() const;
 			size_type	max_size() const;
 
-			/* MODIFIERS */	//TODO
+			/* MODIFIERS */
 			void					clear();
 			pair<iterator, bool>	insert(const value_type& x);
 			iterator				insert(iterator pos, const value_type& x);
@@ -90,7 +90,7 @@ namespace ft
 			void					erase(iterator first, iterator last);
 			void					swap(map& map);
 
-			/* LOOKUP */	//TODO
+			/* LOOKUP */
 			size_type									count(const Key &key) const;
 			iterator									find(const Key &key);
 			const_iterator								find(const Key &key) const;
@@ -101,9 +101,9 @@ namespace ft
 			iterator									upper_bound(const Key& key);
 			const_iterator								upper_bound(const Key& key) const;
 
-			/* OBSERVERS */	//TODO
+			/* OBSERVERS */
 			key_compare	key_comp() const;
-			//value_compare	value_comp() const;
+			value_compare	value_comp() const;
 
 			// TODO NON_MEMBER FUNCTIONS
 
