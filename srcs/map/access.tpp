@@ -1,11 +1,13 @@
 template <class Key, class T, class Compare, class Allocator>
 T&	ft::map<Key, T, Compare, Allocator>::at(const Key &key)
 {
+	(void)key;
 }
 
 template <class Key, class T, class Compare, class Allocator>
 const T&	ft::map<Key, T, Compare, Allocator>::at(const Key &key) const
 {
+	(void)key;
 }
 
 template <class Key, class T, class Compare, class Allocator>

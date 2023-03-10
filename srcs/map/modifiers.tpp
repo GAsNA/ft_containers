@@ -5,7 +5,7 @@ void	ft::map<Key, T, Compare, Allocator>::clear()
 }
 
 template <class Key, class T, class Compare, class Allocator>
-ft::pair<iterator, bool>	ft::map<Key, T, Compare, Allocator>::insert(const value_type& x)
+ft::pair<typename ft::map<Key, T, Compare, Allocator>::iterator, bool>	ft::map<Key, T, Compare, Allocator>::insert(const value_type& x)
 {
 	return this->_tree.insert(x);
 }

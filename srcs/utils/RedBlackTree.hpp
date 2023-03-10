@@ -45,6 +45,7 @@ namespace ft
 
 			/* ACCESS */
 			ft::Node<T>		*getRoot() const;
+			node_allocator	get_allocator() const;
 			ft::Node<T>		*search(value_type val) const;
 			ft::Node<T>		*minimum(ft::Node<T> *node) const;
 			ft::Node<T>		*maximum(ft::Node<T> *node) const;

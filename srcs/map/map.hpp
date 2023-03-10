@@ -6,7 +6,7 @@
 /*   By: rleseur <rleseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:42:02 by rleseur           #+#    #+#             */
-/*   Updated: 2023/03/08 15:44:43 by rleseur          ###   ########.fr       */
+/*   Updated: 2023/03/10 09:04:52 by rleseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,17 @@ namespace ft
 			typedef typename ft::reverse_iterator<iterator>								reverse_iterator;
 			typedef typename ft::reverse_iterator<const_iterator>						const_reverse_iterator;
 
+			class value_compare: public std::binary_function<value_type, value_type, bool> {
+				friend class map;
+				protected:
+					Compare comp;
+					value_compare(Compare c) : comp(c) {}
+
+				public:
+					bool operator()(const value_type& x, const value_type& y) const { return comp(x.first, y.first); }
+			};
+
 			/* CONSTRUCTORS */
-			map();
 			explicit map(const Compare &comp = Compare(), const Allocator &alloc = Allocator());
 			template <class InputIt>
 			map(InputIt first, InputIt last, const Compare &comp = Compare(), const Allocator &alloc = Allocator());

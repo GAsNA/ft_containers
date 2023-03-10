@@ -17,15 +17,15 @@ typename ft::map<Key, T, Compare, Allocator>::const_iterator	ft::map<Key, T, Com
 }
 
 template <class Key, class T, class Compare, class Allocator>
-ft::pair<iterator, iterator>	ft::map<Key, T, Compare, Allocator>::equal_range(const Key& key)
+ft::pair<typename ft::map<Key, T, Compare, Allocator>::iterator, typename ft::map<Key, T, Compare, Allocator>::iterator>	ft::map<Key, T, Compare, Allocator>::equal_range(const Key& key)
 {
-	return ft::make_pair(lower_bound(k), upper_bound(k));
+	return ft::make_pair(lower_bound(key), upper_bound(key));
 }
 
 template <class Key, class T, class Compare, class Allocator>
-ft::pair<const_iterator, const_iterator>	ft::map<Key, T, Compare, Allocator>::equal_range(const Key& key) const
+ft::pair<typename ft::map<Key, T, Compare, Allocator>::const_iterator, typename ft::map<Key, T, Compare, Allocator>::const_iterator>	ft::map<Key, T, Compare, Allocator>::equal_range(const Key& key) const
 {
-	return ft::make_pair(lower_bound(k), upper_bound(k));
+	return ft::make_pair(lower_bound(key), upper_bound(key));
 }
 
 template <class Key, class T, class Compare, class Allocator>

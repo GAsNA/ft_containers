@@ -32,6 +32,9 @@ template <class T, class K, class Comp, class Alloc>
 ft::Node<T>	*ft::RBT<T, K, Comp, Alloc>::getRoot() const { return this->_root; }
 
 template <class T, class K, class Comp, class Alloc>
+typename ft::RBT<T, K, Comp, Alloc>::node_allocator	ft::RBT<T, K, Comp, Alloc>::get_allocator() const { return this->_node_alloc; }
+
+template <class T, class K, class Comp, class Alloc>
 ft::Node<T>	*ft::RBT<T, K, Comp, Alloc>::search(value_type val) const
 {
 	Node<T>	*node = this->_root;
