@@ -12,7 +12,7 @@
 
 namespace ft
 {
-	template <class T, class K, class Compare = std::less<T>, class Allocator = std::allocator<T> >
+	template <class T, class K, class Compare = std::less<K>, class Allocator = std::allocator<T> >
 	class RBT
 	{
 		public:
@@ -96,7 +96,7 @@ namespace ft
 			ft::Node<T>		*_nil;
 			size_type		_size;
 
-			ft::Node<T>		*createNode(value_type val, bool is_nil);
+			ft::Node<T>		*createNode(bool is_nil, const value_type &val = value_type());
 			void			destroyNode(ft::Node<T> *node);
 			void			updateEnd();
 			void			leftRotate(ft::Node<T> *node);

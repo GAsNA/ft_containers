@@ -2,7 +2,7 @@
 /*						CONSTRUCTORS					  */
 /**********************************************************/
 template <class T, class K, class Comp, class Alloc>
-ft::RBT<T, K, Comp, Alloc>::RBT(const allocator_type& alloc, const value_compare& comp) : _alloc(alloc), _comp(comp), _end(createNode(0, true)), _nil(createNode(0, true)), _size(0) { this->_root = this->_nil; }
+ft::RBT<T, K, Comp, Alloc>::RBT(const allocator_type& alloc, const value_compare& comp) : _alloc(alloc), _comp(comp), _end(createNode(true)), _nil(createNode(true)), _size(0) { this->_root = this->_nil; }
 
 template <class T, class K, class Comp, class Alloc>
 ft::RBT<T, K, Comp, Alloc>::RBT(const RBT &cpy) : _root(cpy._root) {}
@@ -41,9 +41,9 @@ ft::Node<T>	*ft::RBT<T, K, Comp, Alloc>::search(value_type val) const
 	
 	while(node != this->_nil && node != this->_end)
 	{
-		if (node->value == val) { return node; }
-		if (node->value >= val) { node = node->left; }
-		else { node = node->right; }
+		if (this->_comp(node->value.first, val.first)) { node = node->right; }
+		else if (this->_comp(val.first, node->value.first)) { node = node->left; }
+		else { return node; }
 	}
 	return NULL;
 }
@@ -103,23 +103,23 @@ ft::pair<typename ft::RBT<T, K, Comp, Alloc>::iterator, bool>	ft::RBT<T, K, Comp
 {
 	if (search(val)) { return ft::make_pair(iterator(search(val)), false); }
 
-	Node<T>	*newNode = createNode(val, false);
+	Node<T>	*newNode = createNode(false, val);
 	Node<T>	*node = this->_root;
 	Node<T>	*tmp = this->_nil;
 
-	if (this->_root == this->_nil || this->_root == this->_end) { this->_root = newNode; this->updateEnd(); this->_size++; return ft::make_pair(iterator(this->root), true); }
+	if (this->_root == this->_nil || this->_root == this->_end) { this->_root = newNode; this->updateEnd(); this->_size++; return ft::make_pair(iterator(this->_root), true); }
 
 	while (node != this->_nil && node != this->_end)
 	{
 		tmp = node;
-		if (newNode->value < node->value) { node = node->left; }
+		if (this->_comp(newNode->value.first, node->value.first)) { node = node->left; }
 		else { node = node->right; }
 	}
 
 	newNode->parent = tmp;
 
 	if (tmp == this->_nil || tmp == this->_end) { this->_root = newNode; }
-	else if (newNode->value < tmp->value) { tmp->left = newNode; }
+	else if (this->_comp(newNode->value.first, tmp->value.first)) { tmp->left = newNode; }
 	else { tmp->right = newNode; }
 
 	newNode->color = RED;
@@ -211,9 +211,7 @@ typename ft::RBT<T, K, Comp, Alloc>::const_iterator	ft::RBT<T, K, Comp, Alloc>::
 template <class T, class K, class Comp, class Alloc>
 typename ft::RBT<T, K, Comp, Alloc>::size_type	ft::RBT<T, K, Comp, Alloc>::count(const value_type& v) const
 {
-	ft::Node<T>	*find = search(v);
-
-	if (!find) { return 0; }
+	if (!search(v)) { return 0; }
 	return 1;
 }
 
@@ -224,7 +222,7 @@ typename ft::RBT<T, K, Comp, Alloc>::iterator	ft::RBT<T, K, Comp, Alloc>::lower_
 	iterator	it_end = end();
 
 	for (; it != it_end; it++)
-		if (!_compare(it->first, x.first)) { return it; }
+		if (!this->_comp(it->first, x.first)) { return it; }
 
 	return it_end;
 }
@@ -236,7 +234,7 @@ typename ft::RBT<T, K, Comp, Alloc>::const_iterator	ft::RBT<T, K, Comp, Alloc>::
 	const_iterator	it_end = end();
 
 	for (; it != it_end; it++)
-		if (!_compare(it->first, x.first)) { return it; }
+		if (!this->_comp(it->first, x.first)) { return it; }
 
 	return it_end;
 }
@@ -248,7 +246,7 @@ typename ft::RBT<T, K, Comp, Alloc>::iterator	ft::RBT<T, K, Comp, Alloc>::upper_
 	iterator	it_end = end();
 
 	for (; it != it_end; it++)
-		if (_compare(it->first, x.first)) { return it; }
+		if (this->_comp(it->first, x.first)) { return it; }
 
 	return it_end;
 }
@@ -260,7 +258,7 @@ typename ft::RBT<T, K, Comp, Alloc>::const_iterator	ft::RBT<T, K, Comp, Alloc>::
 	const_iterator	it_end = end();
 
 	for (; it != it_end; it++)
-		if (_compare(it->first, x.first)) { return it; }
+		if (this->_comp(it->first, x.first)) { return it; }
 
 	return it_end;
 }
@@ -275,7 +273,7 @@ template <class T, class K, class Comp, class Alloc>
 typename ft::RBT<T, K, Comp, Alloc>::size_type	ft::RBT<T, K, Comp, Alloc>::size() const { return this->_size; }
 
 template <class T, class K, class Comp, class Alloc>
-typename ft::RBT<T, K, Comp, Alloc>::size_type	ft::RBT<T, K, Comp, Alloc>::max_size() const { this->_alloc.max_size(); }
+typename ft::RBT<T, K, Comp, Alloc>::size_type	ft::RBT<T, K, Comp, Alloc>::max_size() const { return this->_alloc.max_size(); }
 
 /**********************************************************/
 /*						OTHERS							  */
@@ -313,7 +311,7 @@ void	ft::RBT<T, K, Comp, Alloc>::printTree() const
 /*						PRIVATES						  */
 /**********************************************************/
 template <class T, class K, class Comp, class Alloc>
-Node<T>	*ft::RBT<T, K, Comp, Alloc>::createNode(value_type val, bool is_nil)
+Node<T>	*ft::RBT<T, K, Comp, Alloc>::createNode(bool is_nil, const value_type &val)
 {
 	Node<T>	*node;
 

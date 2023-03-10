@@ -37,8 +37,8 @@ namespace ft
 			bool			operator<=(iterator_rbt<const T, N> const &) const;
 			bool			operator==(iterator_rbt<const T, N> const &) const;
 			bool			operator!=(iterator_rbt<const T, N> const &) const;
-			value_type		&operator*();
-			value_type		*operator->();
+			T				&operator*() const;
+			T				*operator->() const;
 			//reference		operator[](int i);
 
 			/* ACCESS */

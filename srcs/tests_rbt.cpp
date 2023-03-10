@@ -33,13 +33,13 @@ int main()
 	std::cout << std::endl;
 	
 	std::cout << "Supp 65: " << std::endl;
-	rbt.deleteNode(65);
+	rbt.erase(65);
 	rbt.printTree();
 	
 	std::cout << std::endl;
 	
 	std::cout << "Supp 55: " << std::endl;
-	rbt.deleteNode(55);
+	rbt.erase(55);
 	rbt.printTree();
 	
 	std::cout << std::endl;

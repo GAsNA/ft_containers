@@ -34,8 +34,8 @@ ft::iterator_rbt<T, N>	&ft::iterator_rbt<T, N>::operator=(const iterator_rbt<con
 template <class T, class N>
 ft::iterator_rbt<T, N>	&ft::iterator_rbt<T, N>::operator++()
 {
-	ft::Node<T>	*node = this->_pointer;
-	ft::Node<T>	*tmp = this->_pointer->parent;
+	node_pointer node = this->_pointer;
+	node_pointer tmp = this->_pointer->parent;
 
 	if (!this->_pointer->is_nil && !this->_pointer->right->is_nil)
 	{
@@ -131,7 +131,7 @@ bool	ft::iterator_rbt<T, N>::operator<=(iterator_rbt<const T, N> const &iv) cons
 template <class T, class N>
 bool	ft::iterator_rbt<T, N>::operator==(iterator_rbt<const T, N> const &iv) const
 {
-	return this->_pointer->value == iv.get_pointer()->value && this->_pointer->is_nil == iv.get_pointer()->is_nil;
+	return this->_pointer->value.first == iv.get_pointer()->value.first && this->_pointer->is_nil == iv.get_pointer()->is_nil;
 }
 
 template <class T, class N>
@@ -141,13 +141,13 @@ bool	ft::iterator_rbt<T, N>::operator!=(iterator_rbt<const T, N> const &iv) cons
 }
 
 template <class T, class N>
-typename ft::iterator_rbt<T, N>::value_type	&ft::iterator_rbt<T, N>::operator*()
+T	&ft::iterator_rbt<T, N>::operator*() const
 {
 	return this->_pointer->value;
 }
 
 template <class T, class N>
-typename ft::iterator_rbt<T, N>::value_type	*ft::iterator_rbt<T, N>::operator->()
+T	*ft::iterator_rbt<T, N>::operator->() const
 {
 	return &(this->_pointer->value);
 }
