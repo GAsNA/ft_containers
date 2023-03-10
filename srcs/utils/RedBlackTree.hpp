@@ -49,6 +49,7 @@ namespace ft
 			ft::Node<T>		*search(value_type val) const;
 			ft::Node<T>		*minimum(ft::Node<T> *node) const;
 			ft::Node<T>		*maximum(ft::Node<T> *node) const;
+			value_compare	compare() const;
 
 			/* ITERATORS */
 			iterator				begin();
@@ -66,6 +67,15 @@ namespace ft
 			void	insert(value_type val);
 			void	deleteNode(value_type val);
 			void	clear(ft::Node<T> *node);
+
+			/* LOOKUP */
+			iterator		find(const value_type& v);
+			const_iterator	find(const value_type& v) const;
+			size_type		count(const value_type& v) const;
+			iterator		lower_bound(const value_type& x);
+			const_iterator	lower_bound(const value_type& x) const;
+			iterator		upper_bound(const value_type& x);
+			const_iterator	upper_bound(const value_type& x) const;
 
 			/* CAPACITY */
 			bool			empty() const;

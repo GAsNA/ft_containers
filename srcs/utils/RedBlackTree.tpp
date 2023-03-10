@@ -62,6 +62,9 @@ ft::Node<T>		*ft::RBT<T, K, Comp, Alloc>::maximum(Node<T> *node) const
 	return node;
 }
 
+template <class T, class K, class Comp, class Alloc>
+typename ft::RBT<T, K, Comp, Alloc>::value_compare	ft::RBT<T, K, Comp, Alloc>::compare() const { return this->_comp; }
+
 /**********************************************************/
 /*						ITERATORS						  */
 /**********************************************************/
@@ -168,6 +171,84 @@ void	ft::RBT<T, K, Comp, Alloc>::clear(Node<T> *node)
 	clear(node->left);
 	clear(node->right);
 	destroyNode(node);
+}
+
+/**********************************************************/
+/*						LOOKUP							  */
+/**********************************************************/
+template <class T, class K, class Comp, class Alloc>
+iterator		find(const value_type& v)
+{
+	ft::Node<T>	*find = search(v);
+
+	if (!find) { return iterator(_end); }
+	return iterator(find);
+}
+
+template <class T, class K, class Comp, class Alloc>
+const_iterator	find(const value_type& v) const
+{
+	ft::Node<T>	*find = search(v);
+
+	if (!find) { return const_iterator(_end); }
+	return const_iterator(find);
+}
+
+template <class T, class K, class Comp, class Alloc>
+size_type		count(const value_type& v) const
+{
+	ft::Node<T>	*find = search(v);
+
+	if (!find) { return 0; }
+	return 1;
+}
+
+template <class T, class K, class Comp, class Alloc>
+iterator		lower_bound(const value_type& x)
+{
+	iterator	it = begin();
+	iterator	it_end = end();
+
+	for (; it != it_end; it++)
+		if (!_compare(it->first, x.first)) { return it; }
+
+	return it_end;
+}
+
+template <class T, class K, class Comp, class Alloc>
+const_iterator	lower_bound(const value_type& x) const
+{
+	const_iterator	it = begin();
+	const_iterator	it_end = end();
+
+	for (; it != it_end; it++)
+		if (!_compare(it->first, x.first)) { return it; }
+
+	return it_end;
+}
+
+template <class T, class K, class Comp, class Alloc>
+iterator		upper_bound(const value_type& x)
+{
+	iterator	it = begin();
+	iterator	it_end = end();
+
+	for (; it != it_end; it++)
+		if (_compare(it->first, x.first)) { return it; }
+
+	return it_end;
+}
+
+template <class T, class K, class Comp, class Alloc>
+const_iterator	upper_bound(const value_type& x) const;
+{
+	const_iterator	it = begin();
+	const_iterator	it_end = end();
+
+	for (; it != it_end; it++)
+		if (_compare(it->first, x.first)) { return it; }
+
+	return it_end;
 }
 
 /**********************************************************/
