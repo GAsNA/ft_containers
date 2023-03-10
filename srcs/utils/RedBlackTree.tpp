@@ -177,7 +177,7 @@ void	ft::RBT<T, K, Comp, Alloc>::clear(Node<T> *node)
 /*						LOOKUP							  */
 /**********************************************************/
 template <class T, class K, class Comp, class Alloc>
-iterator		find(const value_type& v)
+typename ft::RBT<T, K, Comp, Alloc>::iterator	ft::RBT<T, K, Comp, Alloc>::find(const value_type& v)
 {
 	ft::Node<T>	*find = search(v);
 
@@ -186,7 +186,7 @@ iterator		find(const value_type& v)
 }
 
 template <class T, class K, class Comp, class Alloc>
-const_iterator	find(const value_type& v) const
+typename ft::RBT<T, K, Comp, Alloc>::const_iterator	ft::RBT<T, K, Comp, Alloc>::find(const value_type& v) const
 {
 	ft::Node<T>	*find = search(v);
 
@@ -195,7 +195,7 @@ const_iterator	find(const value_type& v) const
 }
 
 template <class T, class K, class Comp, class Alloc>
-size_type		count(const value_type& v) const
+typename ft::RBT<T, K, Comp, Alloc>::size_type	ft::RBT<T, K, Comp, Alloc>::count(const value_type& v) const
 {
 	ft::Node<T>	*find = search(v);
 
@@ -204,7 +204,7 @@ size_type		count(const value_type& v) const
 }
 
 template <class T, class K, class Comp, class Alloc>
-iterator		lower_bound(const value_type& x)
+typename ft::RBT<T, K, Comp, Alloc>::iterator	ft::RBT<T, K, Comp, Alloc>::lower_bound(const value_type& x)
 {
 	iterator	it = begin();
 	iterator	it_end = end();
@@ -216,7 +216,7 @@ iterator		lower_bound(const value_type& x)
 }
 
 template <class T, class K, class Comp, class Alloc>
-const_iterator	lower_bound(const value_type& x) const
+typename ft::RBT<T, K, Comp, Alloc>::const_iterator	ft::RBT<T, K, Comp, Alloc>::lower_bound(const value_type& x) const
 {
 	const_iterator	it = begin();
 	const_iterator	it_end = end();
@@ -228,7 +228,7 @@ const_iterator	lower_bound(const value_type& x) const
 }
 
 template <class T, class K, class Comp, class Alloc>
-iterator		upper_bound(const value_type& x)
+typename ft::RBT<T, K, Comp, Alloc>::iterator	ft::RBT<T, K, Comp, Alloc>::upper_bound(const value_type& x)
 {
 	iterator	it = begin();
 	iterator	it_end = end();
@@ -240,7 +240,7 @@ iterator		upper_bound(const value_type& x)
 }
 
 template <class T, class K, class Comp, class Alloc>
-const_iterator	upper_bound(const value_type& x) const;
+typename ft::RBT<T, K, Comp, Alloc>::const_iterator	ft::RBT<T, K, Comp, Alloc>::upper_bound(const value_type& x) const
 {
 	const_iterator	it = begin();
 	const_iterator	it_end = end();
