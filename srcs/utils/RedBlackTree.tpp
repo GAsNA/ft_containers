@@ -99,15 +99,15 @@ template <class T, class K, class Comp, class Alloc>
 void	ft::RBT<T, K, Comp, Alloc>::setRoot(Node<T> *root) { this->_root = root; }
 
 template <class T, class K, class Comp, class Alloc>
-void	ft::RBT<T, K, Comp, Alloc>::insert(value_type val)
+ft::pair<typename ft::RBT<T, K, Comp, Alloc>::iterator, bool>	ft::RBT<T, K, Comp, Alloc>::insert(value_type val)
 {
-	if (search(val)) { return; }
+	if (search(val)) { return ft::make_pair(iterator(search(val)), false); }
 
 	Node<T>	*newNode = createNode(val, false);
 	Node<T>	*node = this->_root;
 	Node<T>	*tmp = this->_nil;
 
-	if (this->_root == this->_nil || this->_root == this->_end) { this->_root = newNode; this->updateEnd(); this->_size++; return; }
+	if (this->_root == this->_nil || this->_root == this->_end) { this->_root = newNode; this->updateEnd(); this->_size++; return ft::make_pair(iterator(this->root), true); }
 
 	while (node != this->_nil && node != this->_end)
 	{
@@ -127,14 +127,15 @@ void	ft::RBT<T, K, Comp, Alloc>::insert(value_type val)
 
 	this->insert_fixup(newNode);
 	this->updateEnd();
+	return ft::make_pair(iterator(newNode), true);
 }
 
 template <class T, class K, class Comp, class Alloc>
-void	ft::RBT<T, K, Comp, Alloc>::deleteNode(value_type val)
+typename ft::RBT<T, K, Comp, Alloc>::size_type	ft::RBT<T, K, Comp, Alloc>::erase(value_type val)
 {
 	Node<T>	*z = search(val);
 
-	if (z == NULL) { return; }
+	if (!z) { return 0; }
 
 	Node<T>	*y = z;
 	Node<T>	*x;
@@ -162,6 +163,19 @@ void	ft::RBT<T, K, Comp, Alloc>::deleteNode(value_type val)
 
 	if (y_original_color == BLACK) { this->delete_fixup(x); }
 	this->updateEnd();
+	return 1;
+}
+
+template <class T, class K, class Comp, class Alloc>
+void	ft::RBT<T, K, Comp, Alloc>::swap(const RBT& rhs)
+{
+	ft::swap(this->_root, rhs._root);
+	ft::swap(this->_end, rhs._end);
+	ft::swap(this->_nil, rhs._nil);
+	ft::swap(this->_size, rhs._size);
+	ft::swap(this->_alloc, rhs._alloc);
+	ft::swap(this->_node_alloc, rhs._node_alloc);
+	ft::swap(this->_comp, rhs._comp);
 }
 
 template <class T, class K, class Comp, class Alloc>

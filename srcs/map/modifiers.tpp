@@ -40,7 +40,9 @@ typename ft::map<Key, T, Compare, Allocator>::size_type	ft::map<Key, T, Compare,
 template <class Key, class T, class Compare, class Allocator>
 void	ft::map<Key, T, Compare, Allocator>::erase(iterator first, iterator last)
 {
-	this->_tree.multi_erase(first, last);
+	//this->_tree.multi_erase(first, last);
+	(void)first;
+	(void)last;
 }
 
 template <class Key, class T, class Compare, class Allocator>

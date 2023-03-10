@@ -42,6 +42,10 @@ namespace ft
 	/* MAKE_PAIR */
 	template <class T1, class T2>
 	ft::pair<T1, T2> make_pair(T1 t, T2 u);
+
+	/* SWAP */
+	template <class T>
+	void	swap(T& a, T& b);
 }
 
 # include "utils.tpp"

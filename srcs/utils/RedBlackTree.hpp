@@ -63,10 +63,11 @@ namespace ft
 			
 
 			/* MODIFIERS */
-			void	setRoot(ft::Node<T> *root);
-			void	insert(value_type val);
-			void	deleteNode(value_type val);
-			void	clear(ft::Node<T> *node);
+			void						setRoot(ft::Node<T> *root);
+			ft::pair<iterator, bool>	insert(value_type val);
+			size_type					erase(value_type val);
+			void						swap(const RBT& rhs);
+			void						clear(ft::Node<T> *node);
 
 			/* LOOKUP */
 			iterator		find(const value_type& v);
