@@ -12,11 +12,12 @@
 
 namespace ft
 {
-	template <class T, class Compare = std::less<T>, class Allocator = std::allocator<T> >
+	template <class T, class K, class Compare = std::less<T>, class Allocator = std::allocator<T> >
 	class RBT
 	{
 		public:
 			typedef	T																value_type;
+			typedef	K																key_type;
 			typedef	const T															const_value_type;
 			typedef Allocator														allocator_type;
 			typedef Compare															value_compare;

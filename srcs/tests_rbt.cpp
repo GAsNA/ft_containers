@@ -4,7 +4,7 @@
 
 int main()
 {
-	ft::RBT<int> rbt;
+	ft::RBT<int, int> rbt;
 
 	std::cout << "Insertion 55, 40, 65, 60, 55 (do not add), 75, 57: " << std::endl;
 	rbt.insert(55);
@@ -62,8 +62,8 @@ int main()
 
 	std::cout << "Iterator++: ";
 
-	ft::RBT<int>::iterator	it_plus = rbt.begin();
-	ft::RBT<int>::iterator	end_plus = rbt.end();
+	ft::RBT<int, int>::iterator	it_plus = rbt.begin();
+	ft::RBT<int, int>::iterator	end_plus = rbt.end();
 	for (; it_plus != end_plus; it_plus++) { std::cout << *it_plus << ", "; }
 	std::cout << "..." << std::endl;
 
@@ -71,8 +71,8 @@ int main()
 
 	std::cout << "Iterator--: ";
 
-	ft::RBT<int>::iterator	it_minus = rbt.end();
-	ft::RBT<int>::iterator	end_minus = rbt.begin();
+	ft::RBT<int, int>::iterator	it_minus = rbt.end();
+	ft::RBT<int, int>::iterator	end_minus = rbt.begin();
 	it_minus--;
 	for (; it_minus != end_minus; it_minus--) { std::cout << *it_minus << ", "; }
 	std::cout << "..." << std::endl;
@@ -81,8 +81,8 @@ int main()
 
 	std::cout << "Reverse Iterator++: ";
 
-	ft::RBT<int>::reverse_iterator	it_rev_plus = rbt.rbegin();
-	ft::RBT<int>::reverse_iterator	end_rev_plus = rbt.rend();
+	ft::RBT<int, int>::reverse_iterator	it_rev_plus = rbt.rbegin();
+	ft::RBT<int, int>::reverse_iterator	end_rev_plus = rbt.rend();
 	for (; it_rev_plus != end_rev_plus; it_rev_plus++) { std::cout << *it_rev_plus << ", "; }
 	std::cout << "..." << std::endl;
 
@@ -90,8 +90,8 @@ int main()
 
 	std::cout << "Reverse Iterator--: ";
 
-	ft::RBT<int>::reverse_iterator	it_rev_minus = rbt.rend();
-	ft::RBT<int>::reverse_iterator	end_rev_minus = rbt.rbegin();
+	ft::RBT<int, int>::reverse_iterator	it_rev_minus = rbt.rend();
+	ft::RBT<int, int>::reverse_iterator	end_rev_minus = rbt.rbegin();
 	it_rev_minus--;
 	for (; it_rev_minus != end_rev_minus; it_rev_minus--) { std::cout << *it_rev_minus << ", "; }
 	std::cout << "..." << std::endl;

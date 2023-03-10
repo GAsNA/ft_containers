@@ -3,6 +3,8 @@
 
 # include <iterator>
 
+# include "../utils/Node.hpp"
+
 namespace ft
 {
 	template <class T, class N>
