@@ -3,8 +3,6 @@
 
 # include <iterator>
 
-# include "../utils/Node.hpp"
-
 namespace ft
 {
 	template <class T, class N>
@@ -25,7 +23,10 @@ namespace ft
 			~iterator_rbt();
 
 			/* OPERATORS */
-			operator		iterator_rbt<const T, N>() const;
+			operator	iterator_rbt<const T, N>() const
+			{
+				return iterator_rbt<const T, N>(_pointer);
+			}
 			iterator_rbt	&operator=(const iterator_rbt<const T, N> &rhs);
 			iterator_rbt	&operator++();
 			iterator_rbt	operator++(int);

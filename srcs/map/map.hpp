@@ -6,7 +6,7 @@
 /*   By: rleseur <rleseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:42:02 by rleseur           #+#    #+#             */
-/*   Updated: 2023/03/10 16:49:28 by rleseur          ###   ########.fr       */
+/*   Updated: 2023/03/22 10:47:00 by rleseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,12 @@ namespace ft
 			explicit map(const Compare &comp = Compare(), const Allocator &alloc = Allocator());
 			template <class InputIt>
 			map(InputIt first, InputIt last, const Compare &comp = Compare(), const Allocator &alloc = Allocator());
-			map(const map &other);
+			map(const map<Key, T, Compare, Allocator> &other);
 			~map();
 
 			/* OPERATORS */
-			map&	operator=(const map& other);
-			T&		operator[](const Key& key);
+			map&	operator=(const map<Key, T, Compare, Allocator>& other);
+			T&		operator[](const key_type& key);
 
 			/* ACCESS */
 			T&				at(const Key &key);			// TODO
@@ -97,24 +97,22 @@ namespace ft
 			void					erase(iterator position);
 			size_type				erase(const key_type& x);
 			void					erase(iterator first, iterator last);
-			void					swap(map& map);
+			void					swap(map<Key, T, Compare, Allocator>& map);
 
 			/* LOOKUP */
-			size_type									count(const Key &key) const;
-			iterator									find(const Key &key);
-			const_iterator								find(const Key &key) const;
-			ft::pair<iterator, iterator>				equal_range(const Key& key);
-			ft::pair<const_iterator, const_iterator>	equal_range(const Key& key) const;
-			iterator									lower_bound(const Key& key);
-			const_iterator								lower_bound(const Key& key) const;
-			iterator									upper_bound(const Key& key);
-			const_iterator								upper_bound(const Key& key) const;
+			size_type									count(const key_type &key) const;
+			iterator									find(const key_type &key);
+			const_iterator								find(const key_type &key) const;
+			pair<iterator, iterator>					equal_range(const key_type& key);
+			pair<const_iterator, const_iterator>		equal_range(const key_type& key) const;
+			iterator									lower_bound(const key_type& key);
+			const_iterator								lower_bound(const key_type& key) const;
+			iterator									upper_bound(const key_type& key);
+			const_iterator								upper_bound(const key_type& key) const;
 
 			/* OBSERVERS */
 			key_compare	key_comp() const;
 			value_compare	value_comp() const;
-
-			// TODO NON_MEMBER FUNCTIONS
 
 		private:
 			RBT	_tree;

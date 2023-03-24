@@ -16,11 +16,11 @@ ft::iterator_rbt<T, N>::~iterator_rbt() {};
 /**********************************************************/
 /*						OPERATORS						  */
 /**********************************************************/
-template <class T, class N>
+/*template <class T, class N>
 ft::iterator_rbt<T, N>::operator iterator_rbt<const T, N>() const
 {
 	return iterator_rbt<const T, N>(this->_pointer);
-}
+}*/
 
 template <class T, class N>
 ft::iterator_rbt<T, N>	&ft::iterator_rbt<T, N>::operator=(const iterator_rbt<const T, N> &rhs)
@@ -69,8 +69,8 @@ ft::iterator_rbt<T, N>	ft::iterator_rbt<T, N>::operator++(int)
 template <class T, class N>
 ft::iterator_rbt<T, N>	&ft::iterator_rbt<T, N>::operator--()
 {
-	ft::Node<T>	*node = this->_pointer;
-	ft::Node<T>	*tmp = this->_pointer->parent;
+	node_pointer	node = this->_pointer;
+	node_pointer	tmp = this->_pointer->parent;
 
 	if (this->_pointer->is_nil) { this->_pointer = this->_pointer->parent; }
 	else if (!this->_pointer->is_nil && !this->_pointer->left->is_nil)

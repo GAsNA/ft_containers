@@ -6,9 +6,10 @@
 # include <iostream>
 
 # include "utils.hpp"
-# include "Node.hpp"
 # include "../iterators/reverse_iterator.hpp"
 # include "../iterators/iterator_rbt.hpp"
+
+enum Color { RED, BLACK };
 
 namespace ft
 {
@@ -17,23 +18,38 @@ namespace ft
 	{
 		public:
 			typedef	T																value_type;
-			typedef	K																key_type;
+
+		private:
+			struct Node
+			{
+				Color	color;
+				T		value;
+				Node	*left;
+				Node	*right;
+				Node	*parent;
+				bool	is_nil;
+				
+				Node(const value_type& val, bool is_nil) : color(BLACK), value(val), left(NULL), right(NULL), parent(NULL), is_nil(is_nil) {}
+			};
+
+		public:
 			typedef	const T															const_value_type;
+			typedef	K																key_type;
 			typedef Allocator														allocator_type;
 			typedef Compare															value_compare;
+			typedef value_type&														reference;
+			typedef const value_type&												const_reference;
+			typedef value_type*														pointer;
+			typedef const value_type*												const_pointer;
+			typedef Node*															node_pointer;
+			typedef const Node*														const_node_pointer;
 
 			typedef std::ptrdiff_t													difference_type;
 			typedef std::size_t														size_type;
 
-			typedef typename allocator_type::template rebind<ft::Node<T> >::other	node_allocator;
-			typedef typename allocator_type::reference								reference;
-			typedef typename allocator_type::const_reference						const_reference;
-			typedef typename allocator_type::pointer								pointer;
-			typedef typename allocator_type::const_pointer							const_pointer;
-			typedef typename ft::iterator_rbt<value_type, ft::Node<T> >				iterator;
-			typedef typename ft::iterator_rbt<const_value_type, ft::Node<T> >		const_iterator;
-			typedef typename ft::reverse_iterator<iterator>							reverse_iterator;
-			typedef typename ft::reverse_iterator<const_iterator>					const_reverse_iterator;
+			typedef typename allocator_type::template rebind<Node>::other			node_allocator;
+			typedef typename ft::iterator_rbt<value_type, Node>						iterator;
+			typedef typename ft::iterator_rbt<const_value_type, Node>				const_iterator;
 
 			/* CONSTRUCTORS */
 			explicit RBT(const allocator_type& alloc = allocator_type(), const value_compare& comp = value_compare());
@@ -44,11 +60,11 @@ namespace ft
 			RBT	&operator=(const RBT &rhs);
 
 			/* ACCESS */
-			ft::Node<T>		*getRoot() const;
+			node_pointer	getRoot() const;
 			node_allocator	get_allocator() const;
-			ft::Node<T>		*search(value_type val) const;
-			ft::Node<T>		*minimum(ft::Node<T> *node) const;
-			ft::Node<T>		*maximum(ft::Node<T> *node) const;
+			node_pointer	search(value_type val) const;
+			node_pointer	minimum(node_pointer node) const;
+			node_pointer	maximum(node_pointer node) const;
 			value_compare	compare() const;
 
 			/* ITERATORS */
@@ -56,18 +72,14 @@ namespace ft
 			const_iterator			begin() const;
 			iterator				end();
 			const_iterator			end() const;
-			reverse_iterator		rbegin();
-			const_reverse_iterator	rbegin() const;
-			reverse_iterator		rend();
-			const_reverse_iterator	rend() const;
-			
 
 			/* MODIFIERS */
-			void						setRoot(ft::Node<T> *root);
+			void						setRoot(node_pointer root);
 			ft::pair<iterator, bool>	insert(value_type val);
 			size_type					erase(value_type val);
-			void						swap(const RBT& rhs);
-			void						clear(ft::Node<T> *node);
+			void						multi_erase(iterator it, iterator ite);
+			void						swap(RBT& rhs);
+			void						clear(node_pointer node);
 
 			/* LOOKUP */
 			iterator		find(const value_type& v);
@@ -84,26 +96,25 @@ namespace ft
 			size_type		max_size() const;
 
 			/* OTHERS */
-			void	printHelper(ft::Node<T> *root, std::string indent, bool last) const;
+			void	printHelper(node_pointer root, std::string indent, bool last) const;
 			void	printTree() const;
 
 		private:
-			allocator_type	_alloc;
-			node_allocator	_node_alloc;
+			node_allocator	_alloc;
 			value_compare	_comp;
-			ft::Node<T>		*_root;
-			ft::Node<T>		*_end;
-			ft::Node<T>		*_nil;
+			node_pointer	_root;
+			node_pointer	_end;
+			node_pointer	_nil;
 			size_type		_size;
 
-			ft::Node<T>		*createNode(bool is_nil, const value_type &val = value_type());
-			void			destroyNode(ft::Node<T> *node);
+			node_pointer	createNode(bool is_nil, const value_type &val = value_type());
+			void			destroyNode(node_pointer node);
 			void			updateEnd();
-			void			leftRotate(ft::Node<T> *node);
-			void			rightRotate(ft::Node<T> *node);
-			void			insert_fixup(ft::Node<T> *node);
-			void			transplant(ft::Node<T> *n1, ft::Node<T> *n2);
-			void			delete_fixup(ft::Node<T> *node);
+			void			leftRotate(node_pointer node);
+			void			rightRotate(node_pointer node);
+			void			insert_fixup(node_pointer node);
+			void			transplant(node_pointer n1, node_pointer n2);
+			void			delete_fixup(node_pointer node);
 	};
 
 	# include "RedBlackTree.tpp"

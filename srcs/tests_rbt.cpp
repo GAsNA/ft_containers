@@ -76,23 +76,4 @@ int main()
 	it_minus--;
 	for (; it_minus != end_minus; it_minus--) { std::cout << *it_minus << ", "; }
 	std::cout << "..." << std::endl;
-
-	std::cout << std::endl;
-
-	std::cout << "Reverse Iterator++: ";
-
-	ft::RBT<int, int>::reverse_iterator	it_rev_plus = rbt.rbegin();
-	ft::RBT<int, int>::reverse_iterator	end_rev_plus = rbt.rend();
-	for (; it_rev_plus != end_rev_plus; it_rev_plus++) { std::cout << *it_rev_plus << ", "; }
-	std::cout << "..." << std::endl;
-
-	std::cout << std::endl;
-
-	std::cout << "Reverse Iterator--: ";
-
-	ft::RBT<int, int>::reverse_iterator	it_rev_minus = rbt.rend();
-	ft::RBT<int, int>::reverse_iterator	end_rev_minus = rbt.rbegin();
-	it_rev_minus--;
-	for (; it_rev_minus != end_rev_minus; it_rev_minus--) { std::cout << *it_rev_minus << ", "; }
-	std::cout << "..." << std::endl;
 }
