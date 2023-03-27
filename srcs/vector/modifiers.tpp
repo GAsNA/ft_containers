@@ -107,6 +107,8 @@ void	ft::vector<T, Alloc>::pop_back()
 template <class T, class Alloc>
 void	ft::vector<T, Alloc>::resize(size_type count, T value)
 {
+	if (count > this->max_size()) { throw std::length_error("Bad Alloc"); }
+
 	if (this->_size > count)
 		for (int i = count; i < (int)this->_size; i++)
 			this->_alloc.destroy(&this->_datas[i]);

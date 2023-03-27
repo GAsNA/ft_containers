@@ -40,12 +40,6 @@ namespace ft
 			typedef typename ft::reverse_iterator<iterator>				reverse_iterator;
 			typedef typename ft::reverse_iterator<const_iterator>		const_reverse_iterator;
 			
-			class InvalidIndexException : public std::exception
-			{
-				public:
-					virtual const char* what() const throw() {return "Invalid index!";}
-			};
-
 			/* CONSTRUCTORS */
 			explicit vector (const allocator_type& alloc = allocator_type());
 			explicit vector (size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type());

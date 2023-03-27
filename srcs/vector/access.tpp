@@ -7,16 +7,14 @@ typename ft::vector<T, Alloc>::allocator_type	ft::vector<T, Alloc>::get_allocato
 template <class T, class Alloc>
 typename ft::vector<T, Alloc>::reference	ft::vector<T, Alloc>::at(size_type pos)
 {
-	if (pos >= this->_size || pos < 0) {throw std::out_of_range("Index out of range");}
-
+	if (pos >= this->size()) { throw std::out_of_range("Out Of Bounds"); }
 	return this->_datas[pos];
 }
 
 template <class T, class Alloc>
 typename ft::vector<T, Alloc>::const_reference	ft::vector<T, Alloc>::at(size_type pos) const
 {
-	if (pos >= this->_size || pos < 0) {throw std::out_of_range("Index out of range");}
-
+	if (pos >= this->size()) { throw std::out_of_range("Out Of Bounds"); }
 	return this->_datas[pos];
 }
 
