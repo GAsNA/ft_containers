@@ -23,9 +23,7 @@ template <class InputIterator>
 void	ft::map<Key, T, Compare, Allocator>::insert(InputIterator first, InputIterator last)
 {
 	for (; first != last; first++)
-	{
 		this->_tree.insert(*first);
-	}
 }
 
 template <class Key, class T, class Compare, class Allocator>

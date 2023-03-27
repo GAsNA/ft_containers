@@ -32,10 +32,10 @@ namespace ft
 			iterator_rbt	operator++(int);
 			iterator_rbt	&operator--();
 			iterator_rbt	operator--(int);
-			bool			operator>(iterator_rbt<const T, N> const &) const;
+			/*bool			operator>(iterator_rbt<const T, N> const &) const;
 			bool			operator<(iterator_rbt<const T, N> const &) const;
 			bool			operator>=(iterator_rbt<const T, N> const &) const;
-			bool			operator<=(iterator_rbt<const T, N> const &) const;
+			bool			operator<=(iterator_rbt<const T, N> const &) const;*/
 			bool			operator==(iterator_rbt<const T, N> const &) const;
 			bool			operator!=(iterator_rbt<const T, N> const &) const;
 			T				&operator*() const;

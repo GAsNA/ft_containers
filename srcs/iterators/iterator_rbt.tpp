@@ -48,12 +48,13 @@ ft::iterator_rbt<T, N>	&ft::iterator_rbt<T, N>::operator++()
 		tmp = this->_pointer->parent;
 		while (!tmp->is_nil && this->_pointer == tmp->right)
 		{
-			if (tmp->parent->is_nil) { this->_pointer = node->right; return *this; }
+			if (tmp->parent->is_nil) { this->_pointer = node->right; return *this; } //node->parent
 			this->_pointer = tmp;
 			tmp = tmp->parent;
 		}
 		this->_pointer = tmp;
 	}
+	else if (!this->_pointer->is_nil) { this->_pointer = this->_pointer->right; }
 
 	return *this;
 }
@@ -102,7 +103,7 @@ ft::iterator_rbt<T, N>	ft::iterator_rbt<T, N>::operator--(int)
 	return iv;
 }
 
-template <class T, class N>
+/*template <class T, class N>
 bool	ft::iterator_rbt<T, N>::operator>(iterator_rbt<const T, N> const &iv) const
 {
 	if (this->_pointer->is_nil == iv.get_pointer()->is_nil) { return false; }
@@ -126,18 +127,20 @@ template <class T, class N>
 bool	ft::iterator_rbt<T, N>::operator<=(iterator_rbt<const T, N> const &iv) const
 {
 	return !(this->_pointer < iv.get_pointer());
-}
+}*/
 
 template <class T, class N>
 bool	ft::iterator_rbt<T, N>::operator==(iterator_rbt<const T, N> const &iv) const
 {
 	return this->_pointer->value.first == iv.get_pointer()->value.first && this->_pointer->is_nil == iv.get_pointer()->is_nil;
+	//return this->_pointer == iv.get_pointer();
 }
 
 template <class T, class N>
 bool	ft::iterator_rbt<T, N>::operator!=(iterator_rbt<const T, N> const &iv) const
 {
 	return !(*this == iv);
+	//return this->_pointer != iv.get_pointer();
 }
 
 template <class T, class N>

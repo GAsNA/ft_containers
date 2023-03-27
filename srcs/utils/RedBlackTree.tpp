@@ -1,8 +1,10 @@
+#include <unistd.h>
+
 /**********************************************************/
 /*						CONSTRUCTORS					  */
 /**********************************************************/
 template <class T, class K, class Comp, class Alloc>
-ft::RBT<T, K, Comp, Alloc>::RBT(const allocator_type& alloc, const value_compare& comp) : _alloc(alloc), _comp(comp), _end(createNode(true)), _nil(createNode(true)), _size(0) { this->_root = this->_nil; }
+		ft::RBT<T, K, Comp, Alloc>::RBT(const allocator_type& alloc, const value_compare& comp) : _alloc(alloc), _comp(comp), _end(createNode(true)), _nil(createNode(true)), _size(0) { this->_root = this->_nil; }
 
 template <class T, class K, class Comp, class Alloc>
 ft::RBT<T, K, Comp, Alloc>::RBT(const RBT &cpy)
@@ -87,7 +89,7 @@ typename ft::RBT<T, K, Comp, Alloc>::node_pointer	ft::RBT<T, K, Comp, Alloc>::mi
 template <class T, class K, class Comp, class Alloc>
 typename ft::RBT<T, K, Comp, Alloc>::node_pointer	ft::RBT<T, K, Comp, Alloc>::maximum(node_pointer node) const
 {
-	while (node->right != this->_nil && node->right != this->_end) { node = node->right; }
+	while (node != this->_nil && node != this->_end && node->right != this->_nil && node->right != this->_end) { node = node->right; }
 	return node;
 }
 
@@ -157,7 +159,7 @@ typename ft::RBT<T, K, Comp, Alloc>::size_type	ft::RBT<T, K, Comp, Alloc>::erase
 	node_pointer	y = z;
 	node_pointer	x;
 	Color			y_original_color = y->color;
-
+	
 	if (z->left == this->_nil || z->left == this->_end) { x = z->right; this->transplant(z, z->right); }
 	else if (z->right == this->_nil || z->right == this->_end) { x = z->left; this->transplant(z, z->left); }
 	else
@@ -180,6 +182,7 @@ typename ft::RBT<T, K, Comp, Alloc>::size_type	ft::RBT<T, K, Comp, Alloc>::erase
 
 	if (y_original_color == BLACK) { this->delete_fixup(x); }
 	this->updateEnd();
+
 	return 1;
 }
 
@@ -327,7 +330,7 @@ void	ft::RBT<T, K, Comp, Alloc>::printHelper(node_pointer root, std::string inde
 	}
 
 	std::string sColor = root->color == RED ? "RED" : "BLACK";
-	std::cout << root->value << "(" << sColor << ")" << std::endl;
+	std::cout << root->value.first << "(" << sColor << ")" << std::endl;
 	printHelper(root->left, indent, false);
 	printHelper(root->right, indent, true);
 }
@@ -366,8 +369,10 @@ void	ft::RBT<T, K, Comp, Alloc>::updateEnd()
 {
 	node_pointer	node = maximum(this->_root);
 
-	this->_end->parent = node;
 	node->right = this->_end;
+	this->_end->parent = node;
+	this->_end->left = this->_nil;
+	this->_end->right = this->_nil;
 }
 
 template <class T, class K, class Comp, class Alloc>
