@@ -68,7 +68,7 @@ namespace ft
 			void	pop();
 
 		protected:
-			container_type _cont;
+			container_type c;
 	};
 
 	# include "operators.tpp"

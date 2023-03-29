@@ -6,7 +6,7 @@ SRCS_PATH		=	./srcs/
 OBJS_PATH		=	./objs/
 HEAD_PATH		=	./srcs/utils/
 
-FILES			=	tests_map.cpp
+FILES			=	main_example.cpp
 HEAD_FILES		=	utils.hpp
 
 SRCS			=	${addprefix ${SRCS_PATH}, ${FILES}}
@@ -21,11 +21,11 @@ CC				=	clang++
 RM				=	rm -rf
 CFLAGS			=	-Wall -Wextra -Werror -std=c++98
 
+#${CLEAR} && valgrind --leak-check=full ./${NAME} 7
 
 ### Commandes
 
 all:			${NAME}
-				${CLEAR} && valgrind --leak-check=full ./${NAME}
 
 ${NAME}:		${OBJS}
 				${CC} ${CFLAGS} ${OBJS} -o ${NAME}

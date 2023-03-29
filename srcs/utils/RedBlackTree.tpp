@@ -4,7 +4,7 @@
 /*						CONSTRUCTORS					  */
 /**********************************************************/
 template <class T, class K, class Comp, class Alloc>
-		ft::RBT<T, K, Comp, Alloc>::RBT(const allocator_type& alloc, const value_compare& comp) : _alloc(alloc), _comp(comp), _end(createNode(true)), _nil(createNode(true)), _size(0) { this->_root = this->_nil; }
+ft::RBT<T, K, Comp, Alloc>::RBT(const allocator_type& alloc, const value_compare& comp) : _alloc(alloc), _comp(comp), _end(createNode(true)), _nil(createNode(true)), _size(0) { this->_root = this->_nil; }
 
 template <class T, class K, class Comp, class Alloc>
 ft::RBT<T, K, Comp, Alloc>::RBT(const RBT &cpy)

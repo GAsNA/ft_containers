@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.hpp                                            :+:      :+:    :+:   */
+/*   set.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rleseur <rleseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_HPP
-# define MAP_HPP
+#ifndef SET_HPP
+# define SET_HPP
 
 # include <iostream>
 # include <string>
@@ -26,16 +26,17 @@
 
 namespace ft
 {
-	template <class Key, class T, class Compare = std::less<Key>, class Allocator = std::allocator<ft::pair<const Key, T> > >
-	class map
+	template <class Key, class Compare = std::less<Key>, class Allocator = std::allocator<Key> >
+	class set
 	{
 		public:
 			typedef Key																	key_type;
-			typedef T																	mapped_type;
-			typedef ft::pair<const Key, T>												value_type;
+			typedef Key																	value_type;
+			//ft::pair<const Key, Key> value_type;
 			typedef std::size_t															size_type;
 			typedef std::ptrdiff_t														difference_type;
 			typedef Compare																key_compare;
+			typedef Compare																value_compare;
 			typedef Allocator															allocator_type;
 			typedef typename Allocator::reference										reference;
 			typedef typename Allocator::const_reference									const_reference;
@@ -47,26 +48,26 @@ namespace ft
 			typedef typename ft::reverse_iterator<iterator>								reverse_iterator;
 			typedef typename ft::reverse_iterator<const_iterator>						const_reverse_iterator;
 
-			class value_compare: public std::binary_function<value_type, value_type, bool> {
-				friend class map;
+			/*class value_compare: public std::binary_function<value_type, value_type, bool> {
+				friend class set;
 				protected:
 					Compare comp;
 					value_compare(Compare c) : comp(c) {}
 
 				public:
 					bool operator()(const value_type& x, const value_type& y) const { return comp(x.first, y.first); }
-			};
+			};*/
 
 			/* CONSTRUCTORS */
-			explicit map(const Compare &comp = Compare(), const Allocator &alloc = Allocator());
+			explicit set(const Compare &comp = Compare(), const Allocator &alloc = Allocator());
 			template <class InputIt>
-			map(InputIt first, InputIt last, const Compare &comp = Compare(), const Allocator &alloc = Allocator());
-			map(const map<Key, T, Compare, Allocator> &other);
-			~map();
+			set(InputIt first, InputIt last, const Compare &comp = Compare(), const Allocator &alloc = Allocator());
+			set(const set<Key, Compare, Allocator> &other);
+			~set();
 
 			/* OPERATORS */
-			map&	operator=(const map<Key, T, Compare, Allocator>& other);
-			T&		operator[](const key_type& key);
+			set&		operator=(const set<Key, Compare, Allocator>& other);
+			value_type&	operator[](const key_type& key);
 
 			/* ACCESS */
 			allocator_type	get_allocator() const;
@@ -95,7 +96,7 @@ namespace ft
 			void					erase(iterator position);
 			size_type				erase(const key_type& x);
 			void					erase(iterator first, iterator last);
-			void					swap(map<Key, T, Compare, Allocator>& map);
+			void					swap(set<Key, Compare, Allocator>& set);
 
 			/* LOOKUP */
 			size_type									count(const key_type &key) const;
@@ -109,7 +110,7 @@ namespace ft
 			const_iterator								upper_bound(const key_type& key) const;
 
 			/* OBSERVERS */
-			key_compare	key_comp() const;
+			key_compare		key_comp() const;
 			value_compare	value_comp() const;
 
 		private:
