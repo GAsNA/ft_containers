@@ -68,14 +68,6 @@ int main()
 		for (size_t i = 0; i < 4; i++)
 			std::cout << v1[i] << " ";
 		std::cout << std::endl;
-		try {
-			std::cout << "Invalid index for v:\t" << v[-1] << std::endl;
-		} catch (std::exception &e) {std::cout << e.what() << std::endl;}
-		try {
-			std::cout << "Invalid index for v:\t" << v[3] << std::endl;
-		} catch (std::exception &e) {std::cout << e.what() << std::endl;}
-		
-		std::cout << std::endl;
 		
 		/* == */
 		std::cout << "test == v:\t\t" << (test == v) << std::endl;
