@@ -28,7 +28,7 @@ ft::RBT<T, K, Comp, Alloc>::RBT(const RBT &cpy)
 template <class T, class K, class Comp, class Alloc>
 ft::RBT<T, K, Comp, Alloc>::~RBT()
 {
-	//this->clear(this->_root);
+	this->clear(this->_root);
 	this->destroyNode(this->_end);
 	this->destroyNode(this->_nil);
 }
