@@ -6,7 +6,7 @@ SRCS_PATH		=	./srcs/
 OBJS_PATH		=	./objs/
 HEAD_PATH		=	./srcs/utils/
 
-FILES			=	tests_vector.cpp
+FILES			=	tests_stack.cpp
 HEAD_FILES		=	utils.hpp
 
 SRCS			=	${addprefix ${SRCS_PATH}, ${FILES}}
