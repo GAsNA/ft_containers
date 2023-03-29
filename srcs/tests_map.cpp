@@ -385,16 +385,62 @@ int main()
 			std::cout << " " << (*itr1).first << "|" << (*itr1).second;
 		std::cout << std::endl;
 
+		std::cout << std::endl;
 	}
 
 	/*********************************************************/
 	/*						LOOKUP							 */
 	/*********************************************************/
-	{}
+	{
+		std::cout << "/*********************************************************/" << std::endl;
+		std::cout << "/*                         LOOKUP                        */" << std::endl;
+		std::cout << "/*********************************************************/" << std::endl;
 
+		ft::map<int, char>	map;
+		map.insert(ft::make_pair(7, 'a'));
+		map.insert(ft::make_pair(666, 'b'));
+		map.insert(ft::make_pair(9, 'c'));
 
-	/*********************************************************/
-	/*						OBSERVERS						 */
-	/*********************************************************/
-	{}
+		ft::map<int, char>::iterator	it = map.begin();
+		ft::map<int, char>::iterator	ite = map.end();
+
+		std::cout << "Content of v:";
+		for (; it != ite; it++)
+			std::cout << " " << (*it).first << "|" << (*it).second;
+		std::cout << std::endl;
+
+		std::cout << std::endl;
+
+		/* count */
+		std::cout << "Count of 666: " << map.count(666) << std::endl;
+		std::cout << "Count of 3: " << map.count(3) << std::endl;
+
+		std::cout << std::endl;
+
+		/* find */
+		ft::map<int, char>::iterator	it_f = map.find(7);
+		std::cout << "Find of 7 with ite: " << (*it_f).first << "|" << (*it_f).second << std::endl;
+		ft::map<int, char>::const_iterator	it_f_const = map.find(9);
+		std::cout << "Find of 9 with const ite: " << (*it_f_const).first << "|" << (*it_f_const).second << std::endl;
+
+		std::cout << std::endl;
+
+		/* equal_range */
+
+		/* lower_bound */
+		ft::map<int, char>::iterator	it_lb = map.lower_bound(7);
+		std::cout << "Lower Bound of 7 with ite: " << (*it_lb).first << "|" << (*it_lb).second << std::endl;
+		ft::map<int, char>::const_iterator	it_lb_const = map.lower_bound(9);
+		std::cout << "Lower Bound of 9 with const ite: " << (*it_lb_const).first << "|" << (*it_lb_const).second << std::endl;
+
+		std::cout << std::endl;
+
+		/* upper_bound */
+		ft::map<int, char>::iterator	it_ub = map.upper_bound(7);
+		std::cout << "Upper Bound of 7 with ite: " << (*it_ub).first << "|" << (*it_ub).second << std::endl;
+		ft::map<int, char>::const_iterator	it_ub_const = map.upper_bound(9);
+		std::cout << "Upper Bound of 9 with const ite: " << (*it_ub_const).first << "|" << (*it_ub_const).second << std::endl;
+
+		std::cout << std::endl;
+	}
 }
