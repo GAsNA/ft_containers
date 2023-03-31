@@ -8,11 +8,9 @@ ft::set<Key, Compare, Allocator>	&ft::set<Key, Compare, Allocator>::operator=(co
 }
 
 template <class Key, class Compare, class Allocator>
-Key&	ft::set<Key, Compare, Allocator>::operator[](const key_type& key)
+typename ft::set<Key, Compare, Allocator>::value_type&	ft::set<Key, Compare, Allocator>::operator[](const key_type& key)
 {
-	(void)key;
-	return NULL;
-	//return (insert(ft::make_pair(key, mapped_type())).first)->second;
+	return (insert(ft::make_pair(key, value_type())).first)->second;
 }
 
 template <class Key, class Compare, class Allocator>

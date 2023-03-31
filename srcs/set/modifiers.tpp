@@ -35,9 +35,7 @@ void	ft::set<Key, Compare, Allocator>::erase(iterator position)
 template <class Key, class Compare, class Allocator>
 typename ft::set<Key, Compare, Allocator>::size_type	ft::set<Key, Compare, Allocator>::erase(const key_type& x)
 {
-	(void)x;
-	return 0;
-	//return this->_tree.erase(ft::make_pair(x, mapped_type()));
+	return this->_tree.erase(ft::make_pair(x, value_type()));
 }
 
 template <class Key, class Compare, class Allocator>

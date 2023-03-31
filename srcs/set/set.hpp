@@ -22,7 +22,7 @@
 # include "../utils/utils.hpp"
 # include "../iterators/reverse_iterator.hpp"
 # include "../iterators/iterator_rbt.hpp"
-# include "../utils/RedBlackTree.hpp"
+# include "../utils/RedBlackTree_set.hpp"
 
 namespace ft
 {
@@ -32,31 +32,20 @@ namespace ft
 		public:
 			typedef Key																	key_type;
 			typedef Key																	value_type;
-			//ft::pair<const Key, Key> value_type;
 			typedef std::size_t															size_type;
 			typedef std::ptrdiff_t														difference_type;
 			typedef Compare																key_compare;
-			typedef Compare																value_compare;
+			typedef	Compare																value_compare;
 			typedef Allocator															allocator_type;
 			typedef typename Allocator::reference										reference;
 			typedef typename Allocator::const_reference									const_reference;
 			typedef typename Allocator::pointer											pointer;
 			typedef typename Allocator::const_pointer									const_pointer;
-			typedef typename ft::RBT<value_type, key_type, key_compare, allocator_type>	RBT;
+			typedef typename ft::RBT_set<value_type, key_type, key_compare, allocator_type>	RBT;
 			typedef typename RBT::iterator												iterator;
 			typedef typename RBT::const_iterator										const_iterator;
 			typedef typename ft::reverse_iterator<iterator>								reverse_iterator;
 			typedef typename ft::reverse_iterator<const_iterator>						const_reverse_iterator;
-
-			/*class value_compare: public std::binary_function<value_type, value_type, bool> {
-				friend class set;
-				protected:
-					Compare comp;
-					value_compare(Compare c) : comp(c) {}
-
-				public:
-					bool operator()(const value_type& x, const value_type& y) const { return comp(x.first, y.first); }
-			};*/
 
 			/* CONSTRUCTORS */
 			explicit set(const Compare &comp = Compare(), const Allocator &alloc = Allocator());
@@ -66,8 +55,8 @@ namespace ft
 			~set();
 
 			/* OPERATORS */
-			set&		operator=(const set<Key, Compare, Allocator>& other);
-			value_type&	operator[](const key_type& key);
+			set&			operator=(const set<Key, Compare, Allocator>& other);
+			value_type&		operator[](const key_type& key);
 
 			/* ACCESS */
 			allocator_type	get_allocator() const;
