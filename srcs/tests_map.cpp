@@ -426,6 +426,22 @@ int main()
 		std::cout << std::endl;
 
 		/* equal_range */
+		ft::pair<ft::map<int, char>::iterator, ft::map<int, char>::iterator> pair = map.equal_range(7);
+		ft::map<int, char>::iterator	it_er = pair.first;
+		ft::map<int, char>::iterator	ite_er = pair.second;
+		std::cout << "Equal Range of 7 with ite: ";
+		for (; it_er != ite_er; it_er++)
+			std::cout << (*it_er).first << "|" << (*it_er).second << " ";
+		std::cout << std::endl;
+		ft::pair<ft::map<int, char>::const_iterator, ft::map<int, char>::const_iterator> pair_const = map.equal_range(9);
+		ft::map<int, char>::const_iterator	it_er_const = pair_const.first;
+		ft::map<int, char>::const_iterator	ite_er_const = pair_const.second;
+		std::cout << "Equal Range of 9 with const ite: ";
+		for (; it_er_const != ite_er_const; it_er_const++)
+			std::cout << (*it_er_const).first << "|" << (*it_er_const).second << " ";
+		std::cout << std::endl;
+
+		std::cout << std::endl;
 
 		/* lower_bound */
 		ft::map<int, char>::iterator	it_lb = map.lower_bound(7);
