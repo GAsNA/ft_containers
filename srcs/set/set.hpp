@@ -41,9 +41,9 @@ namespace ft
 			typedef typename Allocator::const_reference									const_reference;
 			typedef typename Allocator::pointer											pointer;
 			typedef typename Allocator::const_pointer									const_pointer;
-			typedef typename ft::RBT_set<value_type, key_type, key_compare, allocator_type>	RBT;
-			typedef typename RBT::iterator												iterator;
-			typedef typename RBT::const_iterator										const_iterator;
+			typedef typename ft::RBT_set<value_type, key_type, key_compare, allocator_type>	rbt;
+			typedef typename rbt::iterator												iterator;
+			typedef typename rbt::const_iterator										const_iterator;
 			typedef typename ft::reverse_iterator<iterator>								reverse_iterator;
 			typedef typename ft::reverse_iterator<const_iterator>						const_reverse_iterator;
 
@@ -103,7 +103,7 @@ namespace ft
 			value_compare	value_comp() const;
 
 		private:
-			RBT	_tree;
+			rbt	_tree;
 	};
 
 	# include "constructors.tpp"

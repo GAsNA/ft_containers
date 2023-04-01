@@ -29,13 +29,13 @@ void	ft::set<Key, Compare, Allocator>::insert(InputIterator first, InputIterator
 template <class Key, class Compare, class Allocator>
 void	ft::set<Key, Compare, Allocator>::erase(iterator position)
 {
-	erase(position->first);
+	erase(*position);
 }
 
 template <class Key, class Compare, class Allocator>
 typename ft::set<Key, Compare, Allocator>::size_type	ft::set<Key, Compare, Allocator>::erase(const key_type& x)
 {
-	return this->_tree.erase(ft::make_pair(x, value_type()));
+	return this->_tree.erase(x);
 }
 
 template <class Key, class Compare, class Allocator>

@@ -1,19 +1,19 @@
 template <class Key, class Compare, class Allocator>
 typename ft::set<Key, Compare, Allocator>::size_type	ft::set<Key, Compare, Allocator>::count(const key_type &key) const
 {
-	return this->_tree.count(ft::make_pair(key, value_type()));
+	return this->_tree.count(key);
 }
 
 template <class Key, class Compare, class Allocator>
 typename ft::set<Key, Compare, Allocator>::iterator	ft::set<Key, Compare, Allocator>::find(const key_type &key)
 {
-	return this->_tree.find(ft::make_pair(key, value_type()));
+	return this->_tree.find(key);
 }
 
 template <class Key, class Compare, class Allocator>
 typename ft::set<Key, Compare, Allocator>::const_iterator	ft::set<Key, Compare, Allocator>::find(const key_type &key) const
 {
-	return this->_tree.find(ft::make_pair(key, value_type()));
+	return this->_tree.find(key);
 }
 
 template <class Key, class Compare, class Allocator>
