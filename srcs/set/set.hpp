@@ -31,7 +31,7 @@ namespace ft
 	{
 		public:
 			typedef Key																	key_type;
-			typedef Key																	value_type;
+			typedef const Key															value_type;
 			typedef std::size_t															size_type;
 			typedef std::ptrdiff_t														difference_type;
 			typedef Compare																key_compare;
